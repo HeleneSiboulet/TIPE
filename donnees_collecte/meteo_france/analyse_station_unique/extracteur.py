@@ -2,6 +2,7 @@ from datetime import datetime
 import pandas as pd
 import sys
 from matplotlib import pyplot as plt
+import json
 
 origine_temps = datetime(1996,1,1)
 
@@ -52,11 +53,17 @@ plt.legend()
 plt.savefig("temperature.png")
 plt.clf()
 
+with open('temperature.json','w') as jsonfile :
+	jsonfile.write(json.dumps([Temps_temperature, Temperature], indent=4))
+
 for clef in Temps_humidite.keys() :
 	plt.plot(Temps_humidite[clef], Humidite[clef], label=clef)
 plt.legend()
 plt.savefig("humidite.png")
 plt.clf()
+
+with open('humidite.json','w') as jsonfile :
+	jsonfile.write(json.dumps([Temps_humidite, Humidite], indent=4))
 
 plt.plot(Temps_temperature["1997"], Temperature["1997"])
 plt.show()
