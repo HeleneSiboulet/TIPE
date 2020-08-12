@@ -1,4 +1,5 @@
 import json
+import sys
 
 with open('temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
@@ -6,10 +7,10 @@ with open('temperature.json') as jsonfile :
 with open('humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
-with open('temperature_test.json') as jsonfile :
+with open(sys.argv[1]) as jsonfile :
 	temperature_test = json.load(jsonfile)
 
-with open('humidite_test.json') as jsonfile :
+with open(sys.argv[2]) as jsonfile :
 	humidite_test = json.load(jsonfile)
 
 ecarts_temperature = 0
