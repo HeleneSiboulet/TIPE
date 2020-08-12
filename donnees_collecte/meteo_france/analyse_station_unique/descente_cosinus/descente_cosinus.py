@@ -2,7 +2,8 @@ import json
 from matplotlib import pyplot as plt
 import numpy as np
 
-delta = 10**(-1)
+delta = 10**(-3)
+alpha = [1, 1, 1, 0.1, 0.1]
 
 with open('temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
@@ -37,7 +38,7 @@ X = np.array([2.0,10.0,285.0,0.0,np.pi])
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + C
 #w1 jour w2 annee
 
-for i in range(300) :
+for i in range(100) :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -53,11 +54,11 @@ for i in range(300) :
 			val_modif.append(fct_test(X_modif,date))
 		val_modif_ecart = ecart_temperature([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
-		dX[j] = - val_actuel_ecart/df/500	
+		dX[j] = - df * alpha[j]
 	X = X + dX
-	X[3] = X[3]%2*np.pi
-	X[4] = X[4]%2*np.pi
-	print(X)
+	X[3] = X[3]%(2*np.pi)
+	X[4] = X[4]%(2*np.pi)
+	#print(X)
 	if i%10 == 0 :
 		print(f"{i} sur 300")
 		print(val_modif_ecart)
