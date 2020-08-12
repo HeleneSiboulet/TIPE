@@ -24,26 +24,27 @@ for i in range(0,len(donnees["numer_sta"])) :
 	humidite = str(donnees["u"][i])
 
 	annee = date.strftime("%Y")
-	dt = date - datetime(int(annee), 1, 1)
+	if annee != "2008" and annee != "2020" and annee != "2019" :
+		dt = date - datetime(int(annee), 1, 1)
 
-	
-	dt = int(dt.days) + int(dt.seconds)/3600/24
+		
+		dt = int(dt.days) + int(dt.seconds)/3600/24
 
-	if temperature != 'mq' :
-		if annee in Temps_temperature.keys() :
-			Temps_temperature[annee].append(dt)
-			Temperature[annee].append(float(temperature))
-		else :
-			Temps_temperature[annee] = [dt]
-			Temperature[annee] = [float(temperature)]
+		if temperature != 'mq' :
+			if annee in Temps_temperature.keys() :
+				Temps_temperature[annee].append(dt)
+				Temperature[annee].append(float(temperature))
+			else :
+				Temps_temperature[annee] = [dt]
+				Temperature[annee] = [float(temperature)]
 
-	if humidite != 'mq' :
-		if annee in Temps_humidite.keys() :
-			Temps_humidite[annee].append(dt)
-			Humidite[annee].append(float(humidite))
-		else :
-			Temps_humidite[annee] = [dt]
-			Humidite[annee] = [float(humidite)]
+		if humidite != 'mq' :
+			if annee in Temps_humidite.keys() :
+				Temps_humidite[annee].append(dt)
+				Humidite[annee].append(float(humidite))
+			else :
+				Temps_humidite[annee] = [dt]
+				Humidite[annee] = [float(humidite)]
 
 
 
