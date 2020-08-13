@@ -5,10 +5,10 @@ import numpy as np
 delta = 10**(-3)
 alpha = [1, 1, 1, 1, 0.1, 0.1, 0.1]
 
-with open('../ancienne_bdd/totale/temperature.json') as jsonfile :
+with open('../temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
-with open('../ancienne_bdd/totale/humidite.json') as jsonfile :
+with open('../humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
 dates = set()
