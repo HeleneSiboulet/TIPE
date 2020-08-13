@@ -2,10 +2,10 @@ import numpy as np
 import json
 from matplotlib import pyplot as plt
 
-with open('temperature.json') as jsonfile :
+with open('../ancienne_bdd/totale/temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
-with open('humidite.json') as jsonfile :
+with open('../ancienne_bdd/totale/humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
 temp = []
@@ -26,5 +26,13 @@ print(Y[f])
 
 plt.plot(freq,lY)
 
+plt.savefig("fft.png")
 
-plt.show()
+with open("fft.csv",'w') as csvfile :
+	texte = ""
+	texte = texte + '"frequence";"amplitude";"logAmplitude";"amplitudePhase";"logAmplitudePhase"\n'
+	for k in range(len(freq)) :
+		texte = texte + f"{freq[k]};{np.real(Y[k])};{np.real(lY[k])};{np.imag(Y[k])};{np.imag(lY[k])}\n"
+	texte = texte.replace(".",",")
+	csvfile.write(texte)
+
