@@ -7,7 +7,7 @@ import json
 origine_temps = datetime(1996,1,1)
 
 with open(sys.argv[1],'r') as csvfile :
-	donnees = pd.read_csv(csvfile, sep=";")
+	donnees = pd.read_csv(csvfile, sep=";", low_memory = False)
 
 Temps_temperature = {}
 Temperature = {}

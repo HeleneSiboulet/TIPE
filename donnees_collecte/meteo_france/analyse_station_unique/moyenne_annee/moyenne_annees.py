@@ -1,10 +1,10 @@
 import json
 from matplotlib import pyplot as plt
 
-with open('temperature.json') as jsonfile :
+with open('../temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
-with open('humidite.json') as jsonfile :
+with open('../humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
 
@@ -32,7 +32,7 @@ plt.plot(dates, Moyenne_temperature)
 plt.savefig("Moyenne_temperature.png")
 plt.clf()
 
-with open("Moyenne_temperature.json",'w') as jsonfile :
+with open("Moyenne_temperature2.json",'w') as jsonfile :
 	jsonfile.write(json.dumps([dates, Moyenne_temperature], indent=4))
 
 
@@ -58,7 +58,7 @@ plt.plot(dates, Moyenne_humidite)
 plt.savefig("Moyenne_humidite.png")
 plt.clf()
 
-with open("Moyenne_humidite.json",'w') as jsonfile :
+with open("Moyenne_humidite2.json",'w') as jsonfile :
 	jsonfile.write(json.dumps([dates, Moyenne_humidite],indent=4))
 
 

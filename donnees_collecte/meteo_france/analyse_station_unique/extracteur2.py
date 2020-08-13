@@ -51,7 +51,7 @@ for i in range(0,len(donnees["numer_sta"])) :
 for clef in Temps_temperature.keys() :
 	plt.plot(Temps_temperature[clef], Temperature[clef], label=clef)
 plt.legend()
-plt.savefig("temperature.png")
+plt.savefig("temperatureTest.png")
 plt.clf()
 
 with open('temperatureTest.json','w') as jsonfile :
@@ -60,7 +60,7 @@ with open('temperatureTest.json','w') as jsonfile :
 for clef in Temps_humidite.keys() :
 	plt.plot(Temps_humidite[clef], Humidite[clef], label=clef)
 plt.legend()
-plt.savefig("humidite.png")
+plt.savefig("humiditeTest.png")
 plt.clf()
 
 with open('humiditeTest.json','w') as jsonfile :
