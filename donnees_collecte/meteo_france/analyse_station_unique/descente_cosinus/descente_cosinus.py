@@ -60,7 +60,7 @@ for i in range(100) :
 	X[4] = X[4]%(2*np.pi)
 	#print(X)
 	if i%10 == 0 :
-		print(f"{i} sur 300")
+		print("{} sur 100".format(i))
 		print(val_modif_ecart)
 		print(" ")
 
