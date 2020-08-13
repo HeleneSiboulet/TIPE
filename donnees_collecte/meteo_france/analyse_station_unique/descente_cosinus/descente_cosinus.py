@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 delta = 10**(-3)
-alpha = [1, 1, 1, 1, 0.1, 0.1, 0.1]
+alpha = [1, 1, 1, 0.1, 0.1]
 
 with open('../temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
@@ -20,7 +20,7 @@ dates.sort()
 
 
 def fct_test(X, x) :
-	return X[0]*np.cos(2*np.pi*x + X[4]) + X[1]*np.cos(2*np.pi*x/365 + X[5]) + X[2]*np.cos(4*np.pi*x + X[6]) + X[3]
+	return X[0]*np.cos(2*np.pi*x + X[3]) + X[1]*np.cos(2*np.pi*x/365 + X[4]) + X[2]
 
 def ecart_temperature(temperature_test) :
 	ecarts_temperature = 0
@@ -33,7 +33,7 @@ def ecart_temperature(temperature_test) :
 	return (ecarts_temperature/compt)**(1/2)
 
 
-X = np.array([2.0,10.0,0.0,285.0,0.0,0.0,0.0])
+X = np.array([2.0,10.0,285.0,0.0,0.0])
 # A,B,C,D,phi1,phi2,phi3
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + Ccos(w3t+phi3) + D
 #w1 jour w2 annee w3 demi-journee
@@ -45,7 +45,7 @@ for i in range(100) :
 	val_actuel_ecart = ecart_temperature([dates,val_actuel])
 	if i == 0 :
 		plt.plot(dates, val_actuel, label='init')
-	dX = np.array([0.0,0.0,0.0,0.0,0.0,0.0,0.0])
+	dX = np.array([0.0,0.0,0.0,0.0,0.0])
 	for j in range(len(X)) :
 		X_modif = X.copy()
 		X_modif[j] = X_modif[j] + delta
@@ -57,8 +57,7 @@ for i in range(100) :
 		dX[j] = - df * alpha[j]
 	X = X + dX
 	X[4] = X[4]%(2*np.pi)
-	X[5] = X[5]%(2*np.pi)
-	X[6] = X[6]%(2*np.pi)
+	X[3] = X[3]%(2*np.pi)
 	#print(X)
 	if i%10 == 0 :
 		print("{} sur 100".format(i))
