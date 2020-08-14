@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[francais]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{epstopdf}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\newcommand{\Angstrom}{\textup{\AA}}
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage[labelfont=bf]{caption}
+\usepackage{multicol}
+\usepackage{pbox}
+%\usepackage{hyperref}
+%\usepackage{cleveref}
+%\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{array}
+ 
+%\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{microtype}
+%\usepackage{geometry}
+\usepackage{caption}
+%\usepackage{xkeyval}
+%\usepackage{subfigure}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{sectsty}
+%\usepackage{selinput}
+\usepackage{babel}
+%\usepackage{ulem}
+%\usepackage{mathtools}
+\usepackage{framed}
+\graphicspath{{/Users/bertrandsiboulet/Documents/minutes/figures/}}
+\DeclareGraphicsExtensions{.eps,.pdf}
+ 
+\newcolumntype{?}{!{\vrule width 2pt}}
+%\usepackage[toc,page]{appendix}
+\chapterfont{\color{NavyBlue}}
+%\titleformat{\chapter}[display]
+%{\normalsize \huge \color{NavyBlue}}%
+%{\flushright \normalsize \color{Black}}%
+%{\MakeUpperCase{\chaptertitlename}\hspace{1ex}%
+%{\fontfamiliy{mdugm}\fontsize{60}{60}\selectfont\thechapter}}%
+%{10pt}%
+%{\bfseries\huge}%
+\sectionfont{\color{BrickRed}}
+\subsectionfont{\color{Maroon}}
+\subsubsectionfont{\color{Red}}
+\paragraphfont{\color{OrangeRed}}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage{geometry}
+%\usepackage{pgfplots}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+{-2.5ex\@plus -1ex \@minus -.25ex}%
+{1.25ex \@plus .25ex}%
+{\normalfont\color{OrangeRed}\normalsize\bfseries}}
+\makeatother
+ 
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\bibliographystyle{elsarticle-num}
+ 
+\usepackage[automark]{scrpage2}
+\setheadsepline{.4pt}
+\usepackage{listings}
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+\renewcommand{\arraystretch}{1.2}
+%commands used in my current template
+\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+\newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
+\newcommand{\comment}[1]{\textit{\textcolor{Red}{#1}}}
+\newcommand{\addref}[1]{\textit{\textcolor{Red}{Add reference!}}}
+\newcommand{\sub}[1]{\textsuperscript{#1}}
+ 
+ 
+\begin{document}
+\begin{flushleft}
+\Huge \textcolor{BrickRed}{\textsc{\textbf{Modélisation de la coalescence : connecter les échelles }}} \\
+\Huge \textcolor{BrickRed}{\textsc{\textbf{DARI A0060910781 }}} \\[0.5cm]
+\hrule \textcolor{White}{-} \\[0.1 cm]
+\Large \textcolor{BrickRed}{\textsc{\textbf{Présentation et méthodes \\
+%\begin{itemize}
+%\item an XRR dedicated analysis
+%\item with the use of Molecular Dynamics 
+%\end{itemize}
+}}
+} 
+
+\Large \textsc{Sophie Charton et  Bertrand Siboulet (CEA/DEN/MAR)} \\
+\Large \textsc{Février 2019} \\[0.5cm]
+\hrule
+\end{flushleft}
+\section{Présentation} 
+%%%%%%%%%%
+Alors que les phénomènes de coalescence interviennent dans de nombreux procédés industriels, la compréhension et la simulation des mécanismes impliqués demeurent un challenge, ce qui complique la modélisation et la conception des procédés concernés, et plus particulièrement dans le cas de l’extraction liquide-liquide, celle des décanteurs.
+La coalescence est généralement représentée par la succession de trois étapes distinctes : le rapprochement (goutte-goutte ou goutte-interface), le drainage du film et la rupture. De nombreux modèles ont été développés en mécanique des fluides (CFD) pour représenter le rapprochement des gouttes, avec dans les cas les plus complexes, la prise en compte de la déformation (Renardy et al. 2001) et le drainage du film, généralement à partir de la théorie de la lubrification (Bazhelov \& Vasileva 2016). Une fois l’interface ouverte entre les deux gouttes, d’autres études s’intéressent également aux phénomènes hydrodynamiques intervenant lors de la fusion proprement dite des deux gouttes (Duchemin et al. 2003). Cependant, la prédiction de la rupture du film par simulation numérique est beaucoup plus délicate est demeure un verrou scientifique important. La rupture est en effet due à des phénomènes qui se produisent à très petite échelle (interactions électrostatiques et moléculaires de faible portée, pollution de l’interface, etc.) qui ne peuvent pas être représentés par les modèles classiquement utilisés en mécanique des fluides, aussi raffinés soient-ils.
+Corollairement, la dynamique moléculaire (DM) est particulièrement bien adaptée pour représenter les phénomènes stochastiques impliqués dans la coalescence et étudier l’effet de ces forces de surfaces, même si les systèmes liquide-liquide qui nous intéressent ici représentent une configuration pénalisante en termes de couts de calculs. La DM a par exemple permis d’appréhender l’influence des surfactants sur la rupture (Rekvig et al 2004). Elle a également permis d’estimer la distance de rapprochement minimale entre deux gouttes (nanométriques) avant leur coalescence, de l’ordre de 1~nm (Zhao \& Choi 2004). Cette dimension est, bien entendu, plusieurs ordres de grandeur en deçà de la limite basse accessible en mécanique des fluides numériques.
+L’objectif de notre projet est de proposer un modèle hybride permettant de connecter les phénomènes agissant à l’échelle moléculaire (fluctuations des interfaces), aux mécanismes macroscopiques (rapprochement, drainage) lors de la coalescence goutte-interface et/ou goutte-goutte.
+Dans un contexte d’optimisation des procédés d’extraction par solvant (nouvelles molécules extractantes, augmentation des cadences, accumulation d’impuretés, etc.) un tel modèle serait une étape majeure vers la prédiction de la cinétique de coalescence dans les phases d’émulsification et de décantation des contacteurs liquide-liquide, nécessaires à l’évaluation des phénomènes d’engorgement et d’entrainement de solvant, et à au dimensionnement des décanteurs. %Ce sujet s’inscrit donc pleinement dans le cadre de l’amélioration des codes de simulation des procédés de l’aval du cycle du combustible.
+%%%%%%%%%%%%%
+\begin{figure}
+\centering
+\includegraphics[width=0.48 \textwidth]{/Users/siboulet/Documents/minutes/figures/190101LolitaAFM.pdf}\quad
+\includegraphics[width=0.48 \textwidth]{/Users/siboulet/Documents/minutes/figures/190101LolitaGouttes.pdf}
+\caption{\label{fig:190101Lolita} A droite : pointe AFM / surface d'eau, à gauche :  Coalescence de gouttes d'eau }
+\end{figure}
+
+
+\section{Méthodes}
+\subsection{Organisation générale}Sur l’aspect macroscopique, les travaux initiés en 2014 en collaboration avec l’IMFT seront poursuivis à l’aide du code JADIM (Dupont \& Legendre 2010). Ces simulations de l’approche et de la déformation d’une goutte vers une interface, et du drainage du film, ont permis de démontrer la pertinence d’un modèle sous-maille pour retarder la coalescence numérique (Vioque-Martinez et al. 2016). Elles ont en outre permis d’appréhender les difficultés numériques inhérentes à l’implémentation d’un tel modèle sous-maille (indexation des cellules, correction du champ de pression, etc.).
+L’étape clé est la détermination d’un modèle phénoménologique pour les étapes finales de drainage et de rupture du film. A cet effet, des simulations moléculaires seront réalisées au Laboratoire de Modélisation Mésoscopique et Chimie Théorique de l’ICSM. On s’attachera en particulier à étudier la sensibilité des interfaces et du temps de drainage aux potentiels d’interactions moléculaires, aux forces électrostatiques (DLVO). Ces simulations seront complétées par des simulations mésoscopiques « coarse-grained » permettant d’augmenter de deux ordres de grandeurs le nombre de molécules considérées. Néanmoins, la coalescence de deux gouttes (micrométriques) n’est pas envisageable à ce jour.
+
+Afin de combler le manque de connaissances entre les deux échelles considérées par simulation, des résultats expérimentaux par Microscopie de Force Atomique (AFM) seront utilisés. Cette technique est particulièrement utilisée au sein du groupe Interface de l’IMFT pour étudier et quantifier les déformations d’une interface liquide en interaction avec la pointe nanométrique, potentiellement imprégnée de liquide. Ainsi, l'AFM a récemment permis d’étudier l’influence relative des phénomènes hydrodynamiques et des interactions de Van der Waals à l’échelle de quelques dizaines de nanomètres. La configuration expérimentale utilisée, parfaitement décrite de façon semi-analytique (Ledesma-Alonso et al 2012 \& 2013), permettra de confronter les prédictions des approches continues (CFD) et moléculaires (DM) vis-à-vis de l'interaction entre la pointe AFM et le film liquide. En outre, comme elles donnent accès à la mesure de cette force d’interaction, les mesures AFM seront également une aide précieuse au développement et à la validation d'un modèle phénoménologique de la coalescence à l'échelle moléculaire.
+\subsection{Simulation numérique}
+
+\subsubsection{Aspects informatiques} Nous prévoyons d'utiliser le code LAMMPS. Nous avons testé ce code sur nos modèles liquide-liquide avec les moyens du CEA de Marcoule (Ceres2) et avec les moyens du CCRT (coalescence de gouttes d'eau dans le vide, figure~\ref{fig:190101Lolita}, à droite). Nous avons aussi commencé la simulation d'une surface d'eau en interaction avec une pointe AFM (figure~\ref{fig:190101Lolita}, à gauche). L'objectif est de simuler de plus gros systèmes, contenant de l'eau, des ions, des molécules organiques. Le code LAMMPS a récemment été utilisé pour étudier de tels systèmes (Bacle et al. 2017). 
+Nous avons en examiné la possibilité d'utiliser les processeurs GPU. Nos premiers essais n'ont pas confirmé, dans le cas de nos systèmes, le gain des GPU par rapport aux CPU. La question des GPU fait cependant l'objet d'une demande de formation dans ce projet, dans le cadre plus général de l'optimisation numérique, tant par CPU que par GPU. Nous ne demandons pas de temps de calcul GPU dans la présente. 
+\subsubsection{Aspects scientifiques}
+Dans la continuité de la validation du modèles sur la configuration AFM (article en cours de rédaction), la présente demande concerne la réalisation d'une étude de sensibilité de la coalescence à différents paramètres.
+Notre étude s'inspire largement des simulations biologiques, pour lesquelles LAMMPS est courament employé (Bacle et al. 2017, Friedman et al. 2018).  \\
+Les systèmes simulés seront des gouttes de phase organique dans l'eau, ou des gouttes d'eau en phase organique. Nous ferons varier la concentration ionique, la longueur des chaînes, les types de solvants. Tout type de mélange (eau-organique-surfactant) est possible par la simulation, la seule limitation étant la taille des systèmes. \\
+Le code servira en particulier à déterminer les coefficients de diffusion et de mobilité utiles à la question de la résistance au drainage du film liquide séparant les gouttes, dans les derniers nanomètres. Nous pourrons aussi déterminer des paramètres importants : les tensions de surface, la rigidité de courbure, les forces interfaciales, les profils de densité ionique. La simulation permet également l'observation directe de phénomènes propres à initier la rupture des gouttes, tels l'interdigitation ou l'association de défauts. 
+Le résultat attendu de cette étude paramétrique est une meilleure connaissance des phénomènes impliqués aux temps courts et aux petites échelles dans la coalescence et, bien entendu, le développement d'un modèle multiéchelle de la coalescence.
+\section{Références}
+%\bibliography{/Users/siboulet/Documents/minutes/bib}
+\begin{enumerate}
+\item Baselov, I., Vasileva, D., 2016. Numerical modeling of drop coalescence in the presence of soluble surfactants. J. Computational and Applied Mathematics 293, 7-19.
+\item Duchemin, L., Eggers, J., Josserand, C., 2003. Inviscid coalescence of drop. J. Fluid Mech. 487, 167-178.
+\item Dupont, J.-B., Legendre, D., 2010. Numerical simulation of static and sliding drop with contact angle hysteresis. Jal Comput. Phys.,229, p. 2453.
+\item Ledesma-Alonso, R., Tordjeman, P., Legendre, D., 2012. Multiscale deformation of a liquid surface in interaction with a nanoprobe. Physical Review E 85, 061602.
+\item Ledesma-Alonso, R., Legendre, D., Tordjeman, P., 2013. AFM tip effect on a thin liquid film. Langmuir 29, 7749-7757.
+\item Rekvig, L., Hafskjold, B., Smit, B., 2004. Molecular simulations of film rupture in Oil/Water/Surfactant systems. Langmuir 20, 11583-11593.
+\item Renardy, Y.Y., Renardy, M., Cristini, V., 2001. A new volume-of-fluid formulation for surfactants and simulations of drop deformation under shear at a low viscosity ratio. European Journal of Mechanics. B. Fluids 21, 49–59.
+\item Vioque-Martinez, E., Charton, S., Climent, E., Legendre, D., 2016. Numerical simulation of droplet coalescence : Status and main issues. Proceedings DEFI, Solaize
+\item Bacle, A., Gautier, R., Jackson, C. L., Fuchs, P. F.J. \& Vanni, S. Interdigitation between Triglycerides and Lipids Modulates Surface Properties of Lipid Droplets. 1417–1430 (2017)
+\item Friedman, R.,  et al. Understanding Conformational Dynamics of Complex Lipid Mixtures Relevant to Biology, Journal of Membrane Biology, 251, 5-6, 609-631 (2018)
+\end{enumerate}
+\end{document}

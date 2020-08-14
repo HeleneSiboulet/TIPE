@@ -1,0 +1,713 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  14 AUG 2020 16:46
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**200813-TIPE-SibouletH.tex
+(./200813-TIPE-SibouletH.tex
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-03-06>
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2020/03/22 3.42 The Babel package
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2020/03/22 3.42 Babel switching mechanism
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel-french/francais.ldf
+Language: francais 2020/01/30 v3.5g French support from the babel system
+
+
+Package francais.ldf Warning: Option `francais' for Babel is *deprecated*,
+(francais.ldf)                it might be removed sooner or later. Please
+(francais.ldf)                use `french' instead; reported on input line 31.
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel-french/french.ldf
+Language: french 2020/01/30 v3.5g French support from the babel system
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2020/03/22 3.42 Babel common definitions
+\babel@savecnt=\count175
+\U@D=\dimen135
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count176
+)
+Package babel Info: \l@acadian = using hyphenrules for french
+(babel)             (\language28) on input line 91.
+Package babel Info: \l@canadien = using hyphenrules for french
+(babel)             (\language28) on input line 92.
+\FB@nonchar=\count177
+Package babel Info: Making : an active character on input line 419.
+Package babel Info: Making ; an active character on input line 420.
+Package babel Info: Making ! an active character on input line 421.
+Package babel Info: Making ? an active character on input line 422.
+\FBguill@level=\count178
+\FBold@everypar=\toks15
+\FB@Mht=\dimen136
+\mc@charclass=\count179
+\mc@charfam=\count180
+\mc@charslot=\count181
+\std@mcc=\count182
+\dec@mcc=\count183
+\c@FBcaption@count=\count184
+\listindentFB=\dimen137
+\descindentFB=\dimen138
+\labelindentFB=\dimen139
+\labelwidthFB=\dimen140
+\leftmarginFB=\dimen141
+\parindentFFN=\dimen142
+\FBfnindent=\dimen143
+)))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen144
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen145
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count185
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count186
+\leftroot@=\count187
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count188
+\DOTSCASE@=\count189
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen146
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count190
+\c@MaxMatrixCols=\count191
+\dotsspace@=\muskip16
+\c@parentequation=\count192
+\dspbrk@lvl=\count193
+\tag@help=\toks20
+\row@=\count194
+\column@=\count195
+\maxfields@=\count196
+\andhelp@=\toks21
+\eqnshift@=\dimen147
+\alignsep@=\dimen148
+\tagshift@=\dimen149
+\tagwidth@=\dimen150
+\totwidth@=\dimen151
+\lineht@=\dimen152
+\@envbody=\toks22
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 105.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count197
+\Gm@cntv=\count198
+\c@Gm@tempcnt=\count199
+\Gm@bindingoffset=\dimen155
+\Gm@wd@mp=\dimen156
+\Gm@odd@mp=\dimen157
+\Gm@even@mp=\dimen158
+\Gm@layoutwidth=\dimen159
+\Gm@layoutheight=\dimen160
+\Gm@layouthoffset=\dimen161
+\Gm@layoutvoffset=\dimen162
+\Gm@dimlist=\toks24
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen163
+\ar@mcellbox=\box47
+\extrarowheight=\dimen164
+\NC@list=\toks25
+\extratabsurround=\skip52
+\backup@length=\skip53
+\ar@cellbox=\box48
+)
+\TX@col@width=\dimen165
+\TX@old@table=\dimen166
+\TX@old@col=\dimen167
+\TX@target=\dimen168
+\TX@delta=\dimen169
+\TX@cols=\count266
+\TX@ftn=\toks26
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
+Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (/usr/local/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
+
+(/usr/local/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen170
+\lightrulewidth=\dimen171
+\cmidrulewidth=\dimen172
+\belowrulesep=\dimen173
+\belowbottomsep=\dimen174
+\aboverulesep=\dimen175
+\abovetopsep=\dimen176
+\cmidrulesep=\dimen177
+\cmidrulekern=\dimen178
+\defaultaddspace=\dimen179
+\@cmidla=\count267
+\@cmidlb=\count268
+\@aboverulesep=\dimen180
+\@belowrulesep=\dimen181
+\@thisruleclass=\count269
+\@lastruleclass=\count270
+\@thisrulewidth=\dimen182
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box49
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip54
+\LTright=\skip55
+\LTpre=\skip56
+\LTpost=\skip57
+\LTchunksize=\count271
+\LTcapwidth=\dimen183
+\LT@head=\box50
+\LT@firsthead=\box51
+\LT@foot=\box52
+\LT@lastfoot=\box53
+\LT@cols=\count272
+\LT@rows=\count273
+\c@LT@tables=\count274
+\c@LT@chunks=\count275
+\LT@p@ftn=\toks27
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip58
+\multirow@cntb=\count276
+\multirow@dima=\skip59
+\bigstrutjot=\dimen184
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
+\c@tracingmulticols=\count277
+\mult@box=\box54
+\multicol@leftmargin=\dimen185
+\c@unbalance=\count278
+\c@collectmore=\count279
+\doublecol@number=\count280
+\multicoltolerance=\count281
+\multicolpretolerance=\count282
+\full@width=\dimen186
+\page@free=\dimen187
+\premulticols=\dimen188
+\postmulticols=\dimen189
+\multicolsep=\skip60
+\multicolbaselineskip=\skip61
+\partial@page=\box55
+\last@line=\box56
+\maxbalancingoverflow=\dimen190
+\mult@rightbox=\box57
+\mult@grightbox=\box58
+\mult@gfirstbox=\box59
+\mult@firstbox=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\c@minrows=\count283
+\c@columnbadness=\count284
+\c@finalcolumnbadness=\count285
+\last@try=\dimen191
+\multicolovershoot=\dimen192
+\multicolundershoot=\dimen193
+\mult@nat@firstbox=\box98
+\colbreak@box=\box99
+\mc@col@check@num=\count286
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/pbox/pbox.sty
+Package: pbox 2011/12/07 v1.2 Dynamic parboxes
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count287
+\calc@Bcount=\count288
+\calc@Adimen=\dimen194
+\calc@Bdimen=\dimen195
+\calc@Askip=\skip62
+\calc@Bskip=\skip63
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count289
+\calc@Cskip=\skip64
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\pb@xlen=\skip65
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count290
+\float@exts=\toks28
+\float@box=\box100
+\@float@everytoks=\toks29
+\@floatcapt=\box101
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+\c@r@tfl@t=\count291
+\rotFPtop=\skip66
+\rotFPbot=\skip67
+\rot@float@box=\box102
+\rot@mess@toks=\toks30
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 61.
+\captionmargin=\dimen196
+\captionmargin@=\dimen197
+\captionwidth=\dimen198
+\caption@tempdima=\dimen199
+\caption@indent=\dimen256
+\caption@parindent=\dimen257
+\caption@hangindent=\dimen258
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count292
+\c@continuedfloat=\count293
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
+)
+Package caption Info: rotating package is loaded.
+Package caption Info: threeparttable package is loaded.
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+(/usr/local/texlive/2020/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
+les
+
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip68
+\fb@frw=\dimen259
+\fb@frh=\dimen260
+\FrameRule=\dimen261
+\FrameSep=\dimen262
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/koma-script/scrpage2.sty
+Package: scrpage2 2020/01/24 v3.29 KOMA-Script package (page head and foot)
+
+
+Package scrpage2 Warning: usage of obsolete package!
+(scrpage2)                Package `scrpage2' is obsolete.
+(scrpage2)                You should not longer use package `scrpage2'.
+(scrpage2)                You should replace usage of package `scrpage2'
+(scrpage2)                by `scrlayer-scrpage' on input line 52.
+
+) (/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count294
+\lst@gtempboxa=\box103
+\lst@token=\toks31
+\lst@length=\count295
+\lst@currlwidth=\dimen263
+\lst@column=\count296
+\lst@pos=\count297
+\lst@lostspace=\dimen264
+\lst@width=\dimen265
+\lst@newlines=\count298
+\lst@lineno=\count299
+\lst@maxwidth=\dimen266
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count300
+\lst@skipnumbers=\count301
+\lst@framebox=\box104
+)
+(/usr/local/texlive/2020/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count302
+\l__pdf_internal_box=\box105
+)
+(./200813-TIPE-SibouletH.aux)
+\openout1 = `200813-TIPE-SibouletH.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Info: Redefining \degres on input line 92.
+LaTeX Info: Redefining \dots on input line 92.
+LaTeX Info: Redefining \up on input line 92.
+
+(/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count303
+\scratchdimen=\dimen267
+\scratchbox=\box106
+\nofMPsegments=\count304
+\nofMParguments=\count305
+\everyMPshowfont=\toks32
+\MPscratchCnt=\count306
+\MPscratchDim=\dimen268
+\MPnumerator=\count307
+\makeMPintoPDFobject=\count308
+\everyMPtoPDFconversion=\toks33
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(28.45274pt, 540.60239pt, 28.45274pt)
+* v-part:(T,H,B)=(28.45274pt, 759.6886pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=540.60239pt
+* \textheight=759.6886pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-80.81725pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+Package scrpage2 Warning: seems you are using a constant headheight.
+(scrpage2)                If you get overfull \vbox warnings at almost every
+(scrpage2)                page, you should increase headheight e.g. writing
+(scrpage2)                 \setlength{\headheight}{1.1\baselineskip}
+(scrpage2)                into the preamble of your document.
+(scrpage2)                A better solution would be to use typearea package.
+
+\c@lstlisting=\count309
+LaTeX Font Info:    Trying to load font information for U+msa on input line 108
+.
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 108
+.
+
+(/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
+d on input line 119.
+
+[1
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 142--146
+
+ []
+
+</Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station_uni
+que/temperature.png, id=18, 462.528pt x 346.896pt>
+File: /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_statio
+n_unique/temperature.png Graphic file (type png)
+<use /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station
+_unique/temperature.png>
+Package pdftex.def Info: /Users/helene/Documents/TIPE/donnees_collecte/meteo_fr
+ance/analyse_station_unique/temperature.png  used on input line 185.
+(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+File: /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_statio
+n_unique/temperature.png Graphic file (type png)
+<use /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station
+_unique/temperature.png>
+Package pdftex.def Info: /Users/helene/Documents/TIPE/donnees_collecte/meteo_fr
+ance/analyse_station_unique/temperature.png  used on input line 186.
+(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png, id=20, 231.
+264pt x 173.448pt>
+File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
+ file (type png)
+<use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
+Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
+erature.png  used on input line 191.
+(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
+ file (type png)
+<use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
+Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
+erature.png  used on input line 194.
+(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+
+LaTeX Warning: Reference `fig:190101Lolita' on page 2 undefined on input line 2
+05.
+
+
+LaTeX Warning: Reference `MonTableau' on page 2 undefined on input line 222.
+
+[2] [3 </Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_stat
+ion_unique/temperature.png> </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/
+temperature.png>] [4] (./200813-TIPE-SibouletH.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 105 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 9010 strings out of 480608
+ 130557 string characters out of 5903630
+ 406897 words of memory out of 5000000
+ 24733 multiletter control sequences out of 15000+600000
+ 546730 words of font info for 57 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,8n,42p,850b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm
+-super-t1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
+pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
+/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/l
+ocal/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/loc
+al/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local
+/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/t
+exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/tex
+live/2020/texmf-dist/fonts/type1/public/cm-super/sfxc2488.pfb>
+Output written on 200813-TIPE-SibouletH.pdf (4 pages, 326808 bytes).
+PDF statistics:
+ 87 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+
