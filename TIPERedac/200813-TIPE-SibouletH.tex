@@ -92,7 +92,7 @@
 \begin{document}
 \begin{flushleft}
 \Large \textcolor{BrickRed}{\textsc{\textbf{Travaux d'Initiative Personnelle Encadrés}}} \\
-\Huge \textcolor{BrickRed}{\textsc{\textbf{Intellingence Artificielle et prévisions météorologiques }}} \\[0.5cm]
+\Huge \textcolor{BrickRed}{\textsc{\textbf{Informatique et prévisions météorologiques }}} \\[0.5cm]
 \Large \textcolor{BrickRed}{\textsc{\textbf{Concours CPGE 2021 \\[0.5 cm]}}}
 \hrule \textcolor{White}{-} \\[0.1cm]
 %\Large \textcolor{BrickRed}{\textsc{\textbf{Concours CPGE 2021 \\}}}
@@ -102,35 +102,58 @@
 \end{flushleft}
 \section{Présentation} 
 %%%%%%%%%%
-La prévision consiste à prévoir, c'est-à-dire à \og voir avant\fg{}. Il s'agit donc, à partir de ce que lo'n sait à un moment donné, de savoir ce qui se passera à un moment ultérieur, avec la meilleure probabilité.En effet, à part les phénomènes déterministes, comme par exdemple le mouvement des solides à court terme, on ne peut avoir que des indications probabilistes. C'est un problème universel, qui s'applique à l'\fg{économie, la politique, la vie privée, et aussi bien sûr aux prévisions météorologiques.   \\
-La prévision repose sur deux élements : des données disponibles à un moment, et des théories ou des modèles qui permettent d'utiliser ces données. \\
+La prévision consiste à prévoir, c'est-à-dire à \og voir avant\fg{}. Il s'agit donc, à partir de ce que l'on sait à un moment donné, de savoir ce qui se passera à un moment ultérieur, avec la meilleure probabilité.En effet, à part les phénomènes déterministes, comme par exemple le mouvement des solides à court terme, on ne peut avoir que des indications probabilistes. C'est un problème universel, qui s'applique à l'économie, la politique, la vie privée, et aussi bien sûr aux prévisions météorologiques.   \\
+La prévision repose sur deux éléments : des données disponibles à un moment, et des théories ou des modèles qui permettent d'utiliser ces données. \\
 Les processus météorologiques sont tout à fait chaotiques. Cela signifie que des incertitudes minimes à un instant donné peuvent avoir des conséquences très fortes sur le déroulement. En fait, ces incertitudes n'empêchent pas de prévoir à court terme, par exemple pour le lendemain, mais elles rendent difficiles les prévisions au delà de deux semaines. \\
-Si les processus météorologiques sont chaotiques à moyen terme, ils sont au contraire extrêmement stables dès lors que on les analyse en moyenne. Par exempler, Milankovitch a prévu que les variations de trois paramètres~-excentricité, obliquité et précession~-auraient des effets périodiques sur les glaciations. Milankovitch a fait apparaître des périodes de 20~000, 40~000 et 100~000 ans, ce qui a été confirmé expérimentalement par les mesures de $\delta O_{18}$ dans les carottes glaciaires de Vostock, en 1976. Ces résultats montrent que, en faisant des moyennes sur une centaine d'année, on a des tendances très claires d'évolution des températures, alors qu'il est difficile de prévoir la température dans deux semaines.   
+Si les processus météorologiques sont chaotiques à moyen terme, ils sont au contraire extrêmement stables dès lors que on les analyse en moyenne. Par exemple, Milankovitch a prévu que les variations de trois paramètres~-excentricité, obliquité et précession~-auraient des effets périodiques sur les glaciations. Milankovitch a fait apparaître des périodes de 20~000, 40~000 et 100~000 ans, ce qui a été confirmé expérimentalement par les mesures de $\delta O_{18}$ dans les carottes glaciaires de Vostock, en 1976. Ces résultats montrent que, en faisant des moyennes sur une centaine d'année, on a des tendances très claires d'évolution des températures, alors qu'il est difficile de prévoir la température dans deux semaines.   
  
-Dans ce documents, nous allons faire un bref état de l'art des méthodes de prévision météorologiques utilisées, et proposer une méthode basée sur l'intellignce artificielle. Nous verrons que ces deux aproches sont tout à fait différentes. Nous collectons une base de données, nous élaborons une méthode avec de nombreuses variantes. Chaque variante est évaluée numériquement, c'est à dire par comparaison des prévisions avec un ensemble de données qui ont été placées en dehors des données d'entrées. 
+Dans ce documents, nous allons faire un bref état de l'art des méthodes de prévision météorologiques utilisées, et proposer une méthode basée sur l'intelligence artificielle. Nous verrons que ces deux approches sont tout à fait différentes. Nous collectons une base de données, nous élaborons une méthode avec de nombreuses variantes. Chaque variante est évaluée numériquement, c'est à dire par comparaison des prévisions avec un ensemble de données qui ont été placées en dehors des données d'entrées. 
 
+ \vspace {0.6cm}
+Les prévisions météorologiques ont beaucoup d'enjeux, elles permettent notamment :
+\begin {enumerate}
+\item aux pilotes d'avion et aux marins de savoir si leur trajet est réalisable, de connaitre la quantité de carburant à prendre et de choisir l'itinéraire le plus adapté
+\item aux agriculteurs de savoir quand arroser, quelle quantité d'eau est nécessaire et quand labourer, planter ou récolter 
+\item d'organisation d'activités ou d'évènements en plein air
+\item de gérer des risques liés au climat par exemple lorsqu'il y a du verglas, de la neige, une canicule ou une tempête
+\end{enumerate}
 
  
 \section{État de l'art}
-Méthode la plus courante de prévision météo selon Jean Pailleux de Météo-France
-Modélisation de l'atmosphère par :
+%Méthode la plus courante de prévision météo selon Jean Pailleux de Météo-France
+%Modélisation de l'atmosphère par :
+%\begin{enumerate}
+%\item Équation du mouvement(Newton)
+%\item $\frac{d\bold{V}}{dt} = \bold(g) - \frac{\bold{grad}p}{d} $
+%\item Équation de continuité
+%\item Thermodynamique
+%\item Équation des gaz parfaits
+%\item Équations de bilans de constituants: vapeur d’eau, eau liquide, ozone, etc...
+%\end{enumerate}
+
+Il existe plusieurs sortes de prévisions météorologiques : la prévision du temps qui fait des prédictions sur des périodes de quelques jours, la prévision saisonnière qui font des prédiction sur l'échelle d'un moi ou de quelques mois et la prévision climatiques prédit l'évolution du climat sur plusieurs années.
+
+Selon http://meteocentre.com/intermet/prevision/prevision\_emp.htm
+les principales méthodes de prévision météorologiques sont :
 \begin{enumerate}
-\item Équation du mouvement(Newton)
-\item $\frac{d\bold{V}}{dt} = \bold(g) - \frac{\bold{grad}p}{d} $
-\item Équation de continuité
-\item Thermodynamique
-\item Équation des gaz parfaits
-\item Équations de bilans de constituants: vapeur d’eau, eau liquide, ozone, etc...
+\item La méthode de la persistance qui prédit que demain il fera le même temps qu'aujourd'hui. Elle fonctionne bien dans certaines régions où les conditions météorologiques varient lentement comme	l'Egypte ou les déserts des États-Unis. Elle fait de bonnes prévisions sur des périodes de un ou deux jours ainsi et est efficace pour prédire des tendance sur des durées d'un moi (prévisions saisonnière). 
+\item La méthode de la tendance qui étudie les déplacement de systèmes météorologiques tels que les dépressions, les anticyclones, les fronts et les zones de précipitation et suppose leurs emplacement futurs.
+\item La méthode de l'analogie qui consiste à chercher des cas dans le passé qui ressemblent aux conditions météorologiques actuelles et à supposer que ces conditions évolueront de la même manière.
+\item La méthode numérique est la plus utilisée actuellement. On divise l'atmosphère dans une grille en 3 dimensions. On mesure les différentes paramètres. Les lois physiques prédisent l'évolution du système.
 \end{enumerate}
+
+On trouve sur internet d'autre types d'outils de prévision tels que des réseaux de neurones, des algorithmes génétiques, de la logique floue, des réseaux bayésiens et d'autres modèles probabilistes voir Das2017.
+
+La méthode numérique 
 
 \section{Recherche de données}
 
-Base de donnée trouvée sur  : \\
+Nous avons trouvé une base de donnée sur  : \\
 https://donneespubliques.meteofrance.fr/?fond=produit\&id\_produit=90\&id\_rubrique=32
-Contient les relevés de 62 stations en France Métropolitaine et en France d’Outre mer
-De 1996 à 2020  (avec certaines mesures manquantes)
-Un relevé toutes les trois heures
-Paramètres atmosphériques: température, humidité, direction et force du vent, pression atmosphérique, hauteur de précipitations, temps sensible, description des nuages, visibilité
+Elle contient les relevés de 62 stations en France Métropolitaine et en France d’Outre mer
+de 1996 à 2020  (avec certaines mesures manquantes : pas plus de 80 en une année soit l'équivalent de dix jours sauf pour 2020)
+avec un relevé toutes les trois heures soit huit relevés par jour.
+Les donnees sont : la température, l'humidité, la direction et la force du vent, la pression atmosphérique, la hauteur de précipitations, le temps sensible, la description des nuages, la visibilité.
 Chaque fichier couvre un mois et toutes les stations
 
 Collecte des données avec Webbot

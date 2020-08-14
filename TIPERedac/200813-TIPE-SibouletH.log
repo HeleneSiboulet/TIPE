@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  14 AUG 2020 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  14 AUG 2020 23:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -616,98 +616,77 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 108
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
-d on input line 119.
-
-[1
+) [1
 
 {/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 142--146
+Underfull \hbox (badness 10000) in paragraph at lines 164--168
 
  []
 
+[2]
 </Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station_uni
-que/temperature.png, id=18, 462.528pt x 346.896pt>
+que/temperature.png, id=19, 462.528pt x 346.896pt>
 File: /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_statio
 n_unique/temperature.png Graphic file (type png)
 <use /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station
 _unique/temperature.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/donnees_collecte/meteo_fr
-ance/analyse_station_unique/temperature.png  used on input line 185.
+ance/analyse_station_unique/temperature.png  used on input line 207.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
 File: /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_statio
 n_unique/temperature.png Graphic file (type png)
 <use /Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station
 _unique/temperature.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/donnees_collecte/meteo_fr
-ance/analyse_station_unique/temperature.png  used on input line 186.
+ance/analyse_station_unique/temperature.png  used on input line 208.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png, id=20, 231.
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png, id=21, 231.
 264pt x 173.448pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
  file (type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
-erature.png  used on input line 191.
+erature.png  used on input line 213.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
  file (type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
-erature.png  used on input line 194.
+erature.png  used on input line 216.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-
-LaTeX Warning: Reference `fig:190101Lolita' on page 2 undefined on input line 2
-05.
-
-
-LaTeX Warning: Reference `MonTableau' on page 2 undefined on input line 222.
-
-[2] [3 </Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_stat
-ion_unique/temperature.png> </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/
-temperature.png>] [4] (./200813-TIPE-SibouletH.aux)
-
-LaTeX Warning: There were undefined references.
-
+ [3 </Users/helene/Documents/TIPE/donnees_collecte/meteo_france/analyse_station
+_unique/temperature.png> </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/tem
+perature.png>] [4] (./200813-TIPE-SibouletH.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
- )
-(\end occurred inside a group at level 1)
-
-### simple group (level 1) entered at line 105 ({)
-### bottom level 
+ ) 
 Here is how much of TeX's memory you used:
- 9010 strings out of 480608
- 130557 string characters out of 5903630
- 406897 words of memory out of 5000000
- 24733 multiletter control sequences out of 15000+600000
- 546730 words of font info for 57 fonts, out of 8000000 for 9000
+ 9004 strings out of 480608
+ 130495 string characters out of 5903630
+ 404913 words of memory out of 5000000
+ 24730 multiletter control sequences out of 15000+600000
+ 545801 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,42p,850b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm
--super-t1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
-></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb><
-/usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
-sr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
-/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/l
-ocal/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/loc
-al/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local
-/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/t
-exlive/2020/texmf-dist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/tex
-live/2020/texmf-dist/fonts/type1/public/cm-super/sfxc2488.pfb>
-Output written on 200813-TIPE-SibouletH.pdf (4 pages, 326808 bytes).
+ 41i,8n,42p,849b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
+local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
+cal/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/loca
+l/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/
+texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/te
+xlive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texl
+ive/2020/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/texliv
+e/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/
+2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/20
+20/texmf-dist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/texlive/2020
+/texmf-dist/fonts/type1/public/cm-super/sfxc2488.pfb>
+Output written on 200813-TIPE-SibouletH.pdf (4 pages, 305180 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 51 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
