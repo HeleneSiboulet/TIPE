@@ -1,0 +1,16 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Présentation}{1}%
+\contentsline {section}{\numberline {2}État de l'art}{2}%
+\contentsline {section}{\numberline {3}Recherche, préparation et sélection des données}{3}%
+\contentsline {subsection}{\numberline {3.1}Recherche des données}{3}%
+\contentsline {subsection}{\numberline {3.2}Les données retenues}{3}%
+\contentsline {section}{\numberline {4}Modèles de prévision sur une station : analyse de la température et de l'humidité}{4}%
+\contentsline {subsection}{\numberline {4.1}Principe de l'évaluation d'un modèle}{4}%
+\contentsline {subsection}{\numberline {4.2}Premier modèle (M1)~: Moyenne de la température et de l'humidité par jour de l'année et par heure }{4}%
+\contentsline {subsection}{\numberline {4.3}Deuxième modèle (M2)~: Modèle de la persistance journalière}{4}%
+\contentsline {subsection}{\numberline {4.4}Troisième modèle (M3)~: Approximation des courbes par une somme de fonctions sinusoïdales}{5}%
+\contentsline {subsection}{\numberline {4.5}Quatrième modèle (M4)~: Approximation des courbes par une somme de fonctions sinusoïdales sur la semaine précédente }{7}%
+\contentsline {section}{\numberline {5}Prévision par réseau de neurones artificiel}{8}%
+\contentsline {subsection}{\numberline {5.1}Les premiers réseau (RN1-1, RN1-2 et RN1-3)~: Prévisions à partir de la température et de l'humidité lors des jours précédents}{8}%
+\contentsline {subsection}{\numberline {5.2}Deuxième réseau (RN2)~: Prévisions à partir l'ensemble des données de notre base lors de la semaine précédente}{9}%
+\contentsline {section}{\numberline {6}Comparaison des résultats des méthodes M1, M2, M3, M4, RN1 et RN2 }{11}%

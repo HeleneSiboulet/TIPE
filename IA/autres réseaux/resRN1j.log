@@ -1,0 +1,4 @@
+ETt = tensor([2.1138, 2.6540, 2.9707, 3.1173, 3.1822, 3.3084, 3.4352, 3.4066],
+       dtype=torch.float64, grad_fn=<MulBackward0>)
+ETh = tensor([ 8.8502, 10.6481, 11.7516, 11.8144, 12.2129, 12.5793, 12.9470, 12.8419],
+       dtype=torch.float64, grad_fn=<MulBackward0>)
