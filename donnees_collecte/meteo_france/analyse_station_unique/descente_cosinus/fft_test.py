@@ -44,10 +44,14 @@ freq2 = np.fft.fftfreq(len(humi), d = humidite[0]["1996"][1] - humidite[0]["1996
 lY2 = np.log(Y2)
 maxY2 = max(lY2)
 f2 = list(lY2).index(maxY2)
-print(1/freq2[f])
-print(Y2[f])
+#print(1/freq2[f])
+#print(Y2[f])
 
-plt.plot(humi,lY2)
+#print (temp)
+#print (freq2)
+print (humi)
+
+plt.plot(freq2,lY2)
 
 plt.savefig("fftH.png")
 
