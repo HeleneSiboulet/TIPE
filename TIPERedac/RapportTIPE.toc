@@ -1,6 +1,7 @@
 \babel@toc {french}{}
 \contentsline {section}{\numberline {1}Présentation}{1}%
 \contentsline {section}{\numberline {2}État de l'art}{2}%
+<<<<<<< HEAD
 \contentsline {section}{\numberline {3}Recherche, préparation et sélection des données}{3}%
 \contentsline {subsection}{\numberline {3.1}Recherche des données}{3}%
 \contentsline {subsection}{\numberline {3.2}Les données retenues}{3}%
@@ -14,3 +15,18 @@
 \contentsline {subsection}{\numberline {5.1}Les premiers réseau (RN1-1, RN1-2 et RN1-3)~: Prévisions à partir de la température et de l'humidité lors des jours précédents}{8}%
 \contentsline {subsection}{\numberline {5.2}Deuxième réseau (RN2)~: Prévisions à partir l'ensemble des données de notre base lors de la semaine précédente}{9}%
 \contentsline {section}{\numberline {6}Comparaison des résultats des méthodes M1, M2, M3, M4, RN1 et RN2 }{11}%
+=======
+\contentsline {section}{\numberline {3}Recherche de données}{2}%
+\contentsline {section}{\numberline {4}Modèles de prévision sur une station : analyse de la température et de l'humidité}{3}%
+\contentsline {subsection}{\numberline {4.1}Premier modèle : Moyenne de la température et de l'humidité par jour de l'année et par heure }{3}%
+\contentsline {subsection}{\numberline {4.2}Deuxième modèle : Modèle de la persistance journalière}{3}%
+\contentsline {subsection}{\numberline {4.3} Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}{4}%
+\contentsline {section}{\numberline {5}Exemples Latex}{5}%
+\contentsline {subsection}{\numberline {5.1}subsection}{5}%
+\contentsline {subsubsection}{\numberline {5.1.1}q;,c}{5}%
+\contentsline {subsubsection}{\numberline {5.1.2}Donner des figures}{5}%
+\contentsline {subsubsection}{\numberline {5.1.3}Citer des figures}{5}%
+\contentsline {subsection}{\numberline {5.2}Placer un tableau}{5}%
+\contentsline {subsection}{\numberline {5.3}Citer un tableau}{5}%
+\contentsline {section}{\numberline {6}Références}{5}%
+>>>>>>> 0c8fd4f... Rédaction du rapport
