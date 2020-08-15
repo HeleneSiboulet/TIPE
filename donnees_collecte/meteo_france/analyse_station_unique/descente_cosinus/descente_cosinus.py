@@ -43,8 +43,8 @@ for i in range(100) :
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
 	val_actuel_ecart = ecart_temperature([dates,val_actuel])
-	if i == 0 :
-		plt.plot(dates, val_actuel, label='init')
+	#if i == 0 :
+	#	plt.plot(dates, val_actuel, label='init')
 	dX = np.array([0.0,0.0,0.0,0.0,0.0])
 	for j in range(len(X)) :
 		X_modif = X.copy()
@@ -63,6 +63,16 @@ for i in range(100) :
 		print("{} sur 100".format(i))
 		print(val_modif_ecart)
 		print(" ")
+
+
+for annee in temperature[0].keys() :
+	temp = []
+	jour = []
+	for date2 in temperature[0][annee] :
+		jour.append (date2)
+		temp.append (temperature[1][annee][temperature[0][annee].index(date2)])
+	plt.plot (jour, temp, label = annee) 
+
 
 plt.plot(dates, val_actuel, label='final')
 plt.legend()
