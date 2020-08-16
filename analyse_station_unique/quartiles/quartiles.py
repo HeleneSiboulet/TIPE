@@ -1,10 +1,10 @@
 import json
 import numpy as np
 
-with open('../temperature.json') as jsonfile :
+with open('../json/temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
-with open('../humidite.json') as jsonfile :
+with open('../json/humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
 temp = []
@@ -16,9 +16,16 @@ for annee in temperature[1].keys () :
 temp.sort()
 
 Q1t = temp [int (0.25 * len (temp)) ] - 273.15
+met = temp [int (0.5 * len (temp)) ] - 273.15
 Q3t = temp [int (0.75 * len (temp)) ] - 273.15
 
-print ( "Q1t = " + str (Q1t)+ "  Q2t = " + str (Q3t))
+tempe = np.array (temp)
+
+mot = tempe.mean() - 273.15
+et = np.nanstd(tempe)
+
+
+print ( "Q1t = " + str (Q1t)+ "  met = " + str (met) +  "  Q3t = " + str (Q3t) + "  mot =" + str (mot) + "  et =" +str(et) )
 
 hum = []
 
@@ -29,6 +36,14 @@ for annee in humidite[1].keys () :
 hum.sort()
 
 Q1h = hum [int (0.25 * len (hum)) ]
+meh = hum [int (0.5 * len (hum)) ]
 Q3h = hum [int (0.75 * len (hum)) ]
 
-print ( "Q1h = " + str (Q1h)+ "  Q2h = " + str (Q3h))
+humi = np.array(hum)
+
+moh = humi.mean()
+eh = np.nanstd (humi)
+
+print ( "Q1h = " + str (Q1h)+ "  meh = " + str (meh) +  "  Q3h = " + str (Q3h) + "  moh =" + str (moh) + "  eh =" +str(eh) )
+
+
