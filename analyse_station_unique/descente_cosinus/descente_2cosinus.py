@@ -5,10 +5,10 @@ import numpy as np
 delta = 10**(-3)
 alpha = [1, 1, 1, 0.1, 0.1]
 
-with open('../temperature.json') as jsonfile :
+with open('../json/temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
-with open('../humidite.json') as jsonfile :
+with open('../json/humidite.json') as jsonfile :
 	humidite = json.load(jsonfile)
 
 dates = set()
@@ -34,11 +34,11 @@ def ecart_temperature(temperature_test) :
 
 
 X = np.array([2.0,10.0,285.0,0.0,0.0])
-# A,B,C,D,phi1,phi2,phi3
-# Acos(w1t + phi1) + Bcos(w2t+phi2) + Ccos(w3t+phi3) + D
-#w1 jour w2 annee w3 demi-journee
+# A,B,C,phi1,phi2
+# Acos(w1t + phi1) + Bcos(w2t+phi2) + C
+#w1 jour w2 annee
 
-for i in range(100) :
+for i in range(150) :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -55,17 +55,22 @@ for i in range(100) :
 		val_modif_ecart = ecart_temperature([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
+	if i == 98 :
+		print ("T")
+		print ("ecart -1")
+		print (val_modif_ecart)
 	X = X + dX
 	X[4] = X[4]%(2*np.pi)
 	X[3] = X[3]%(2*np.pi)
-	f i == 99 :
-		print (val_modif_ecart)
 	#print(X)
 	#if i%10 == 0 :
 	#	print("{} sur 100".format(i))
 	#	print(val_modif_ecart)
 	#	print(" ")
-
+print ("ecart")
+print (val_modif_ecart)
+print ("dX")
+print (dX)
 
 for annee in temperature[0].keys() :
 	temp = []
@@ -78,10 +83,9 @@ for annee in temperature[0].keys() :
 
 plt.plot(dates, val_actuel, label='final')
 plt.legend()
-plt.savefig("T3cos.png")
+plt.savefig("T2cos.png")
+print ("X = [A,B,C,p1,p2]")
 print(X)
-
-
 
 
 def ecart_humidite(humidite_test) :
@@ -95,12 +99,12 @@ def ecart_humidite(humidite_test) :
 	return (ecarts_humidite/compt)**(1/2)
 
 
-X = np.array([2.0,10.0,285.0,0.0,0.0])
-# A,B,C,D,phi1,phi2,phi3
-# Acos(w1t + phi1) + Bcos(w2t+phi2) + Ccos(w3t+phi3) + D
-#w1 jour w2 annee w3 demi-journee
+X = np.array([30.0,10.0,75,0.0,0.0])
+# A,B,C,phi1,phi2
+# Acos(w1t + phi1) + Bcos(w2t+phi2) + C
+#w1 jour w2 annee
 
-for i in range(100) :
+for i in range(200) :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -117,17 +121,27 @@ for i in range(100) :
 		val_modif_ecart = ecart_humidite([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
+	if i == 98 :
+		print (" ")
+		print (" ")
+		print ("H")
+		print ("ecart -1")
+		print (val_modif_ecart)
 	X = X + dX
 	X[4] = X[4]%(2*np.pi)
 	X[3] = X[3]%(2*np.pi)
-	if i == 99 :
-		print (val_modif_ecart)
+
 	#print(X)
 	#if i%10 == 0 :
 	#	print("{} sur 100".format(i))
 	#	print(val_modif_ecart)
 	#	print(" ")
 plt.clf()
+
+print("ecart")
+print (val_modif_ecart)
+print ("dX")
+print (dX)
 
 for annee in humidite[0].keys() :
 	humi = []
@@ -139,7 +153,8 @@ for annee in humidite[0].keys() :
 
 plt.plot(dates, val_actuel, label='final')
 plt.legend()
-plt.savefig("H3cos.png")
+plt.savefig("H2cos.png")
+print ("X = [A,B,C,p1,p2]")
 print(X)
 
 
