@@ -38,7 +38,7 @@ X = np.array([2.0,10.0,285.0,0.0,0.0])
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + C
 #w1 jour w2 annee
 
-for i in range(150) :
+for i in range(100) :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
