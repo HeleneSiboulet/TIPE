@@ -188,12 +188,13 @@ Les annees 2008, 2019 et 2020 sont retirées de la base d'entrainement et servir
 \caption{\label{fig:190101Lolita} Courbes de température et d'humdité de la base d'apprentissage : Clermont-Ferrand}
 \end{figure}
 
-Comment estimer la valeur d'un ensemble de prévisions~? On calcule l'écart type entre nos prévisions et les températures mesurées. cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur les diférences entre les quartiles 1 et 3. \\ Calcul des Quartiles de l'humidité et de la température. En dessous du premier quartile, on trouve le quart des valeurs, et au dessus du troisième quartile, on trouve un quart des valeurs.\\ 
+Comment estimer la valeur d'un ensemble de prévisions~? On calcule l'écart type entre nos prévisions et les températures mesurées. Cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur l'écart type des températures.
+ \\ Calcul de valeurs utiles de la base de donnée : quartiles, medianne, moyenne, écart type.\\ 
 %Température :  $Q1 = 6.39{}^{\circ}C  \quad Q3 = 17.4{}^{\circ}C$   soit un intervalle de $11{}^{\circ}C $ \\
 %Humidité :  $ Q1 = 59.0\%  \quad  Q3 = 85.0\% $ soit un intervalle de $26\% $ \\
-\begin{tabular}{llll}\hline\hline
-Température&$Q1 = 6.39{}^{\circ}C$&$Q3 = 17.4{}^{\circ}C$&soit un intervalle de $11{}^{\circ}C $\\
-Humidité&  $ Q1 = 59.0\%$ &$ Q3 = 85.0\% $&soit un intervalle de $26\% $\\
+\begin{tabular}{lllll}\hline\hline
+Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ &. $Q3 = 17.4{}^{\circ}C $&$ m= 12.0 $ \\
+Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           &. $Q3 = 85.0\%.           $&soit un intervalle de $ 26\% $\\
 \hline 
 \end{tabular} 
 
@@ -235,12 +236,12 @@ Prévision à x jour                  &1                         &2             
 
 \subsection{ Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}
 À priori les conditions météorologiques sont cycliques par rapport à l'année et au jour. Nous pouvons donc nous demander si il est judicieux de modéliser ses paramètre par une somme de sinusoïdes. Nous réalisons donc une
-Transformation de Fourier pour nous demander si la méthode est appropriée. \\
+transformation de Fourier pour nous demander si la méthode est appropriée. \\
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{/Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png}\quad
 \includegraphics[width=0.48 \textwidth]{/Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png}
-\caption{\label{fig:190101Lolita} Transformation de Fourier de la température et de l'humidité de la base d'entrainement (auquelles ont a enlevé la valeur moyenne moins un)}
+\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement (auquelles ont a enlevé la valeur moyenne moins un)}
 \end{figure}
 Nous concluons que la méthode est appropriée. \\
 Sur les deux courbes on observe des pics aux fréquence de 1/365 jours, 1jours et 1/2 jours et 1/3 de jours.

@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  18 MAY 2021 18:13
 =======
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  15 AUG 2020 20:23
 >>>>>>> 0c8fd4f... Rédaction du rapport
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.14)  16 AUG 2020 11:55
+>>>>>>> b4894bc... Rapport
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -537,6 +541,7 @@ File: l3backend-pdfmode.def 2020-03-12 L3 backend support: PDF mode
 \l__pdf_internal_box=\box105
 )
 <<<<<<< HEAD
+<<<<<<< HEAD
 (./RapportTIPE.aux
 
 LaTeX Warning: Label `fig:cosDS' multiply defined.
@@ -576,6 +581,16 @@ LaTeX Info: Redefining \up on input line 91.
  (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 =======
 (./RapportTIPE.aux)
+=======
+(./RapportTIPE.aux
+
+LaTeX Warning: Label `fig:190101Lolita' multiply defined.
+
+
+LaTeX Warning: Label `fig:190101Lolita' multiply defined.
+
+)
+>>>>>>> b4894bc... Rapport
 \openout1 = `RapportTIPE.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
@@ -595,9 +610,13 @@ LaTeX Font Info:    ... okay on input line 92.
 LaTeX Info: Redefining \degres on input line 92.
 LaTeX Info: Redefining \dots on input line 92.
 LaTeX Info: Redefining \up on input line 92.
+<<<<<<< HEAD
 
 (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 >>>>>>> 0c8fd4f... Rédaction du rapport
+=======
+ (/usr/local/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+>>>>>>> b4894bc... Rapport
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count303
 \scratchdimen=\dimen267
@@ -658,6 +677,7 @@ Package scrpage2 Warning: seems you are using a constant headheight.
 
 \c@lstlisting=\count309
 <<<<<<< HEAD
+<<<<<<< HEAD
 (./RapportTIPE.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
 =======
@@ -668,10 +688,15 @@ LaTeX Font Info:    Trying to load font information for U+msa on input line 5.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 110
 .
 >>>>>>> 0c8fd4f... Rédaction du rapport
+=======
+(./RapportTIPE.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+>>>>>>> b4894bc... Rapport
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
+<<<<<<< HEAD
 <<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for U+msb on input line 5.
 
@@ -892,18 +917,24 @@ nHumiIA300,75.png> <./imagesTIPE/ecartjT.png>] [12 <./imagesTIPE/ecartsT.png> <
 =======
 LaTeX Font Info:    Trying to load font information for U+msb on input line 110
 .
+=======
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+>>>>>>> b4894bc... Rapport
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+))
+\tf@toc=\write3
+\openout3 = `RapportTIPE.toc'.
 
-{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+ [1
+
+{/usr/local/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \hbox (badness 10000) in paragraph at lines 169--179
 
  []
 
-[2]
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png, id=17, 231.
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png, id=18, 231.
 264pt x 173.448pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
  file (type png)
@@ -911,7 +942,7 @@ File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
 erature.png  used on input line 186.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/humidite.png, id=19, 231.264
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/humidite.png, id=20, 231.264
 pt x 173.448pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/humidite.png Graphic fi
 le (type png)
@@ -919,70 +950,70 @@ le (type png)
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/humi
 dite.png  used on input line 187.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--207
+[3 </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png> </Users/
+helene/Documents/TIPE/TIPERedac/imagesTIPE/humidite.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
 
  []
 
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneT.png, id=20, 462.528
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneT.png, id=27, 462.528
 pt x 346.896pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneT.png Graphic fi
 le (type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneT.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moye
-nneT.png  used on input line 210.
+nneT.png  used on input line 211.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png, id=21, 462.528
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png, id=28, 462.528
 pt x 346.896pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png Graphic fi
 le (type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moye
-nneH.png  used on input line 211.
+nneH.png  used on input line 212.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[3 </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png> </Users/
-helene/Documents/TIPE/TIPERedac/imagesTIPE/humidite.png>]
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png, id=31, 462.528pt x
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png, id=29, 462.528pt x
  346.896pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png Graphic file (
 type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT
-.png  used on input line 241.
+.png  used on input line 242.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
-</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png, id=32, 462.528pt x
+</Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png, id=30, 462.528pt x
  346.896pt>
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png Graphic file (
 type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftH
-.png  used on input line 242.
+.png  used on input line 243.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--253
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--254
 
  []
 
 [4 </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneT.png> </Users/hel
-ene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png> </Users/helene/Documents/
-TIPE/TIPERedac/imagesTIPE/fftT.png> </Users/helene/Documents/TIPE/TIPERedac/ima
-gesTIPE/fftH.png>]
-File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
- file (type png)
-<use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
-Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
-erature.png  used on input line 298.
-(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+ene/Documents/TIPE/TIPERedac/imagesTIPE/moyenneH.png>]
 File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
  file (type png)
 <use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
 Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
 erature.png  used on input line 301.
 (pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+File: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png Graphic
+ file (type png)
+<use /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temperature.png>
+Package pdftex.def Info: /Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/temp
+erature.png  used on input line 304.
+(pdftex.def)             Requested size: 259.48683pt x 194.62566pt.
+ [5 </Users/helene/Documents/TIPE/TIPERedac/imagesTIPE/fftT.png> </Users/helene
+/Documents/TIPE/TIPERedac/imagesTIPE/fftH.png>] [6] (./RapportTIPE.aux)
 
+<<<<<<< HEAD
 
 LaTeX Warning: Reference `fig:190101Lolita' on page 5 undefined on input line 3
 12.
@@ -1033,16 +1064,19 @@ PDF statistics:
  136 words of extra memory for PDF output out of 10000 (max. 10000000)
 =======
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+=======
+LaTeX Warning: There were multiply-defined labels.
+>>>>>>> b4894bc... Rapport
 
  ) 
 Here is how much of TeX's memory you used:
  9031 strings out of 480608
  131496 string characters out of 5903630
- 404870 words of memory out of 5000000
+ 405923 words of memory out of 5000000
  24750 multiletter control sequences out of 15000+600000
  545801 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,42p,839b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,8n,42p,823b,426s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
@@ -1057,7 +1091,7 @@ e/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/
 2020/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/20
 20/texmf-dist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/texlive/2020
 /texmf-dist/fonts/type1/public/cm-super/sfxc2488.pfb>
-Output written on RapportTIPE.pdf (6 pages, 375137 bytes).
+Output written on RapportTIPE.pdf (6 pages, 384185 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream
