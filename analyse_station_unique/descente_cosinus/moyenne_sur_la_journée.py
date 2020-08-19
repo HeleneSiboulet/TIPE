@@ -28,6 +28,6 @@ for j in range (len (s)) :
 mesure = [1,2,3,4,5,6,7,8]
 
 print (str (r))
-plt.plot (mesure, s)
-plt.savefig("moyenne sur la journee")
+plt.plot (mesure, r)
+plt.savefig("moyenne_sur_la_journee.png")
 

@@ -24,7 +24,7 @@
 \contentsline {section}{\numberline {4}Modèles de prévision sur une station : analyse de la température et de l'humidité}{3}%
 \contentsline {subsection}{\numberline {4.1}Premier modèle : Moyenne de la température et de l'humidité par jour de l'année et par heure }{4}%
 \contentsline {subsection}{\numberline {4.2}Deuxième modèle : Modèle de la persistance journalière}{4}%
-\contentsline {subsection}{\numberline {4.3} Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}{4}%
+\contentsline {subsection}{\numberline {4.3}Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}{4}%
 \contentsline {section}{\numberline {5}Exemples Latex}{5}%
 \contentsline {subsection}{\numberline {5.1}subsection}{5}%
 \contentsline {subsubsection}{\numberline {5.1.1}q;,c}{5}%

@@ -192,9 +192,9 @@ Comment estimer la valeur d'un ensemble de prévisions~? On calcule l'écart typ
  \\ Calcul de valeurs utiles de la base de donnée : quartiles, medianne, moyenne, écart type.\\ 
 %Température :  $Q1 = 6.39{}^{\circ}C  \quad Q3 = 17.4{}^{\circ}C$   soit un intervalle de $11{}^{\circ}C $ \\
 %Humidité :  $ Q1 = 59.0\%  \quad  Q3 = 85.0\% $ soit un intervalle de $26\% $ \\
-\begin{tabular}{lllll}\hline\hline
-Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ &. $Q3 = 17.4{}^{\circ}C $&$ m= 12.0 $ \\
-Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           &. $Q3 = 85.0\%.           $&soit un intervalle de $ 26\% $\\
+\begin{tabular}{llllll}\hline\hline
+Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ & $Q3 = 17.4{}^{\circ}C $&$ m= 12.0 $ & $\sigma = 7.91 {}^{\circ}C$ \\
+Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           & $Q3 = 85.0\%.           $& $ m=71.2  $ & $\sigma = 17.1 \% $ \\
 \hline 
 \end{tabular} 
 
@@ -234,7 +234,7 @@ Prévision à x jour                  &1                         &2             
 
 %cosinus
 
-\subsection{ Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}
+\subsection{Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}
 À priori les conditions météorologiques sont cycliques par rapport à l'année et au jour. Nous pouvons donc nous demander si il est judicieux de modéliser ses paramètre par une somme de sinusoïdes. Nous réalisons donc une
 transformation de Fourier pour nous demander si la méthode est appropriée. \\
 \begin{figure} [!h]
