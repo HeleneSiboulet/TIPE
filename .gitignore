@@ -1,2 +1,7 @@
 # Specify filepatterns you want git to ignore.
 .DS_Store
+*.aux
+*.toc
+*.log
+*.synctex.gz
+*.swp
