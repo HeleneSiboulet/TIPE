@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 delta = 10**(-3)
-alpha = [1, 1, 1, 0.1, 0.1, 1, 0.1, 1, 0.1]
+alpha = [1, 1, 0.1, 1, 0.1, 1, 0.1, 1, 0.1]
 
 with open('../json/temperature.json') as jsonfile :
 	temperature = json.load(jsonfile)
@@ -20,7 +20,8 @@ dates.sort()
 
 
 def fct_test(X, x) :
-	return X[0]*np.cos(2*np.pi*x + X[3]) + X[1]*np.cos(2*np.pi*x/365 + X[4]) + X[2] + X[5]*np.cos(4*np.pi*x/365 + X[6]) + X[7]*np.cos(4*np.pi*x/365 + X[8])
+	return X[0] + X[1]*np.cos (2*np.pi*x + X[2]) + X[3]*np.cos(2*np.pi*x/365 + X[4]) + X[5]*np.cos (4*np.pi*x + X[6]) + X[7]*np.cos(4*np.pi*x/365 + X[8])
+	#X[0]*np.cos(2*np.pi*x + X[3]) + X[1]*np.cos(2*np.pi*x/365 + X[4]) + X[2] + X[5]*np.cos(4*np.pi*x + X[6])
 
 def ecart_temperature(temperature_test) :
 	ecarts_temperature = 0
@@ -33,12 +34,14 @@ def ecart_temperature(temperature_test) :
 	return (ecarts_temperature/compt)**(1/2)
 
 
-X = np.array([2.0,10.0,285.0,0.0,0.0,0.0, 0.0,0.0,0.0])
-# A,B,C,phi1,phi2,D,phi3
+X = np.array([280 ,0.0 ,0.0,0.0,0.0,0.0, 0.0, 0.0, 0.0])
+# C A phi1 B phi2 D phi3 E phi4
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + C + Dcos (w3t+phi3)
 #w1 jour w2 annee W3 demi jour
 
-for i in range(100) :
+drapeau = False
+ecart_precedant = 0
+while drapeau == False :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -55,13 +58,9 @@ for i in range(100) :
 		val_modif_ecart = ecart_temperature([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
-	if i == 98 :
-		print ("T")
-		print ("ecart -1")
-		print (val_modif_ecart)
 	X = X + dX
+	X[2] = X[2]%(2*np.pi)
 	X[4] = X[4]%(2*np.pi)
-	X[3] = X[3]%(2*np.pi)
 	X[6] = X[6]%(2*np.pi)
 	X[8] = X[8]%(2*np.pi)
 	#print(X)
@@ -69,8 +68,12 @@ for i in range(100) :
 	#	print("{} sur 100".format(i))
 	#	print(val_modif_ecart)
 	#	print(" ")
+	if abs (val_actuel_ecart - ecart_precedant) < 0.008 :
+		drapeau = True
+	ecart_precedant = val_actuel_ecart
+print ("T")
 print ("ecart")
-print (val_modif_ecart)
+print (val_actuel_ecart)
 print ("dX")
 print (dX)
 
@@ -86,7 +89,7 @@ for annee in temperature[0].keys() :
 plt.plot(dates, val_actuel, label='final')
 plt.legend()
 plt.savefig("T4cos.png")
-print ("X = [A,B,C,p1,p2,D,p3,E,p4]")
+print ("X = [C, A, phi1, B, phi2, D, phi3, E, phi4]")
 print(X)
 
 
@@ -101,12 +104,14 @@ def ecart_humidite(humidite_test) :
 	return (ecarts_humidite/compt)**(1/2)
 
 
-X = np.array([30.0,10.0,75,0.0,0.0,0.0,0.0,0.0,0.0])
-# A,B,C,phi1,phi2
-# Acos(w1t + phi1) + Bcos(w2t+phi2) + C
-#w1 jour w2 annee
+X = np.array([70.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0])
+# C A phi1 B phi2 D phi3 E phi4
+# Acos(w1t + phi1) + Bcos(w2t+phi2) + C + Dcos (w3t+phi3)
+#w1 jour w2 annee W3 demi jour
 
-for i in range(200) :
+ecart_precedant = 0
+drapeau = False
+while drapeau == False :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -123,15 +128,12 @@ for i in range(200) :
 		val_modif_ecart = ecart_humidite([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
-	if i == 98 :
-		print (" ")
-		print (" ")
-		print ("H")
-		print ("ecart -1")
-		print (val_modif_ecart)
+	if abs (val_actuel_ecart - ecart_precedant) < 0.008 :
+		drapeau = True
+	ecart_precedant = val_actuel_ecart
 	X = X + dX
+	X[2] = X[2]%(2*np.pi)
 	X[4] = X[4]%(2*np.pi)
-	X[3] = X[3]%(2*np.pi)
 	X[6] = X[6]%(2*np.pi)
 	X[8] = X[8]%(2*np.pi)
 
@@ -142,8 +144,11 @@ for i in range(200) :
 	#	print(" ")
 plt.clf()
 
+print (" ")
+print (" ")
+print ("H")
 print("ecart")
-print (val_modif_ecart)
+print (val_actuel_ecart)
 print ("dX")
 print (dX)
 
@@ -158,7 +163,7 @@ for annee in humidite[0].keys() :
 plt.plot(dates, val_actuel, label='final')
 plt.legend()
 plt.savefig("H4cos.png")
-print ("X = [A,B,C,p1,p2,D,p3,E,p4]")
+print ("X = [C, A, phi1, B, phi2, D, phi3, E, phi4]")
 print(X)
 
 

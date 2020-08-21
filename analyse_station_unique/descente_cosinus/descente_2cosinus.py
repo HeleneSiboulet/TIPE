@@ -33,7 +33,7 @@ def ecart_temperature(temperature_test) :
 	return (ecarts_temperature/compt)**(1/2)
 
 
-X = np.array([2.0,10.0,285.0,0.0,0.0])
+X = np.array([0.0,0.0,285.0,0.0,0.0])
 # A,B,C,phi1,phi2
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + C
 #w1 jour w2 annee
@@ -55,10 +55,6 @@ for i in range(100) :
 		val_modif_ecart = ecart_temperature([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
-	if i == 98 :
-		print ("T")
-		print ("ecart -1")
-		print (val_modif_ecart)
 	X = X + dX
 	X[4] = X[4]%(2*np.pi)
 	X[3] = X[3]%(2*np.pi)
@@ -67,8 +63,9 @@ for i in range(100) :
 	#	print("{} sur 100".format(i))
 	#	print(val_modif_ecart)
 	#	print(" ")
+print ("T")
 print ("ecart")
-print (val_modif_ecart)
+print (val_actuel_ecart)
 print ("dX")
 print (dX)
 
@@ -99,12 +96,12 @@ def ecart_humidite(humidite_test) :
 	return (ecarts_humidite/compt)**(1/2)
 
 
-X = np.array([30.0,10.0,75,0.0,0.0])
+X = np.array([0.0,0.0,75,0.0,0.0])
 # A,B,C,phi1,phi2
 # Acos(w1t + phi1) + Bcos(w2t+phi2) + C
 #w1 jour w2 annee
 
-for i in range(200) :
+for i in range(250) :
 	val_actuel = []
 	for date in dates :
 		val_actuel.append(fct_test(X,date))
@@ -121,12 +118,6 @@ for i in range(200) :
 		val_modif_ecart = ecart_humidite([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
-	if i == 98 :
-		print (" ")
-		print (" ")
-		print ("H")
-		print ("ecart -1")
-		print (val_modif_ecart)
 	X = X + dX
 	X[4] = X[4]%(2*np.pi)
 	X[3] = X[3]%(2*np.pi)
@@ -138,6 +129,9 @@ for i in range(200) :
 	#	print(" ")
 plt.clf()
 
+print (" ")
+print(" ")
+print ("H")
 print("ecart")
 print (val_modif_ecart)
 print ("dX")

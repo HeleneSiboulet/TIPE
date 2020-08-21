@@ -104,7 +104,7 @@
 \section{Présentation} 
 %%%%%%%%%%
 La prévision consiste à prévoir, c'est-à-dire à \og voir avant\fg{}. Il s'agit donc, à partir de ce que l'on sait à un moment donné, de savoir ce qui se passera à un moment ultérieur, avec la meilleure probabilité. En effet, à part les phénomènes déterministes, comme par exemple le mouvement des solides à court terme, on ne peut avoir que des indications probabilistes. C'est un problème universel, qui s'applique à l'économie, la politique, la vie privée, et aussi bien sûr aux prévisions météorologiques.\\   
-Définir l'intelligence en général est très compliqué. Voici une définition simple pour ce rapport~: observer-se souvenir-faire un modèle de prévision. Il existe un dicton météorologique~: "Quand la neige ne fond pas, c'est quelle en attend d'autre." Ce dicton est confirmé par les observations. Comme les masses d'air en France circulent d'ouest en est, la neige tombe d'abord sur un front d'air chaud -air froid, puis reste sous l'air froid, et tombe encore sur le front air froid - air chaud. On peut dire que ce dicton est une forme d'intelligence. Ce travail de TIPE est semblable, puisqu'il existe des paramètres (température et humidité), ils sont sur des bases, et ce travail développe une utilisation de ces données.  On peut parler d'intelligence artificielle. \\
+%Définir l'intelligence en général est très compliqué. Voici une définition simple pour ce rapport~: observer-se souvenir-faire un modèle de prévision. Il existe un dicton météorologique~: "Quand la neige ne fond pas, c'est quelle en attend d'autre." Ce dicton est confirmé par les observations. Comme les masses d'air en France circulent d'ouest en est, la neige tombe d'abord sur un front d'air chaud -air froid, puis reste sous l'air froid, et tombe encore sur le front air froid - air chaud. On peut dire que ce dicton est une forme d'intelligence. Ce travail de TIPE est semblable, puisqu'il existe des paramètres (température et humidité), ils sont sur des bases, et ce travail développe une utilisation de ces données.  On peut parler d'intelligence artificielle. \\
 La prévision repose sur deux éléments : des données disponibles à un moment, et des théories ou des modèles qui permettent d'utiliser ces données. \\
 Les processus météorologiques sont tout à fait chaotiques. Cela signifie que des incertitudes minimes à un instant donné peuvent avoir des conséquences très fortes sur le déroulement. En fait, ces incertitudes n'empêchent pas de prévoir à court terme, par exemple pour le lendemain, mais elles rendent difficiles les prévisions au delà de deux semaines. \\
 Si les processus météorologiques sont chaotiques à moyen terme, ils sont au contraire extrêmement stables dès lors que on les analyse en moyenne. Par exemple, Milankovitch a prévu que les variations de trois paramètres~-excentricité, obliquité et précession~-auraient des effets périodiques sur les glaciations. Milankovitch a fait apparaître des périodes de 20~000, 40~000 et 100~000 ans, ce qui a été confirmé expérimentalement par les mesures de $\delta O_{18}$ dans les carottes glaciaires de Vostock, en 1976. Ces résultats montrent que, en faisant des moyennes sur une centaine d'année, on a des tendances très claires d'évolution des températures, alors qu'il est difficile de prévoir la température dans deux semaines.   
@@ -238,30 +238,48 @@ Prévision à x jour                  &1                         &2             
 \subsection{Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}
 À priori les conditions météorologiques sont cycliques par rapport à l'année et au jour. Nous pouvons donc nous demander si il est judicieux de modéliser ses paramètre par une somme de sinusoïdes. Nous réalisons donc une
 transformation de Fourier pour nous demander si la méthode est appropriée. \\
+Pour réaliser une transformation de Fourier discrète, nous utilisons la bibliothèque numpy sur python qui utilise la formule suivante :  \\
+$ A_{k}  = \displaystyle { \sum_{m=0}^{n-1}} a_{m} exp(-2\pi i \frac{mk}{n} ) $ avec $k = 0, ... , n-1 $   \\ 
+\vspace {0.3cm}
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftH.png}
-\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement (auquelles ont a enlevé la valeur moyenne moins un)}
+\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement}
 \end{figure}
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftTZ.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftHZ.png}
+\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement zoomées sur 0 }
+\end{figure}
+
 Nous concluons que la méthode est appropriée. \\
-Sur les deux courbes on observe des pics aux fréquence de 1/365 jours, 1jours et 1/2 jours et 1/3 de jours.
-
+Sur les deux courbes on observe des pics aux fréquence de 1/(365 jours) et 1/(1jour) ainsi que des harmoniques de ses fréquences.
 On approxime donc les paramètres par des fonctions de la forme : \\
- $f(t) = A cos (\omega t + \phi_{1}) + B cos (\omega2 t + \phi_{2}) + C$  \\
-$g(t) = A cos (\omega t + \phi_{1}) + B cos (\omega2 t + \phi_{2}) + C + D cos (\omega3 t + \phi_{3})$ \\
-$h(t) = A cos (\omega t + \phi_{1}) + B cos (\omega2 t + \phi_{2}) + C + D cos (\omega3 t + \phi_{3}) + E cos (\omega4 t + \phi_{4})$ \\ 
-avec $\omega1 = 2 \pi$ (période journalière) , $\omega2 = 2 \pi /365$ (période annuelle), $\omega3 = 4 \pi$ (période demi-journalière) et $\omega4 = 6\pi$ (période d'un tiers de journée).\\
+ $f(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C$  \\
+$g(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C + D cos (\omega_{3} t + \phi_{3}) + E cos (\omega_{4} t + \phi_{4})$ \\
+$h(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C + D cos (\omega_{3} t + \phi_{3}) + E cos (\omega_{4} t + \phi_{4}) + F cos (\omega_{5} t + \phi_{5}) + G cos (\omega_{6} t + \phi_{6})$ \\ 
+Avec $\omega_{1} = 2 \pi$ (période journalière) , $\omega_{2} = 2 \pi /365$ (période annuelle), $\omega_{3} = 4 \pi$ (période demi-journalière), $\omega_{4} = 4\pi/365 $  (période semi annuelle), $\omega_{5} = 6 \pi$ (période du tiers de journéé), $\omega_{6} = 6\pi/365 $  (période du tiers d'année)\\
 
-Il faut ensuite déterminer les valeurs de des coefficients et des déphasage.On utilise alors la méthode du gradient :
+Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. On utilise alors la méthode du gradient :
 \begin{itemize}
-\item On crée une fonction écart $(u(t))$ qui calcule l'écart entre les prévisions de $u(t)$ et les valeurs de la base d'entrainement. On cherche alors à déterminer le minimum de écart en fonction des coefficients et des déphasages.
-\item On initialise aléatoirement ses paramètres
+\item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart.
+\item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
 \item On dérive écart par rapport à chaque paramètre
 \item On modifie chaque paramètre X en faisant X = X - dX
 \item On répète les deux points précédents un grand nombre de fois
 \end{itemize}
 
+Nous testons la fonction obtenue sur la base de test en calculant l'écart type.
+
+\begin{tabular}{llll}\hline
+\hline
+Fonction                             &f                         &g                       &h \\
+Écart type de température & $4.38{}^{\circ}C$   & $1{}^{\circ}C$   &  $1{}^{\circ}C$ \\ 
+Écart type de d'humidité    & $15.3\%$   & $1\%$   &  $1\%$   \\   
+\hline 
+\end{tabular}
 
 
 
