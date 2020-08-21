@@ -68,7 +68,7 @@ while drapeau == False :
 	#	print("{} sur 100".format(i))
 	#	print(val_modif_ecart)
 	#	print(" ")
-	if abs (val_actuel_ecart - ecart_precedant) < 0.008 :
+	if abs (val_actuel_ecart - ecart_precedant) < 0.0001 :
 		drapeau = True
 	ecart_precedant = val_actuel_ecart
 print ("T")
@@ -128,7 +128,7 @@ while drapeau == False :
 		val_modif_ecart = ecart_humidite([dates,val_modif])
 		df = (val_modif_ecart - val_actuel_ecart)/delta
 		dX[j] = - df * alpha[j]
-	if abs (val_actuel_ecart - ecart_precedant) < 0.008 :
+	if abs (val_actuel_ecart - ecart_precedant) < 0.0001 :
 		drapeau = True
 	ecart_precedant = val_actuel_ecart
 	X = X + dX
