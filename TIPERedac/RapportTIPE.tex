@@ -276,10 +276,26 @@ Nous testons la fonction obtenue sur la base de test en calculant l'écart type.
 \begin{tabular}{llll}\hline
 \hline
 Fonction                             &f                         &g                       &h \\
-Écart type de température & $4.38{}^{\circ}C$   & $1{}^{\circ}C$   &  $1{}^{\circ}C$ \\ 
-Écart type de d'humidité    & $15.3\%$   & $1\%$   &  $1\%$   \\   
+Écart type de température & $4.33{}^{\circ}C$   & $4.31{}^{\circ}C$   &  $4.31{}^{\circ}C$ \\ 
+Écart type de d'humidité    & $15.3\%$   & $14.8\%$   &  $14.9\%$   \\   
 \hline 
 \end{tabular}
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeT.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeH.png}
+\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par jour et prévisions des fonctions définies précédemment avec uniquement les composantes de faibles fréquence}
+\end{figure}
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeT.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeH.png}
+\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment avec uniquement les composantes de hautes fréquence }
+\end{figure}
+
+Cette méthode nécessite un grand temps de calcul pour la descente de cosinus : calcul qu'il n'est nécessaire d'effectuer qu'une seule foi. Les fonctions f, g, h sont respectivement de plus en plus lourdes. On remarque que g est plus précise que f mais que h n'est pas nettement plus précise que g.
+
 
 
 \subsection {Quatrième modèle : Approximation des courbes par une somme de fonctions sinusoïdale sur la semaine précédente }
