@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 import json
 from matplotlib import pyplot as plt
 
-with open('../json/temperature.json') as jsonfile :
+with open('../json/humidite.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
 
@@ -29,7 +29,7 @@ for date in dates :
 				index = temperature[0][annee].index(date + (1/8) * heure)
 				i += 1
 				somme_temperature += temperature[1][annee][index]
-	Moyenne_temperature.append(somme_temperature/i - 273.15)
+	Moyenne_temperature.append(somme_temperature/i)
 
 
 
@@ -38,11 +38,11 @@ f = []
 g = []
 h = []
 for j in jour :
-	pf = -8.37900126*np.cos(2*np.pi*j/365 + 5.95629115) + 285.13810537 - 273.15
+	pf =6.78906587*np.cos(2*np.pi*j/365 + 0.31944989) + 71.15758689
 	f .append (pf)
-	pg = 2.85138181e+02 -8.39742026e+00*np.cos(2*np.pi*j/365 + 5.95627061e+00) -3.56389400e-02 *np.cos(4*np.pi*j/365 + 6.61334074e-03) - 273.15
+	pg = 71.15503638 + 6.87475093*np.cos(2*np.pi*j/365 + 0.31901173) + 2.40357027*np.cos(4*np.pi*j/365 + 0.89433251)
 	g .append (pg) 
-	ph = 2.85138253e+02 -8.39738900e+00*np.cos(2*np.pi*j/365 + 5.95626734e+00 ) -3.55282083e-02 *np.cos(4*np.pi*j/365 + 6.59654426e-03) -7.80736324e-02*np.cos(4*np.pi*j/365 + 6.27876991e+00) - 273.15
+	ph = 71.1553131 +6.90021219*np.cos(2*np.pi*j/365 + 0.3193087 ) + 2.50198275*np.cos(4*np.pi*j/365 + 1.00739916) + 1.38720613*np.cos(4*np.pi*j/365 + 5.39421813)
 	h.append (ph)
 
 plt.plot(dates, Moyenne_temperature, label = "moyenne")
@@ -50,5 +50,5 @@ plt.plot (jour, f, label = "f")
 plt.plot (jour, g, label = "g")
 plt.plot (jour, h, label = "h")
 plt.legend()
-plt.savefig("CourbeAnneeT.png")
+plt.savefig("CourbeAnneeH.png")
 
