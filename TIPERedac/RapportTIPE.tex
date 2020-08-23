@@ -235,7 +235,7 @@ Prévision à x jour                  &1                         &2             
 
 %cosinus
 
-\subsection{Troisième modèle : Approximation de la courbe des températures par une somme de fonctions sinusoïdales}
+\subsection{Troisième modèle : Approximation des courbes par une somme de fonctions sinusoïdales}
 À priori les conditions météorologiques sont cycliques par rapport à l'année et au jour. Nous pouvons donc nous demander si il est judicieux de modéliser ses paramètre par une somme de sinusoïdes. Nous réalisons donc une
 transformation de Fourier pour nous demander si la méthode est appropriée. \\
 Pour réaliser une transformation de Fourier discrète, nous utilisons la bibliothèque numpy sur python qui utilise la formule suivante :  \\
@@ -267,8 +267,8 @@ Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. O
 \item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart.
 \item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
 \item On dérive écart par rapport à chaque paramètre
-\item On modifie chaque paramètre X en faisant X = X - dX
-\item On répète les deux points précédents un grand nombre de fois
+\item On modifie chaque paramètre X en faisant $ X = X - \alpha  dX $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ 0.1 pour les déphasages et 1 pour les autres paramètres.
+\item On répète les deux points précédents jusqu'à ce que la fonction varie d'un pas à l'autre moins qu'un certain seuil.
 \end{itemize}
 
 Nous testons la fonction obtenue sur la base de test en calculant l'écart type.
@@ -282,6 +282,11 @@ Fonction                             &f                         &g              
 \end{tabular}
 
 
+\subsection {Quatrième modèle : Approximation des courbes par une somme de fonctions sinusoïdale sur la semaine précédente }
+Il s'agit de déterminer la température et l'humidité des jours suivants à partir des données de la semaine précédente.
+
+\subsection {Prévision par réseau de neurones}
+Les réseaux de neurones sont des outil qui ont de nombreuses applications. Ils peuvent notamment 
 
 
 

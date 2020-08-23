@@ -24,7 +24,7 @@ for i in range(0,len(donnees["numer_sta"])) :
 	humidite = str(donnees["u"][i])
 
 	annee = date.strftime("%Y")
-	if annee == "2008" or annee == "2020" or annee == "2019" :
+	if annee == "2008"  or annee == "2019" :
 		dt = date - datetime(int(annee), 1, 1)
 
 		
