@@ -24,7 +24,7 @@ def ecart_temperature(temperature_test, temperature_reference) :
 compt = 0
 longueur = 7
 
-debut = 0
+debut = 30.25	
 ideb = temperature[0]["2019"].index(debut)
 imili = temperature[0]["2019"].index(debut + longueur) + 1
 ifin = temperature[0]["2019"].index(debut + 2*longueur) + 1
@@ -72,7 +72,17 @@ compt += 1
 ET = np.zeros(13)
 for i in range (13) :
 	ET [i] = (ecart[i] / compt) ** (1/2)
-print (ET)
+#print (ET)
+
+plt.plot (temperature_reference[0], temperature_reference[1], label = "semaine précédante")
+plt.plot (temperature_obs[0], temperature_obs[1], label = "semaine suivante")
+
+courbe = [] 
+for i in (temperature_reference[0] + temperature_obs[0]) :
+	courbe.append (fct_test(X,i,debut))
+plt.plot ((temperature_reference[0] + temperature_obs[0]), courbe, label = "prévisions")
+plt.legend()
+plt.savefig("cosDS.png")
 
 
 
