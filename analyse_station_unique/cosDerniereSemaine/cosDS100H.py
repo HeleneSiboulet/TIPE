@@ -4,9 +4,9 @@ import numpy as np
 import random as rd
 
 delta = 10**(-3)
-alpha = [0.01, 0.01, 0.01, 0.01]
+alpha = [0.005, 0.05, 0.05, 0.005]
 
-with open('../json/temperatureTest.json') as jsonfile :
+with open('../json/humiditeTest.json') as jsonfile :
 	temperature = json.load(jsonfile)
 
 
@@ -28,6 +28,7 @@ ecart = np.zeros(13)
 
 
 for tour in range (1000) :
+	#print(tour)
 	debut = rd.randint (0,351) + rd.randint(0,8) * 1/8
 	if debut in temperature[0]["2019"] and (debut + longueur) in temperature[0]["2019"] and (debut + 2*longueur) in temperature[0]["2019"] :
 		ideb = temperature[0]["2019"].index(debut)
@@ -35,12 +36,14 @@ for tour in range (1000) :
 		ifin = temperature[0]["2019"].index(debut + 2*longueur) + 1
 		temperature_reference = [temperature[0]["2019"][ideb:imili], temperature[1]["2019"][ideb:imili]]
 
-		X = np.array([0.0,285.13810537,3.75735475,2.47218])
+		X = np.array([0.0,71.15758689,12.73536399,5.62655768])
 		# At + B + C cos (wt + phi)
 
 		drapeau = False
 		ecart_precedant = 0
+		c = 0
 		while drapeau == False :
+			c += 1
 			val_actuel = []
 			for date in temperature_reference [0] :
 				val_actuel.append(fct_test(X,date,debut))
@@ -57,8 +60,9 @@ for tour in range (1000) :
 				dX[j] = - df * alpha[j]
 			X = X + dX
 			X[3] = X[3]%(2*np.pi)
-			if abs (val_actuel_ecart - ecart_precedant) < 0.0000001 :
+			if abs (val_actuel_ecart - ecart_precedant) < 0.00001 or c == 10000:
 				drapeau = True
+				#print (c)
 			#print (val_actuel_ecart)
 			ecart_precedant = val_actuel_ecart
 
