@@ -141,7 +141,7 @@ les principales méthodes de prévision météorologiques sont :
 \item La méthode de la persistance qui prédit que demain il fera le même temps qu'aujourd'hui. Elle fonctionne bien dans certaines régions où les conditions météorologiques varient lentement comme	l'Egypte ou les déserts des États-Unis. Elle fait de bonnes prévisions sur des périodes de un ou deux jours ainsi et est efficace pour prédire des tendance sur des durées d'un moi (prévisions saisonnière). 
 \item La méthode de la tendance qui étudie les déplacement de systèmes météorologiques tels que les dépressions, les anticyclones, les fronts et les zones de précipitation et suppose leurs emplacement futurs.
 \item La méthode de l'analogie qui consiste à chercher des cas dans le passé qui ressemblent aux conditions météorologiques actuelles et à supposer que ces conditions évolueront de la même manière.
-\item La méthode numérique est la plus utilisée actuellement. On mesure les différentes paramètres ce qui nous donne l'état initial. Les lois physiques prédisent ensuite l'évolution du système. Il s'agit d'une simulation physique de l'atmosphère. L'article de Pailleux \cite{PAILLEUX}
+\item La prévision numérique du temps (PNT) est la méthode plus utilisée actuellement. On mesure les différentes paramètres ce qui nous donne l'état initial. Les lois physiques prédisent ensuite l'évolution du système. Il s'agit d'une simulation physique de l'atmosphère. L'article de Pailleux \cite{PAILLEUX}
  propose notamment une simulation basée sur les équations hydrodynamique suivantes : \begin {enumerate}
 \item Principe fondamental de la dynamique
 \item Équation de continuité
@@ -180,8 +180,8 @@ Nous avons trié les données par station. \\
 
 \section{Modèles de prévision sur une station : analyse de la température et de l'humidité}
 
-Extraction des données de température et d'humidité de Clermont-Ferrand au au format json \\
-Les annees 2008, 2019 et 2020 sont retirées de la base d'entrainement et serviront de base de test\\
+Extraction des données de température et d'humidité de Clermont-Ferrand au format json \\
+Les années 2008, 2019 et 2020 sont retirées de la base d'entrainement, 2008 et 2019 serviront de base de test, 2020 est incomplète\\
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
@@ -189,13 +189,13 @@ Les annees 2008, 2019 et 2020 sont retirées de la base d'entrainement et servir
 \caption{\label{fig:190101Lolita} Courbes de température et d'humdité de la base d'apprentissage : Clermont-Ferrand}
 \end{figure}
 
-Comment estimer la valeur d'un ensemble de prévisions~? On calcule l'écart type entre nos prévisions et les températures mesurées. Cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur l'écart type des températures.
+Comment estimer la valeur d'un modèle de prévision~? On calcule l'écart type entre nos prévisions et les températures mesurées. Cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur l'écart type des mesures par rapport à leur moyenne.
  \\ Calcul de valeurs utiles de la base de donnée : quartiles, medianne, moyenne, écart type.\\ 
 %Température :  $Q1 = 6.39{}^{\circ}C  \quad Q3 = 17.4{}^{\circ}C$   soit un intervalle de $11{}^{\circ}C $ \\
 %Humidité :  $ Q1 = 59.0\%  \quad  Q3 = 85.0\% $ soit un intervalle de $26\% $ \\
 \begin{tabular}{llllll}\hline\hline
-Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ & $Q3 = 17.4{}^{\circ}C $&$ m= 12.0 $ & $\sigma = 7.91 {}^{\circ}C$ \\
-Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           & $Q3 = 85.0\%.           $& $ m=71.2  $ & $\sigma = 17.1 \% $ \\
+Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ & $Q3 = 17.4{}^{\circ}C $&$ m= 12.0{}^{\circ}C $ & $\sigma = 7.91 {}^{\circ}C$ \\
+Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           & $Q3 = 85.0\%.           $& $ m=71.2\%  $ & $\sigma = 17.1 \% $ \\
 \hline 
 \end{tabular} 
 
@@ -206,12 +206,13 @@ Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           & $Q3 = 8
 \subsection{Premier modèle : Moyenne de la température et de l'humidité par jour de l'année et par heure }
 Nous considérons dans ce modèle que la température et l'humidité sont cycliques de période un an et nous prévoyons qu'un jour donné à une heure donnée il fera la moyenne des température et humidité qu'il a fait ce jour ci lors des années précédentes.
 Calcul des moyennes sur la base d'entrainement : \\
+Calcul des performances sur la base de test : \\
 
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneH.png}
-\caption{\label{fig:190101Lolita} Courbes des moyennes de température et d'humidité de la base d'apprentissage par jour et heure}
+\caption{\label{fig:xxx} Courbes des moyennes de température et d'humidité de la base d'apprentissage par jour et heure (l'épaisseur du trait est principalement du à la variation jour/nuit)}
 \end{figure}
 
 \begin{tabular}{lll}\hline
@@ -224,7 +225,8 @@ Calcul des moyennes sur la base d'entrainement : \\
 %persistance
 
 \subsection{Deuxième modèle : Modèle de la persistance journalière}
- La température et l'humidité varient selon des cycles jours nuit. Nous considéreront ici que ces paramètres varient peu d'un jour sur l'autre. Nous prédisions donc que dans x jours il fera la même température que x jours avant à la même heure.
+ La température et l'humidité varient selon des cycles jours nuit. Nous considéreront ici que ces paramètres varient peu d'un jour sur l'autre. Nous prédisions donc que dans x jours il fera la même température que x jours avant à la même heure. \\
+ 
 \begin{tabular}{lllllll}\hline
 \hline
 Prévision à x jour                  &1                         &2                         &3                           &4                         &5                          &6 \\
@@ -245,17 +247,17 @@ $ A_{k}  = \displaystyle { \sum_{m=0}^{n-1}} a_{m} exp(-2\pi i \frac{mk}{n} ) $ 
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftH.png}
-\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement}
+\caption{\label{fig:ffta} Transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement (en logarithme naturel)}
 \end{figure}
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftTZ.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftHZ.png}
-\caption{\label{fig:190101Lolita} transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement zoomées sur 0 }
+\caption{\label{fig:fftz} Transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement zoomées sur 0 (en logarithme naturel) }
 \end{figure}
 
-Nous concluons que la méthode est appropriée. \\
-Sur les deux courbes on observe des pics aux fréquence de 1/(365 jours) et 1/(1jour) ainsi que des harmoniques de ses fréquences.
+Nous examinons les figures~\ref{fig:ffta} et \ref{fig:fftz} concluons que la méthode est appropriée. \\
+Sur les deux courbes on observe des pics aux fréquence de 1/(365 jours) et 1/(1 jour) ainsi que des multiples de ses fréquences.
 On approxime donc les paramètres par des fonctions de la forme : \\
  $f(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C$  \\
 $g(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C + D cos (\omega_{3} t + \phi_{3}) + E cos (\omega_{4} t + \phi_{4})$ \\
@@ -267,7 +269,7 @@ Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. O
 \item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart.
 \item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
 \item On dérive écart par rapport à chaque paramètre
-\item On modifie chaque paramètre X en faisant $ X = X - \alpha  dX $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ 0.1 pour les déphasages et 1 pour les autres paramètres.
+\item On modifie chaque paramètre X en faisant $ X = X - \alpha  dX $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ : 0.1 pour les déphasages et 1 pour les autres paramètres.
 \item On répète les deux points précédents jusqu'à ce que la fonction varie d'un pas à l'autre moins qu'un certain seuil.
 \end{itemize}
 
@@ -281,17 +283,17 @@ Fonction                             &f                         &g              
 \hline 
 \end{tabular}
 
-\begin{figure} [!h]
+\begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeH.png}
-\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par jour et prévisions des fonctions définies précédemment avec uniquement les composantes de faibles fréquence}
+\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par jour et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de faibles fréquence}
 \end{figure}
-\begin{figure} [!h]
+\begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeH.png}
-\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment avec uniquement les composantes de hautes fréquence }
+\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de hautes fréquence }
 \end{figure}
 
 Cette méthode nécessite un grand temps de calcul pour la descente de cosinus : calcul qu'il n'est nécessaire d'effectuer qu'une seule foi. Les fonctions f, g, h sont respectivement de plus en plus lourdes. On remarque que g est plus précise que f mais que h n'est pas nettement plus précise que g.
@@ -299,10 +301,38 @@ Cette méthode nécessite un grand temps de calcul pour la descente de cosinus :
 
 
 \subsection {Quatrième modèle : Approximation des courbes par une somme de fonctions sinusoïdale sur la semaine précédente }
-Il s'agit de déterminer la température et l'humidité des jours suivants à partir des données de la semaine précédente.
+Il s'agit de déterminer la température et l'humidité des jours suivants à partir des données de la semaine précédente. Pour cela on interpole les mesures de la semaine avec une somme de cosinus et on prévoit que les paramètres continueront à suivre ce cosinus. Nous interpolerons les courbes avec la fonction $i(t) = At + B + C cos  (\omega t + \phi)$  car les sinus de période plus grand qu'une année sur une période d'une semaine peuvent être approximés par leur tangente. Nous utiliserons encore une fois une descente de gradient pour déterminer les valeurs de A, B, C et $\phi$ que nous initialiseront à partir des résultats de la méthode précédente. La fonction écart ne sera plus juste un écart type mais un écart type pondéré par la proximité à la fin de la semaine \\
 
-\subsection {Prévision par réseau de neurones}
-Les réseaux de neurones sont des outil qui ont de nombreuses applications. Ils peuvent notamment 
+\begin{tabular}{lllllllllllll}\hline
+\hline
+Prévision à                  &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
+Écart type de la température& $2.93{}^{\circ}C$& $3.40{}^{\circ}C$& $3.55{}^{\circ}C$& $3.83{}^{\circ}C$& $4.00{}^{\circ}C$& $4.11{}^{\circ}C$&$4.18{}^{\circ}C$\\
+Écart type de l'humidité &$11.2\%$ & $13.2\%$ & $14.5\%$ & $14.9\%$ & $14.8\%$ & $14.9\%$ & $15.4\%$  \\
+\hline
+Prévision à                  & 1j &           2j            &3j            &4j          &5j            & 6j & \\
+Écart type de la température&$4.39{}^{\circ}C$&$5.59{}^{\circ}C$&$6.75{}^{\circ}C$&$7.72{}^{\circ}C$&$8.71{}^{\circ}C$&$9.70{}^{\circ}C$ \\
+Écart type de l'humidité      & $16.4\%$ &  $ 19.3\% $         &  $ 23.4\% $         &  $ 25.5\% $        &  $ 27.8\% $         &  $ 30.9.6\% $  \\
+\hline 
+\end{tabular}
+	
+\begin{figure} [H]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDS.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDSH.png}
+\caption{\label{fig:cosDS} Exemple d'interpolation d'une fonction de la forme $i(t) = At +B + C cos (\omega t + \phi)$ sur une semaine}
+\end{figure}
+
+
+
+
+
+\subsection {Prévision par réseau de neurones artificiel}
+Les réseaux de neurones sont des outils qui ont de nombreuses applications. Ils peuvent notamment servir ... \\
+Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurone est en général stocké en mémoire par une matrice colonne. Les neurones des premières et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente. \\
+Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées des réseaux de neurones mêmes très simples s'avèrent souvent très performant. \\
+
+Nous avons donc décidé de réaliser un réseau de neurone très basique qui pourrait faire des prévisions météorologiques.
+
 
 
 
