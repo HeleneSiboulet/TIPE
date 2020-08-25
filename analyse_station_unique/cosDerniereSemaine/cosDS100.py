@@ -22,9 +22,9 @@ def ecart_temperature(temperature_test, temperature_reference) :
 			compt += 1	
 	return (ecarts_temperature/compt)**(1/2)
 
-compt = 0
 longueur = 7
 ecart = np.zeros(13)
+compt = np.zeros(13)
 
 
 for tour in range (1000) :
@@ -68,13 +68,13 @@ for tour in range (1000) :
 			decalage = [0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 2, 3, 4, 5, 6]
 			if (debut + longueur + decalage[i]) in temperature_obs[0] :
 				ecart[i] = ecart[i] + (temperature_obs[1][temperature_obs[0].index (debut + longueur + decalage[i])] - fct_test (X, (debut + longueur + decalage[i]), debut)) ** 2
+				compt[i] += 1
 		#	print (ecart)
-		compt += 1
 		# print (compt)
 
 ET = np.zeros(13)
 for i in range (13) :
-	ET [i] = (ecart[i] / compt) ** (1/2)
+	ET [i] = (ecart[i] / compt[i]) ** (1/2)
 print (ET)
 
 
