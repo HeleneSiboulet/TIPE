@@ -269,7 +269,7 @@ Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. O
 \item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart.
 \item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
 \item On dérive écart par rapport à chaque paramètre
-\item On modifie chaque paramètre X en faisant $ X = X - \alpha  dX $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ : 0.1 pour les déphasages et 1 pour les autres paramètres.
+\item On modifie chaque paramètre X en faisant $ X = X - \alpha  \frac{d ecart}{dX} $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ : 0.1 pour les déphasages et 1 pour les autres paramètres.
 \item On répète les deux points précédents jusqu'à ce que la fonction varie d'un pas à l'autre moins qu'un certain seuil.
 \end{itemize}
 
@@ -302,16 +302,17 @@ Cette méthode nécessite un grand temps de calcul pour la descente de cosinus :
 
 \subsection {Quatrième modèle : Approximation des courbes par une somme de fonctions sinusoïdale sur la semaine précédente }
 Il s'agit de déterminer la température et l'humidité des jours suivants à partir des données de la semaine précédente. Pour cela on interpole les mesures de la semaine avec une somme de cosinus et on prévoit que les paramètres continueront à suivre ce cosinus. Nous interpolerons les courbes avec la fonction $i(t) = At + B + C cos  (\omega t + \phi)$  car les sinus de période plus grand qu'une année sur une période d'une semaine peuvent être approximés par leur tangente. Nous utiliserons encore une fois une descente de gradient pour déterminer les valeurs de A, B, C et $\phi$ que nous initialiseront à partir des résultats de la méthode précédente. La fonction écart ne sera plus juste un écart type mais un écart type pondéré par la proximité à la fin de la semaine \\
+Nous choisissons au hasard 1000 dates de début de prévision dans l'année 2019 et calculons les performances de cette méthode sur ses dates.\\
 
 \begin{tabular}{lllllllllllll}\hline
 \hline
 Prévision à                  &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
-Écart type de la température& $2.93{}^{\circ}C$& $3.40{}^{\circ}C$& $3.55{}^{\circ}C$& $3.83{}^{\circ}C$& $4.00{}^{\circ}C$& $4.11{}^{\circ}C$&$4.18{}^{\circ}C$\\
-Écart type de l'humidité &$11.2\%$ & $13.2\%$ & $14.5\%$ & $14.9\%$ & $14.8\%$ & $14.9\%$ & $15.4\%$  \\
+Écart type de la température& $2.90{}^{\circ}C$& $3.35{}^{\circ}C$& $3.59{}^{\circ}C$& $3.78{}^{\circ}C$& $3.94{}^{\circ}C$& $4.03{}^{\circ}C$&$4.07{}^{\circ}C$\\
+Écart type de l'humidité &$12.1\%$ & $13.9\%$ & $15.6\%$ & $16.0\%$ & $16.0\%$ & $16.1\%$ & $16.4\%$  \\
 \hline
 Prévision à                  & 1j &           2j            &3j            &4j          &5j            & 6j & \\
-Écart type de la température&$4.39{}^{\circ}C$&$5.59{}^{\circ}C$&$6.75{}^{\circ}C$&$7.72{}^{\circ}C$&$8.71{}^{\circ}C$&$9.70{}^{\circ}C$ \\
-Écart type de l'humidité      & $16.4\%$ &  $ 19.3\% $         &  $ 23.4\% $         &  $ 25.5\% $        &  $ 27.8\% $         &  $ 30.9.6\% $  \\
+Écart type de la température&$4.31{}^{\circ}C$&$5.39{}^{\circ}C$&$6.56{}^{\circ}C$&$7.56{}^{\circ}C$&$8.62{}^{\circ}C$&$9.54{}^{\circ}C$ \\
+Écart type de l'humidité      & $17.0\%$ &  $ 20.4\% $         &  $ 24.2\% $         &  $ 25.2\% $        &  $ 28.4\% $         &  $ 31.9\% $  \\
 \hline 
 \end{tabular}
 	
@@ -327,11 +328,25 @@ Prévision à                  & 1j &           2j            &3j            &4j
 
 
 \subsection {Prévision par réseau de neurones artificiel}
-Les réseaux de neurones sont des outils qui ont de nombreuses applications. Ils peuvent notamment servir ... \\
-Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurone est en général stocké en mémoire par une matrice colonne. Les neurones des premières et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente. \\
+Les réseaux de neurones sont partout. Ils pilotent les avions de chasse, repèrent le visage des personnes fichées, détectent les cancers du sein, gèrent les fonds de placement, trouvent les documents juridiques pertinents, traduisent les textes, gèrent la logistique et les transports, les processus industriels, permettent aux robots d'analyser des images, gère les scénarios de jeux vidéo et battent les meilleurs joueurs de Go et d'échec.   \\
+Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurones peut aussi être vue comme un vecteur, chaque neurone correspondant à une une case du vecteur. Les neurones des première et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente. \\
 Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées des réseaux de neurones mêmes très simples s'avèrent souvent très performant. \\
 
-Nous avons donc décidé de réaliser un réseau de neurone très basique qui pourrait faire des prévisions météorologiques.
+Nous avons donc décidé de réaliser un réseau de neurone très basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
+Le réseau de neurone prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors de la prochaine semaine. Le réseau sera réglé sur la base d'entrainement et testé sur la base de test.\\
+Ce réseau de neurone nécessite un nombre d'entrée constante. Nous corrigeons donc les données en complétant les valeurs manquantes. Nous considérons que les valeurs manquantes sont sur une droite entre les valeurs existantes les plus proches.\\
+Le réseau prend en entrée pour chacune des 56 mesures de la semaine 
+\begin{itemize}
+\item  l'année projetée sur une courbe centrée réduite des années
+\item  le cosinus et le sinus de l'angle de la date et l'heure projetée sur un cercle de un an
+\item  la température et la pression à cette date
+\end{itemize}
+Le critère de distance est MSELOSS et la méthode d'optimisation est la méthode Adam.
+Pour régler le réseau de neurone, nous utilisons une méthode stochastique : 
+On initialise les fonctions du réseaux avec des grandeurs quelconques.
+On choisi des semaines au hasard dans la base de test modifie ses fonctions pour qu'il donne des valeurs plus juste pour ses semaines. On recommence un grand nombre de fois. Cette méthode permet de diminuer grandement le temps de calcul.
+
+
 
 
 
