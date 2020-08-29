@@ -269,7 +269,7 @@ Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. O
 \item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart.
 \item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
 \item On dérive écart par rapport à chaque paramètre
-\item On modifie chaque paramètre X en faisant $ X = X - \alpha  \frac{d ecart}{dX} $ avec alpha un coefficient qui aide à la convergence. Nous avons utilisé pour valeur de $\alpha$ : 0.1 pour les déphasages et 1 pour les autres paramètres.
+\item On modifie chaque paramètre X en faisant $ X = X - \alpha  \frac{d ecart}{dX} $ avec alpha un coefficient qui aide à la convergence. Il faut régler $\alpha$ à la main pour chaque paramètre afin de faciliter la convergence.
 \item On répète les deux points précédents jusqu'à ce que la fonction varie d'un pas à l'autre moins qu'un certain seuil.
 \end{itemize}
 
@@ -327,24 +327,47 @@ Prévision à                  & 1j &           2j            &3j            &4j
 
 
 
-\subsection {Prévision par réseau de neurones artificiel}
+\section {Prévision par réseau de neurones artificiel}
+
 Les réseaux de neurones sont partout. Ils pilotent les avions de chasse, repèrent le visage des personnes fichées, détectent les cancers du sein, gèrent les fonds de placement, trouvent les documents juridiques pertinents, traduisent les textes, gèrent la logistique et les transports, les processus industriels, permettent aux robots d'analyser des images, gère les scénarios de jeux vidéo et battent les meilleurs joueurs de Go et d'échec.   \\
 Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurones peut aussi être vue comme un vecteur, chaque neurone correspondant à une une case du vecteur. Les neurones des première et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente. \\
 Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées des réseaux de neurones mêmes très simples s'avèrent souvent très performant. \\
 
-Nous avons donc décidé de réaliser un réseau de neurone très basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
-Le réseau de neurone prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors de la prochaine semaine. Le réseau sera réglé sur la base d'entrainement et testé sur la base de test.\\
+\subsection {Premier réseau : Prévisions à partir de la température et de l'humidité lors de la semaine précédente}
+
+Nous avons décidé de réaliser un réseau de neurone basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
+Le réseau de neurone prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors du prochain jour. Le réseau sera réglé sur la base d'entrainement et testé sur la base de test.\\
 Ce réseau de neurone nécessite un nombre d'entrée constante. Nous corrigeons donc les données en complétant les valeurs manquantes. Nous considérons que les valeurs manquantes sont sur une droite entre les valeurs existantes les plus proches.\\
 Le réseau prend en entrée pour chacune des 56 mesures de la semaine 
 \begin{itemize}
 \item  l'année projetée sur une courbe centrée réduite des années
 \item  le cosinus et le sinus de l'angle de la date et l'heure projetée sur un cercle de un an
-\item  la température et la pression à cette date
+\item  la température et la pression projetées sur une courbe centrée réduite
 \end{itemize}
 Le critère de distance est MSELOSS et la méthode d'optimisation est la méthode Adam.
 Pour régler le réseau de neurone, nous utilisons une méthode stochastique : 
 On initialise les fonctions du réseaux avec des grandeurs quelconques.
-On choisi des semaines au hasard dans la base de test modifie ses fonctions pour qu'il donne des valeurs plus juste pour ses semaines. On recommence un grand nombre de fois. Cette méthode permet de diminuer grandement le temps de calcul.
+On choisi des semaines au hasard dans la base de test modifie ses fonctions pour qu'il donne des valeurs plus juste pour ses semaines. On recommence un grand nombre de fois. Cette méthode permet de diminuer grandement le temps de calcul.\\
+Les fonctions qui relient les différentes couches sont des prélus composées de fonctions affines. Un prélu est un neurone non linéaire qui renvoie l'identité pour une valeur positive et a fois l'identité pour une valeur négative avec a un paramètre réglable du réseau de neurone. Les prélus servent à rendre les fonctions non linéaire et donc à forcer l'optimisation de chaque paramètre. Si les fonctions étaient toutes linéaires alors un réseau de quatre couches serait équivalent à un réseau de deux couches et les paramètres pourraient donc s'optimiser en fonction des autres.\\
+On fait un deuxième réseau similaire qui fait des prévisions pour les jours suivants.\\
+
+\begin{tabular}{lllllllllllll}\hline
+\hline
+Prévision à                  &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
+Écart type de la température& $2.90{}^{\circ}C$& $3.35{}^{\circ}C$& $3.59{}^{\circ}C$& $3.78{}^{\circ}C$& $3.94{}^{\circ}C$& $4.03{}^{\circ}C$&$4.07{}^{\circ}C$\\
+Écart type de l'humidité &$12.1\%$ & $13.9\%$ & $15.6\%$ & $16.0\%$ & $16.0\%$ & $16.1\%$ & $16.4\%$  \\
+\hline
+Prévision à                  & 1j &           2j            &3j            &4j          &5j            & 6j & \\
+Écart type de la température&$4.31{}^{\circ}C$&$5.39{}^{\circ}C$&$6.56{}^{\circ}C$&$7.56{}^{\circ}C$&$8.62{}^{\circ}C$&$9.54{}^{\circ}C$ \\
+Écart type de l'humidité      & $17.0\%$ &  $ 20.4\% $         &  $ 24.2\% $         &  $ 25.2\% $        &  $ 28.4\% $         &  $ 31.9\% $  \\
+\hline 
+\end{tabular}
+
+\begin{figure} [H]
+\centering
+\includegraphics[width=1 \textwidth]{./imagesTIPE/schemaRN.png}
+\caption{\label{fig:schemaRN} Shéma du premier réseau de neurone}
+\end{figure}
 
 
 
@@ -373,52 +396,50 @@ On choisi des semaines au hasard dans la base de test modifie ses fonctions pour
 
 
 
-
-
-\section{Exemples Latex}
-\subsection{subsection}
-\subsubsection{q;,c}
+%\section{Exemples Latex}
+%\subsection{subsection}
+%\subsubsection{q;,c}
 %Donner un référence : \cite{Adler:1964aa}
-\subsubsection{Donner des figures}
+%\subsubsection{Donner des figures}
 
 %%%%%%
-\begin{figure}
-  \includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
-\end{figure}
-\begin{figure}
-  \includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
-\end{figure}
-%%%%%
-%%%\begin{figure}
+%\begin{figure}
+  %\includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
+%\end{figure}
+%\begin{figure}
+ %\includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
+%\end{figure}
+
+%begin{figure}
 %\centering
 %\includegraphics[width=0.48 \textwidth]{/Users/siboulet/Desktop/imagesTIPE/temperature.png}\quad
 %\includegraphics[width=0.48 \textwidth]{/Users/siboulet/Desktop/imagesTIPE/humidite.png}
 %\caption{\label{fig:190101Lolita} A droite : pointe AFM / surface d'eau, à gauche :  Coalescence de gouttes d'eau }
 %\end{figure}
 
-\subsubsection{Citer des figures}
-Je cite la figure \ref{fig:190101Lolita}
+%\subsubsection{Citer des figures}
+%Je cite la figure \ref{fig:190101Lolita}
 %%%%%
-\subsection{Placer un tableau}
-\begin{table}[ht]
-\begin{tabular}{cccc}\hline
-\hline
-Ow& 15.99945& -0.8476&SPCE\\
-Hw&  1.0079 &  0.4238&SPCE\\
-Na& 22.9897 &  1.0000&\\         
-Cl& 35.45   & -1.0000&\\
-Os& 15.9994 & -1.000 &\\   
-Ti& 47.8670 &  2.000 &\\  
-\hline 
-\end{tabular}                     
-\caption{\label{MonTableau}, Charges for Ti02/W/Na/Cl}
-\end{table}
-\subsection{Citer un tableau}
-Je cite mon tableau \ref{MonTableau}.
+%\subsection{Placer un tableau}
+%\begin{table}[ht]
+%\begin{tabular}{cccc}\hline
+%\hline
+%Ow& 15.99945& -0.8476&SPCE\\
+%Hw&  1.0079 &  0.4238&SPCE\\
+%Na& 22.9897 &  1.0000&\\         
+%Cl& 35.45   & -1.0000&\\
+%Os& 15.9994 & -1.000 &\\   
+%Ti& 47.8670 &  2.000 &\\  
+%\hline 
+%\end{tabular}                     
+%\caption{\label{MonTableau}, Charges for Ti02/W/Na/Cl}
+%\end{table}
+%\subsection{Citer un tableau}
+%Je cite mon tableau \ref{MonTableau}.
 
 
-\section{Références}
-\bibliography{./ref.bib}
+%\section{Références}
+%\bibliography{./ref.bib}
 %\begin{enumerate}
 %\item Baselov, I., Vasileva, D., 2016. Numerical modeling of drop coalescence in the presence of soluble surfactants. J. Computational and Applied Mathematics 293, 7-19.
 %\item Duchemin, L., Eggers, J., Josserand, C., 2003. Inviscid coalescence of drop. J. Fluid Mech. 487, 167-178.
