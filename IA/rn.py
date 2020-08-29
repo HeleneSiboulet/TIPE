@@ -85,11 +85,11 @@ index_test = []
 for i in range(longueur, len(temperature_continu) - 8) :
 	index_test.append(i)
 
-for tour in range(1000) :
+for tour in range(50000) :
 	optimizer.zero_grad()	#initialise pts de départ du gradient pour ce tour
 	batch_source = []
 	batch_target = []
-	for j in range(20) :
+	for j in range(50) :
 		i = random.choice(index_test)
 		batch_source.append(torch.tensor(temperature_continu[i-longueur:i]).double().view(1,-1))	#view : mettre ds une matrie de "1" colonne
 		target = []
@@ -129,5 +129,8 @@ for tour in range(nb_tour) :
 	rep = net(entre)
 	ecart = ecart + (rep - torch.tensor(sortie).unsqueeze(0))**2
 
-ET = (ecart / nb_tour) ** (1/2)
-print (ET)
+#print (ecart.view(2,8)[0])
+ETt = ( ecart.view(2,8)[0] / nb_tour) ** (1/2) * stt
+ETh = ( ecart.view(2,8)[1] / nb_tour) ** (1/2) * sth
+print ("ETt = " + str (ETt))
+print ("ETh = " + str (ETh))
