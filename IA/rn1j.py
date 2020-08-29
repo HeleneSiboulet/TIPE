@@ -16,7 +16,11 @@ with open("./donnees/humiditeTest.json") as jsonfile :
 	humidite_test = json.load(jsonfile)
 
 def convertiseur_date(dt) :
-	angle = dt/366*2*np.pi
+	angle = dt*2*np.pi/366
+	return np.cos(angle), np.sin(angle)
+
+def convertiseur_heure(dt):
+	angle = dt*2*np.pi
 	return np.cos(angle), np.sin(angle)
 
 temperature_continu = []
@@ -47,7 +51,8 @@ sth = float(torch.std(humi))
 for i in temperature[0].keys() :
 	for j in range(len(temperature[0][i])) :
 		cdt,sdt = convertiseur_date(temperature[0][i][j])
-		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,(temperature[1][i][j]- mt)/stt, (humidite[1][i][j]- mh)/sth])
+		ch,sh = convertiseur_heure(temperature[0][i][j])
+		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,ch,sh,(temperature[1][i][j]- mt)/stt, (humidite[1][i][j]- mh)/sth])
 
 
 longueur = 8*7
@@ -65,9 +70,9 @@ class Net(nn.Module) :
 
     def __init__(self) :
         super(Net, self).__init__()            #appel init de nn module
-        self.fc1 = nn.Linear(280, 112).double() #ajout de fcc1 à la ft   224 valeurs (annee, sin, cos, temp) en une semaine, 56 mesure
-        self.fc2 = nn.Linear(112, 112).double()
-        self.fc3 = nn.Linear(112, 16).double()  #sortie : temp d'une journee
+        self.fc1 = nn.Linear(392, 113).double() #ajout de fcc1 à la ft   224 valeurs (annee, sin, cos, temp) en une semaine, 56 mesure
+        self.fc2 = nn.Linear(113, 113).double()
+        self.fc3 = nn.Linear(113, 16).double()  #sortie : temp d'une journee
         self.prelu1 = nn.PReLU().double()
         self.prelu2 = nn.PReLU().double()
 
@@ -85,24 +90,26 @@ index_test = []
 for i in range(longueur, len(temperature_continu) - 8) :
 	index_test.append(i)
 
-for tour in range(50000) :
+for tour in range(14000) :
 	optimizer.zero_grad()	#initialise pts de départ du gradient pour ce tour
 	batch_source = []
 	batch_target = []
-	for j in range(50) :
+	for j in range(20) :
 		i = random.choice(index_test)
 		batch_source.append(torch.tensor(temperature_continu[i-longueur:i]).double().view(1,-1))	#view : mettre ds une matrie de "1" colonne
 		target = []
 		for k in range(i, i+8) :
-			target.append(temperature_continu[k][3])
+			target.append(temperature_continu[k][5])
 		for k in range(i, i+8) :
-			target.append (temperature_continu[k][4])
+			target.append (temperature_continu[k][6])
 		batch_target.append(torch.tensor(target).double().unsqueeze(0)) #unsqueeze rajoute une dimension
 	source = torch.cat(batch_source,0)	#cat : concaténation de tenseurs colonne -> grille
 	target = torch.cat(batch_target,0)
 	out = net(source)
 	loss = criterion(out,target)	#criterion renvoie les pertes et le gradient
-	loss.backward()		#rétropropagation
+	loss.backward()
+	#print (tour)	
+	#print (loss)	#rétropropagation
 	optimizer.step()
 
 
@@ -117,10 +124,11 @@ for tour in range(nb_tour) :
 	sortie = []
 	for j in range(56) :
 		an = (2019.0 - ma)/sta
+		ch,sh = convertiseur_heure(temperature_test[0]["2019"][(j+i)%taille])
 		cdt,sdt = convertiseur_date(temperature_test[0]["2019"][(j+i)%taille])	#à coller avec début 2020
 		tp = (temperature_test[1]["2019"][(j+i)%taille] - mt)/stt
 		hm = (humidite_test[1]["2019"][(j+i)%taille] - mh)/sth
-		entre.append([an,cdt,sdt,tp,hm])
+		entre.append([an,cdt,sdt,ch,sh,tp,hm])
 	for j in range(8) :
 		sortie.append((temperature_test[1]["2019"][(j+i+56)%taille]- mt)/stt)
 	for j in range(8) :
