@@ -73,13 +73,16 @@ class Net(nn.Module) :
 
     def __init__(self) :
         super(Net, self).__init__()            
-        self.fc1 = nn.Linear(784, 224).double()
-        self.fc2 = nn.Linear(224, 112).double()
+        self.fc1 = nn.Linear(7*longueur_apprentissage, 3*longueur_apprentissage).double()
+        self.fc2 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
+        self.fc3 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
         self.prelu1 = nn.PReLU().double()
+        self.prelu2 = nn.PReLU().double()
 
     def forward(self, x) :
         x = self.prelu1(self.fc1(x))
-        x = self.fc2(x)
+        x = self.prelu2(self.fc2(x))
+        x = self.fc3(x)
         return x
 
 
@@ -90,8 +93,9 @@ index_test = []
 for i in range(longueur_apprentissage, len(temperature_continu) - longueur_prevision) :
 	index_test.append(i)
 
+nb_tour_apprentissage = 13000
 
-for tour in range(100) :
+for tour in range(nb_tour_apprentissage) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = 0
@@ -120,31 +124,31 @@ for tour in range(100) :
 
 
 taille = len(temperature_test[0]["2019"])
-ecart= torch.tensor(np.zeros([1,112]))	
+ecart= torch.tensor(np.zeros([1,2*longueur_prevision]))	
 compt = 0
 nb_tour = 1000
 
 for tour in range(nb_tour) :
-	i = rd.randint (0, taille - longueur_prevision)
+	i = rd.randint (0, taille - longueur_prevision - longueur_apprentissage)
 	entre = []
 	sortie = []
 	for j in range(longueur_apprentissage) :
 		an = (2019.0 - ma)/sta
 		cdt,sdt = convertisseur_date(temperature_test[0]["2019"][(j+i)%taille])
-		ch,sh = convertisseur_heure(temperature_test[0]["2019"][(j+i)%taille])	#à coller avec début 2020
+		ch,sh = convertisseur_heure(temperature_test[0]["2019"][(j+i)%taille])	
 		tp = (temperature_test[1]["2019"][(j+i)%taille] - mt)/stt
 		hm = (humidite_test[1]["2019"][(j+i)%taille] - mh)/sth
 		entre.append([an,cdt,sdt,ch,sh,tp,hm])
-	sortie.append((torch.tensor(temperature_test[1]["2019"][i:i+longueur_prevision]) - mt)/stt)
-	sortie.append((torch.tensor(humidite_test[1]["2019"][i:i+longueur_prevision]) - mh)/sth)
+	sortie.append((torch.tensor(temperature_test[1]["2019"][i + longueur_apprentissage:i + longueur_apprentissage + longueur_prevision]) - mt)/stt)
+	sortie.append((torch.tensor(humidite_test[1]["2019"][i + longueur_apprentissage:i + longueur_apprentissage + longueur_prevision]) - mh)/sth)
 	entre = torch.tensor(entre).double().view(1,-1)
 	sortie = torch.cat(sortie)
 	rep = net(entre)
 	ecart = ecart + (rep - sortie)**2	
 
 
-ETt = ( ( ecart.view(2,56)[0] / nb_tour) ** (1/2) * stt ).view(7,8)
-ETh = ( ( ecart.view(2,56)[1] / nb_tour) ** (1/2) * sth ).view(7,8)
+ETt = ( ( ecart.view(2,longueur_prevision)[0] / nb_tour) ** (1/2) * stt ).view(int (longueur_prevision/8),8)
+ETh = ( ( ecart.view(2,longueur_prevision)[1] / nb_tour) ** (1/2) * sth ).view(int (longueur_prevision/8),8)
 print ("ETt = " + str (ETt))
 print ("ETh = " + str (ETh))
 

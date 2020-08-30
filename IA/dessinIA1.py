@@ -104,9 +104,9 @@ entre = []
 
 for j in range(56) :
     an = (2019.0 - ma)/sta
-    cdt,sdt = convertiseur_date((j+debut+longueur)%taille)
-    tp = (temperature[1]["2019"][temperature[0]["2019"].index((j+debut+longueur)%taille)] - mt)/stt
-    hm = (humidite[1]["2019"][temperature[0]["2019"].index(j+debut+longueur)%taille] - mh)/sth
+    cdt,sdt = convertiseur_date((0.125*j+debut)%taille)
+    tp = (temperature[1]["2019"][ideb + j] - mt)/stt
+    hm = (humidite[1]["2019"][ideb + j] - mh)/sth
     entre.append([an,cdt,sdt,tp,hm])
 
 repj = netj (torch.tensor(entre).double().view(1,-1))
