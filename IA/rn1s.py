@@ -15,9 +15,14 @@ with open("./donnees/humidite.json") as jsonfile :
 with open("./donnees/humiditeTest.json") as jsonfile :
 	humidite_test = json.load(jsonfile)
 
-def convertiseur_date(dt) :
-	angle = dt/366*2*np.pi
+def convertisseur_date(dt) :
+	angle = dt*2*np.pi/366
 	return np.cos(angle), np.sin(angle)
+
+def convertisseur_heure(dt):
+	angle = dt*2*np.pi
+	return np.cos(angle), np.sin(angle)
+
 
 temperature_continu = []
 annee = []
@@ -46,12 +51,14 @@ mh = float(torch.mean(humi))
 sth = float(torch.std(humi))
 for i in temperature[0].keys() :
 	for j in range(len(temperature[0][i])) :
-		cdt,sdt = convertiseur_date(temperature[0][i][j])
-		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,(temperature[1][i][j]- mt)/stt, (humidite[1][i][j]- mh)/sth])
+		cdt,sdt = convertisseur_date(temperature[0][i][j])
+		ch,sh = convertisseur_heure(temperature[0][i][j])
+		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,ch,sh,(temperature[1][i][j]- mt)/stt, (humidite[1][i][j]- mh)/sth])
 
+temperature_continu = torch.tensor(temperature_continu).double()
 
 longueur_apprentissage = 8*7*2
-longueur_prevision = 8*6
+longueur_prevision = 8*7
 
 
 import torch.nn as nn
@@ -66,16 +73,13 @@ class Net(nn.Module) :
 
     def __init__(self) :
         super(Net, self).__init__()            
-        self.fc1 = nn.Linear(560, 224).double()
-        self.fc2 = nn.Linear(224, 224).double()
-        self.fc3 = nn.Linear(224, 12).double() 
+        self.fc1 = nn.Linear(784, 224).double()
+        self.fc2 = nn.Linear(224, 112).double()
         self.prelu1 = nn.PReLU().double()
-        self.prelu2 = nn.PReLU().double()
 
     def forward(self, x) :
         x = self.prelu1(self.fc1(x))
-        x = self.prelu2(self.fc2(x))
-        x = self.fc3(x)
+        x = self.fc2(x)
         return x
 
 
@@ -83,32 +87,40 @@ net = Net()
 criterion = nn.MSELoss()	#critère de distance
 optimizer = optim.Adam(net.parameters(), lr=10**(-3))
 index_test = []
-for i in range(longueur_apprentissage, len(temperature_continu) - longueur_apprentissage) :
+for i in range(longueur_apprentissage, len(temperature_continu) - longueur_prevision) :
 	index_test.append(i)
 
-for tour in range(5000) :
-	optimizer.zero_grad()	#initialise pts de départ du gradient pour ce tour
+
+for tour in range(100) :
+	optimizer.zero_grad()
 	batch_source = []
-	batch_target = []
+	batch_target = 0
 	for j in range(20) :
 		i = random.choice(index_test)
-		batch_source.append(torch.tensor(temperature_continu[i-longueur_apprentissage:i]).double().view(1,-1))	#view : mettre ds une matrie de "1" colonne
-		target = []
-		for k in range(1, 7) :
-			target.append(temperature_continu[i + 8*k][3])
-		for k in range(1, 7) :
-			target.append (temperature_continu[i + 8*k][4])
-		batch_target.append(torch.tensor(target).double().unsqueeze(0)) #unsqueeze rajoute une dimension
-	source = torch.cat(batch_source,0)	#cat : concaténation de tenseurs colonne -> grille
-	target = torch.cat(batch_target,0)
+		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
+		target = temperature_continu[i][5]
+		target = target.unsqueeze(0)
+		for k in range(longueur_prevision-1) :
+			target = torch.cat([target,temperature_continu[i+k][5].unsqueeze(0)])
+		for k in range(longueur_prevision) :
+			target = torch.cat([target,temperature_continu[i+k][6].unsqueeze(0)])
+		target = target.unsqueeze(0)
+		try :
+			batch_target = torch.cat([batch_target,target],0) 
+		except :
+			batch_target = target
+	source = torch.cat(batch_source,0)
+	target = batch_target
+	#print(source.size())
 	out = net(source)
-	loss = criterion(out,target)	#criterion renvoie les pertes et le gradient
-	loss.backward()		#rétropropagation
+	loss = criterion(out,target)	
+	loss.backward()		
 	optimizer.step()
+	#print(tour/100)
 
 
 taille = len(temperature_test[0]["2019"])
-ecart= torch.tensor(np.zeros([1,12	]))	
+ecart= torch.tensor(np.zeros([1,112]))	
 compt = 0
 nb_tour = 1000
 
@@ -118,22 +130,21 @@ for tour in range(nb_tour) :
 	sortie = []
 	for j in range(longueur_apprentissage) :
 		an = (2019.0 - ma)/sta
-		cdt,sdt = convertiseur_date(temperature_test[0]["2019"][(j+i)%taille])	#à coller avec début 2020
+		cdt,sdt = convertisseur_date(temperature_test[0]["2019"][(j+i)%taille])
+		ch,sh = convertisseur_heure(temperature_test[0]["2019"][(j+i)%taille])	#à coller avec début 2020
 		tp = (temperature_test[1]["2019"][(j+i)%taille] - mt)/stt
 		hm = (humidite_test[1]["2019"][(j+i)%taille] - mh)/sth
-		entre.append([an,cdt,sdt,tp,hm])
-	for k in range(1,7) :
-		sortie.append((temperature_test[1]["2019"][(8*k +i+longueur_apprentissage )%taille]- mt)/stt)
-	for j in range(1,7) :
-		sortie.append((humidite_test[1]["2019"][(8*k +i+longueur_apprentissage )%taille]- mh)/sth)
+		entre.append([an,cdt,sdt,ch,sh,tp,hm])
+	sortie.append((torch.tensor(temperature_test[1]["2019"][i:i+longueur_prevision]) - mt)/stt)
+	sortie.append((torch.tensor(humidite_test[1]["2019"][i:i+longueur_prevision]) - mh)/sth)
 	entre = torch.tensor(entre).double().view(1,-1)
-	sortie = torch.tensor(sortie).double().view(1,-1)
+	sortie = torch.cat(sortie)
 	rep = net(entre)
 	ecart = ecart + (rep - sortie)**2	
 
 
-ETt = ( ecart.view(2,6)[0] / nb_tour) ** (1/2) * stt
-ETh = ( ecart.view(2,6)[1] / nb_tour) ** (1/2) * sth
+ETt = ( ( ecart.view(2,56)[0] / nb_tour) ** (1/2) * stt ).view(7,8)
+ETh = ( ( ecart.view(2,56)[1] / nb_tour) ** (1/2) * sth ).view(7,8)
 print ("ETt = " + str (ETt))
 print ("ETh = " + str (ETh))
 

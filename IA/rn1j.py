@@ -90,7 +90,7 @@ index_test = []
 for i in range(longueur, len(temperature_continu) - 8) :
 	index_test.append(i)
 
-for tour in range(14000) :
+for tour in range(13000) :
 	optimizer.zero_grad()	#initialise pts de départ du gradient pour ce tour
 	batch_source = []
 	batch_target = []
