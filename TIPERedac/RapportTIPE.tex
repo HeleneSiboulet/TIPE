@@ -334,7 +334,7 @@ Les réseaux de neurones sont partout. Ils pilotent les avions de chasse, repèr
 Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurones peut aussi être vue comme un vecteur, chaque neurone correspondant à une une case du vecteur. Les neurones des première et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente (ou de n'importe quel neurone pour les réseaux non linéaires). \\
 Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées des réseaux de neurones mêmes très simples s'avèrent souvent très performant devant des méthodes numériques classiques. \\
 
-\subsection {Premier réseau : Prévisions à partir de la température et de l'humidité lors de la semaine précédente}
+\subsection {Premier réseau : Prévisions à partir de la température et de l'humidité lors des jours précédants}
 
 Nous avons décidé de réaliser un réseau de neurone basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
 Le réseau de neurone prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors du prochain jour. Le réseau sera réglé sur la base d'entrainement et testé sur la base de test.\\
@@ -350,7 +350,7 @@ Pour régler le réseau de neurone, nous utilisons une méthode stochastique :
 On initialise les fonctions du réseaux avec des grandeurs quelconques.
 On choisi des semaines au hasard dans la base de test modifie ses fonctions pour qu'il donne des valeurs plus juste pour ses semaines. On recommence un grand nombre de fois. Cette méthode permet de diminuer grandement le temps de calcul.\\
 Les fonctions qui relient les différentes couches sont des prélus composées de fonctions affines. Un prélu est un neurone non linéaire qui renvoie l'identité pour une valeur positive et a fois l'identité pour une valeur négative avec a un paramètre réglable du réseau de neurone. Les prélus servent à rendre les fonctions non linéaire et donc à forcer l'optimisation de chaque paramètre. Si les fonctions étaient toutes linéaires alors un réseau de quatre couches serait équivalent à un réseau de deux couches et les paramètres pourraient donc s'optimiser en fonction des autres.\\
-Nous avons fait un deuxième réseau similaire qui fait des prévisions pour les jours suivants avec les données des deux semaines précédantes.\\
+Nous avons fait un deuxième réseau similaire qui fait des prévisions pour la semaine suivante avec les données des deux semaines précédantes.\\
 
 \begin{figure} [H]
 \centering
@@ -373,7 +373,33 @@ Prévision à                  & 1j &           2j            &3j            &4j
 \hline 
 \end{tabular}
 
+\begin{figure} [H]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA30,25.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA30,25.png}
+\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\end{figure}
+\begin{figure} [H]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA100,5.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA100,5.png}
+\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\end{figure}
+\begin{figure} [H]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA200.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA200.png}
+\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\end{figure}
+\begin{figure} [H]
+\centering
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA300,75.png}\quad
+\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA300,75.png}
+\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\end{figure}
 
+Nous observons sur les figures des prévisions des réseaux que le réseau de neurone qui fait des prévisions pour une journée fait des cloches (plus chaud le jour et plus froid la nuit). La taille des cloches est variable
+Celui qui fait des prévisions sur la semaine fait des fonction cycliques sur une journée auxquelles s'ajoutent des tendances. La taille des variations jour-nuit varie d'une prévision à l'autre mais est environ stable lors d'une prévision.
 
 \subsection {Deuxième réseau : Prévisions à partir l'ensemble des données de notre base lors de la semaine précédente}
 
@@ -382,7 +408,38 @@ Nous devons donc extraire l'ensemble des données de la station de Clermont-Ferr
 
 \section{Comparaison des résultats}
 
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartjT.png}\quad
+\caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision journalière}
+\end{figure}
 
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartsT.png}\quad
+\caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision hebdomadaire}
+\end{figure}
+
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartjH.png}\quad
+\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision journalière}
+\end{figure}
+
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width= 0.7 \textwidth]{./imagesTIPE/écartsH.png}\quad
+\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision hebdomadaire}
+\end{figure}
+
+La moyenne sur le jour et l'année donne de bons résultats surtout sur la prévision de la température. 
+L'interpolation de la courbe par un cosinus est à peu près équivalente à la moyenne par jour et par heure pour les quatre types de prévisions que nous avons exploré.
+L'interpolation par un cosinus des courbes des paramètres sur une semaine donne de bons résultat pour la prévision journalière.
+Le réseau de neurone qui se base sur la température et l'humidité donne de bons résultat pour les prévisions journalière.
+Aucun de nos modèles ne donne de résultat concluant sur la prévision hebdomadaire de l'humidité ce qui est prévisible puisque l'humidité dépend fortement de la pluie et que nos prévisions ne prennent pas en compte la présence de nuages.
 
 
 
