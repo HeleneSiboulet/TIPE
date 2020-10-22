@@ -87,9 +87,9 @@
 \newcommand{\comment}[1]{\textit{\textcolor{Red}{#1}}}
 \newcommand{\addref}[1]{\textit{\textcolor{Red}{Add reference!}}}
 \newcommand{\sub}[1]{\textsuperscript{#1}}
- 
- 
+
 \begin{document}
+\renewcommand{\tablename}{\textsc{Tableau}} 
 \begin{flushleft}
 \Large \textcolor{BrickRed}{\textsc{\textbf{Travaux d'Initiative Personnelle Encadrés}}} \\
 \Huge \textcolor{BrickRed}{\textsc{\textbf{Informatique et prévisions météorologiques }}} \\[0.5cm]
@@ -108,17 +108,18 @@ La prévision consiste à prévoir, c'est-à-dire à \og voir avant\fg{}. Il s'a
 La prévision repose sur deux éléments : des données disponibles à un moment, et des théories ou des modèles qui permettent d'utiliser ces données. \\
 Les processus météorologiques sont tout à fait chaotiques. Cela signifie que des incertitudes minimes à un instant donné peuvent avoir des conséquences très fortes sur le déroulement. En fait, ces incertitudes n'empêchent pas de prévoir à court terme, par exemple pour le lendemain, mais elles rendent difficiles les prévisions au delà de deux semaines. \\
 Si les processus météorologiques sont chaotiques à moyen terme, ils sont au contraire extrêmement stables dès lors que on les analyse en moyenne. Par exemple, Milankovitch a prévu que les variations de trois paramètres~-excentricité, obliquité et précession~-auraient des effets périodiques sur les glaciations. Milankovitch a fait apparaître des périodes de 20~000, 40~000 et 100~000 ans, ce qui a été confirmé expérimentalement par les mesures de $\delta O_{18}$ dans les carottes glaciaires de Vostock, en 1976. Ces résultats montrent que, en faisant des moyennes sur une centaine d'année, on a des tendances très claires d'évolution des températures, alors qu'il est difficile de prévoir la température dans deux semaines.   
- 
-Dans ce documents, nous allons faire un bref état de l'art des méthodes de prévision météorologiques utilisées, et proposer une méthode basée sur l'intelligence artificielle. Nous verrons que ces deux approches sont tout à fait différentes. Nous collectons une base de données, nous élaborons une méthode avec de nombreuses variantes. Chaque variante est évaluée numériquement, c'est à dire par comparaison des prévisions avec un ensemble de données qui ont été placées en dehors des données d'entrées.
-
- \vspace {0.6cm}
+\vspace {0.6cm}
 Les prévisions météorologiques ont beaucoup d'enjeux, elles permettent notamment :
 \begin {enumerate}
-\item aux pilotes d'avion et aux marins de savoir si leur trajet est réalisable, de connaitre la quantité de carburant à prendre et de choisir l'itinéraire le plus adapté
+\item aux pilotes d'avion et aux marins de savoir si leur trajet est réalisable, de connaître la quantité de carburant à prendre et de choisir l'itinéraire le plus adapté
 \item aux agriculteurs de savoir quand arroser, quelle quantité d'eau est nécessaire, quand labourer, planter ou récolter 
 \item d'organisation d'activités ou d'évènements en plein air
 \item de gérer des risques liés au climat par exemple lorsqu'il y a du verglas, de la neige, une canicule ou une tempête
 \end{enumerate}
+
+ 
+Dans ce documents, nous allons faire un bref état de l'art des méthodes de prévision météorologiques utilisées, et proposer une méthode basée sur l'intelligence artificielle. Nous verrons que ces deux approches sont tout à fait différentes. Nous collectons une base de données, nous élaborons une méthode avec de nombreuses variantes. Chaque variante est évaluée numériquement, c'est à dire par comparaison des prévisions avec un ensemble de données qui ont été placées en dehors des données d'entrées.
+
 
  
 \section{État de l'art}
@@ -133,100 +134,113 @@ Les prévisions météorologiques ont beaucoup d'enjeux, elles permettent notamm
 %\item Équations de bilans de constituants: vapeur d’eau, eau liquide, ozone, etc...
 %\end{enumerate}
 
-Il existe plusieurs sortes de prévisions météorologiques : la prévision du temps qui fait des prédictions sur des périodes de quelques jours, la prévision saisonnière qui fait des prédiction sur l'échelle d'un moi ou de quelques mois et la prévision climatiques qui prédit l'évolution du climat sur plusieurs années.
+Il existe plusieurs sortes de prévisions météorologiques : la prévision du temps qui fait des prédictions sur des périodes de quelques jours, la prévision saisonnière qui fait des prédiction sur l'échelle d'un mois ou de quelques mois et la prévision climatique qui prédit l'évolution du climat sur plusieurs années.
 
-Selon http://meteocentre.com/intermet/prevision/prevision\_emp.htm
-les principales méthodes de prévision météorologiques sont :
+Selon http://meteocentre.com/intermet/prevision/prevision\_emp.htm, 
+les principales méthodes de prévision météorologique sont :
 \begin{enumerate}
-\item La méthode de la persistance qui prédit que demain il fera le même temps qu'aujourd'hui. Elle fonctionne bien dans certaines régions où les conditions météorologiques varient lentement comme	l'Egypte ou les déserts des États-Unis. Elle fait de bonnes prévisions sur des périodes de un ou deux jours ainsi et est efficace pour prédire des tendance sur des durées d'un moi (prévisions saisonnière). 
-\item La méthode de la tendance qui étudie les déplacement de systèmes météorologiques tels que les dépressions, les anticyclones, les fronts et les zones de précipitation et suppose leurs emplacement futurs.
-\item La méthode de l'analogie qui consiste à chercher des cas dans le passé qui ressemblent aux conditions météorologiques actuelles et à supposer que ces conditions évolueront de la même manière.
-\item La prévision numérique du temps (PNT) est la méthode plus utilisée actuellement. On mesure les différentes paramètres ce qui nous donne l'état initial. Les lois physiques prédisent ensuite l'évolution du système. Il s'agit d'une simulation physique de l'atmosphère. L'article de Pailleux \cite{PAILLEUX}
- propose notamment une simulation basée sur les équations hydrodynamique suivantes : \begin {enumerate}
+\item La méthode de la persistance, qui prédit que demain il fera le même temps qu'aujourd'hui. Elle fonctionne bien dans certaines régions où les conditions météorologiques varient lentement comme	l'Egypte ou les déserts des États-Unis. Elle fait de bonnes prévisions sur des périodes de un ou deux jours ainsi et est efficace pour prédire des tendance sur des durées d'un mois (prévisions saisonnière). 
+\item La méthode de la tendance, qui étudie les déplacement de systèmes météorologiques tels que les dépressions, les anticyclones, les fronts et les zones de précipitations et conjecture leurs emplacement futurs.
+\item La méthode de l'analogie, qui consiste à chercher des cas dans le passé qui ressemblent aux conditions météorologiques actuelles et à supposer que ces conditions évolueront de la même manière.
+\item La prévision numérique du temps (PNT) est la méthode plus utilisée actuellement. On mesure les différentes paramètres ce qui nous donne l'état initial. Les lois physiques prédisent ensuite l'évolution du système. Il s'agit d'une simulation physique de l'atmosphère. 
+
+L'article de Pailleux \cite{PAILLEUX} propose notamment une simulation basée sur les équations hydrodynamique suivantes : 
+\begin {enumerate}
 \item Principe fondamental de la dynamique
 \item Équation de continuité
 \item Premier principe de la thermodynamique
-\item Loi des gazs parfaits
+\item Loi des gaz parfaits
 \item Équation bilan des constituants
 \end {enumerate}
 Cette méthode requiert :
 \begin{enumerate} 
 \item La découpe de l'atmosphère dans une grille en trois dimensions. Plus la grille est large plus les calculs sont rapides et moins ils sont précis.
-\item L'intégration des équations précédentes. Le plus souvent en approximant la dérivée des différents paramètres comme constant sur un petit intervalle de temps dt. Pour que le modèle fonctionne il faut que dt soit suffisamment petit pour que les paramètres changent peu sur dt et en particulier que les systèmes météorologiques se déplacent de moins d'une case dans la grille.
+\item L'intégration des équations précédentes. Le plus souvent en approximant la dérivée des différents paramètres comme constant sur un petit intervalle de temps dt. Pour que le modèle fonctionne il faut que dt soit suffisamment petit pour que les paramètres changent peu sur dt et, en particulier, que les systèmes météorologiques se déplacent de moins d'une case dans la grille.
 \item Une puissance numérique très élevée. Par exemple, le calculateur de Météo-France ATOS Sequana XH2000 possède une puissance de 100 pétaFLOPS. 
-\end {enumerate}
 \end{enumerate}
-
+\end{enumerate}
 On trouve sur internet d'autre types d'outils de prévision tels que des réseaux de neurones, des algorithmes génétiques, de la logique floue et des réseaux bayésiens %et d'autres modèles probabilistes
  (voir Das2017).
 
-Toutes ses méthodes peuvent être exploités différemment : pour faire des prévisions déterministes ou probabilistes. Étant donné la précision des méthodes actuelles, la méthode déterministe peut être utilisée pour des échéances de trois à quatre jours. Faire des prévision probabilistes, aussi appelées prévisions d'ensemble, consiste à donner plusieurs prévisions à partir d'états initiaux proches. Ces états initiaux sont choisis de sorte à refléter l'incertitude des prévision. Il faut ensuite comparer les différentes prévisions pour déterminer quels sont les scénarios les plus probables et en cas de risques liés au climat quels sont les pires scénarios (voir Meteofrance).
+Toutes ses méthodes peuvent être exploitées différemment : pour faire des prévisions déterministes ou probabilistes. Étant donné la précision des méthodes actuelles, la méthode déterministe peut être utilisée pour des échéances de trois à quatre jours. Faire des prévision probabilistes, aussi appelées prévisions d'ensemble, consiste à donner plusieurs prévisions à partir d'états initiaux proches. Ces états initiaux sont choisis de sorte à refléter l'incertitude des prévision. Il faut ensuite comparer les différentes prévisions pour déterminer quels sont les scénarios les plus probables et en cas de risques liés au climat quels sont les pires scénarios (voir Meteofrance).
 
 \vspace{0.6cm}
 Nous avons choisi pour ce TIPE de privilégier différentes approches : des modélisations mathématiques et des réseaux de neurones.
 
-\section{Recherche de données}
-
+\section{Recherche, préparation et sélection des données}
+\subsection{Recherche des données}
 Nous avons trouvé une base de donnée sur  : \\
 https://donneespubliques.meteofrance.fr/?fond=produit\&id\_produit=90\&id\_rubrique=32. \\
 Elle contient les relevés de 62 stations en France Métropolitaine et en France d’Outre mer
-de 1996 à 2020  (avec certaines mesures manquantes : pas plus de 80 en une année soit l'équivalent de dix jours sauf pour 2020)
-avec un relevé toutes les trois heures soit huit relevés par jour.
-Les donnees sont : la température, l'humidité, la direction et la force du vent, la pression atmosphérique, la hauteur de précipitations, le temps sensible, la description des nuages, la visibilité.
-Chaque fichier couvre un mois et toutes les stations. \\
-Nous avons collecté sur le site avec Webbot. \\
-Nous avons décompression les fichiers vers le format csv décompressé. \\
-Nous avons trié les données par station. \\
+de 1996 à 2020 avec un relevé toutes les trois heures soit huit relevés par jour. Nous utilisons les données de la station de Clermont-Ferrand. Quelques mesures sont manquantes : pas plus de 80 en une année soit l'équivalent de dix jours sauf pour 2020. 
 
-\section{Modèles de prévision sur une station : analyse de la température et de l'humidité}
+Les données sont : la température, l'humidité, la direction et la force du vent, la pression atmosphérique, la hauteur de précipitations, le temps sensible, la description des nuages, la visibilité. 
+%Qu'appelle-t-on le temps sensible ?
+Chaque fichier de données couvre un mois. Le processus de préparation des données est le suivant~: 
+\begin{enumerate}
+\item les données ont été téléchargées depuis le site avec Webbot, 
+\item nous avons transformé les fichiers vers le format csv décompressé, 
+\item nous avons trié les données par station. 
+\end{enumerate}
 
+\subsection{Les données retenues}
 Nous avons extrait des données de température et d'humidité de Clermont-Ferrand au format json \\
-Les années 2008, 2019 et 2020 sont retirées de la base d'entrainement, 2008 et 2019 serviront de base de test, 2020 est incomplète\\
+Les années 2008, 2019 et 2020 sont retirées de la base d'entraînement, 2008 et 2019 serviront de base de test, 2020 est incomplète\\
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/humidite.png}
 \caption{\label{fig:190101Lolita} Courbes de température et d'humdité de la base d'apprentissage : Clermont-Ferrand}
 \end{figure}
+\section{Modèles de prévision sur une station : analyse de la température et de l'humidité}
+\subsection{Principe de l'évaluation d'un modèle}
+Comment estimer la valeur d'un modèle de prévision~? On calcule l'écart type entre les prévisions et les températures mesurées. Cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur l'écart type des mesures par rapport à leur moyenne.
 
-Comment estimer la valeur d'un modèle de prévision~? On calcule l'écart type entre nos prévisions et les températures mesurées. Cela permet d'estimer la valeur des prévisions, mais à condition d'avoir une valeur de comparaison. Nous utilisons pour cette valeur l'écart type des mesures par rapport à leur moyenne.
- \\ Calcul de valeurs utiles de la base de donnée : quartiles, medianne, moyenne, écart type.\\ 
  
-%Température :  $Q1 = 6.39{}^{\circ}C  \quad Q3 = 17.4{}^{\circ}C$   soit un intervalle de $11{}^{\circ}C $ \\
-%Humidité :  $ Q1 = 59.0\%  \quad  Q3 = 85.0\% $ soit un intervalle de $26\% $ \\
+%Température :  $Q1 = 6.39{}^{\circ}C  \quad Q3 = 17.4{}^{\circ}C$   soit un intervalle de $11{}^{\circ}C $ 
+%Humidité :  $ Q1 = 59.0\%  \quad  Q3 = 85.0\% $ soit un intervalle de $26\% $ 
+\begin{table}[ht]
+\begin{center}
 \begin{tabular}{llllll}\hline\hline
 Température& $Q1 = 6.39{}^{\circ}C$ &$ me = 11.9 {}^{\circ}C$ & $Q3 = 17.4{}^{\circ}C $&$ m= 12.0{}^{\circ}C $ & $\sigma = 7.91 {}^{\circ}C$ \\
 Humidité    &   $ Q1 = 59.0\%$           &$  me = 73.0\%  $           & $Q3 = 85.0\%.           $& $ m=71.2\%  $ & $\sigma = 17.1 \% $ \\
 \hline 
-\end{tabular} 
-
+\end{tabular}
+\caption{Calcul de valeurs utiles de la base de donnée : quartiles, mediane, moyenne, écart type.}\label{tab:qmme}
+\end{center}
+\end{table}
 
 
 %moyenne
 
-\subsection{Premier modèle : Moyenne de la température et de l'humidité par jour de l'année et par heure }
+\subsection{Premier modèle (M1)~: Moyenne de la température et de l'humidité par jour de l'année et par heure }
 Nous considérons dans ce modèle que la température et l'humidité sont cycliques de période un an et nous prévoyons qu'un jour donné à une heure donnée il fera la moyenne des température et humidité qu'il a fait ce jour ci lors des années précédentes.
-Nous calculons donc ces moyennes sur la base d'entrainement et calculons les performances de ce modèle sur la base de test : \\
+Nous calculons donc ces moyennes sur la base d'entraînement et calculons les performances de ce modèle sur la base de test : \\
 
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneH.png}
-\caption{\label{fig:xxx} Courbes des moyennes de température et d'humidité de la base d'apprentissage par jour et heure (l'épaisseur du trait est principalement du à la variation jour/nuit)}
+\caption{\label{fig:xxx} Courbes des moyennes de température et d'humidité de la base d'apprentissage par jour et heure (l'épaisseur du tracé est principalement du à la variation jour/nuit)}
 \end{figure}
-
+%%%%%%
+\begin{table}[h]
+\begin{center}
 \begin{tabular}{lll}\hline
 \hline
 Écart type de la température& $4.28{}^{\circ}C$\\
 Écart type de l'humidité       &  $ 14.8\% $\\
 \hline 
 \end{tabular}
-
-%persistance
-
-\subsection{Deuxième modèle : Modèle de la persistance journalière}
+\caption{M1~: Evaluation du premier modèle~: moyennes annuelles}\label{tab:premModele}
+\end{center}
+\end{table}
+%%%%%%persistance
+%Je cite le tableau \ref{tab:premModele}. 
+\subsection{Deuxième modèle (M2)~: Modèle de la persistance journalière}
  La température et l'humidité varient selon des cycles jours nuit. Nous considéreront ici que ces paramètres varient peu d'un jour sur l'autre. Nous prédisions donc que dans x jours il fera la même température que x jours avant à la même heure. \\
- 
+\begin{table}
+\begin{center} 
 \begin{tabular}{lllllll}\hline
 \hline
 Prévision à x jour                  &1                         &2                         &3                           &4                         &5                          &6 \\
@@ -234,12 +248,13 @@ Prévision à x jour                  &1                         &2             
 Écart type de l'humidité       &  $ 15.0\% $         &  $ 16.8\% $         &  $ 17.5\% $        &  $ 17.7\% $         &  $ 17.6\% $         &  $ 17.7\% $\\
 \hline 
 \end{tabular}
-
+\caption{M2~: Evaluation du deuxième modèle~: persistance journalière.}\label{tab:persistanceJ}
+\end{center}
+\end{table}
 %cosinus
 
-\subsection{Troisième modèle : Approximation des courbes par une somme de fonctions sinusoïdales}
-À priori les conditions météorologiques sont cycliques par rapport à l'année et au jour. Nous pouvons donc nous demander si il est judicieux de modéliser ses paramètre par une somme de sinusoïdes. Nous réalisons donc une
-transformation de Fourier pour nous demander si la méthode est appropriée. \\
+\subsection{Troisième modèle (M3)~: Approximation des courbes par une somme de fonctions sinusoïdales}
+A priori, les conditions météorologiques sont cycliques par rapport à l'année et au jour. Il semble donc judicieux de les modéliser par une somme de sinusoïdes~: c'est une décomposition de Fourier. Nous réalisons donc une transformation de Fourier pour savoir si la méthode est appropriée. \\
 Pour réaliser une transformation de Fourier discrète, nous utilisons la bibliothèque numpy sur python qui utilise la formule suivante :  \\
 
 $ A_{k}  = \displaystyle { \sum_{m=0}^{n-1}} a_{m} exp(-2\pi i \frac{mk}{n} ) $ avec $k = 0, ... , n-1 $   \\ 
@@ -248,34 +263,34 @@ $ A_{k}  = \displaystyle { \sum_{m=0}^{n-1}} a_{m} exp(-2\pi i \frac{mk}{n} ) $ 
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftH.png}
-\caption{\label{fig:ffta} Transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement (en logarithme naturel)}
+\caption{\label{fig:ffta} M3 : Transformation de Fourier discrète de la température et de l'humidité de la base d'entraînement (en logarithme naturel)}
 \end{figure}
 \begin{figure} [!h]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftTZ.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftHZ.png}
-\caption{\label{fig:fftz} Transformation de Fourier discrète de la température et de l'humidité de la base d'entrainement zoomées sur 0 (en logarithme naturel) }
+\caption{\label{fig:fftz} M3~: Transformation de Fourier discrète de la température et de l'humidité de la base d'entraînement zoomées sur 0 (en logarithme naturel) }
 \end{figure}
 
-Nous examinons les figures~\ref{fig:ffta} et \ref{fig:fftz} concluons que la méthode est appropriée. \\
-Sur les deux courbes on observe des pics aux fréquence de 1/(365 jours) et 1/(1 jour) ainsi que des multiples de ses fréquences.
+Nous examinons les figures~\ref{fig:ffta} et \ref{fig:fftz} concluons que la méthode est appropriée. En effet, sur les deux courbes, on observe des pics aux fréquences de 1/(365 jours) et 1/(1 jour) ainsi que des multiples de ses fréquences. \\
 On approxime donc les paramètres par des fonctions de la forme : \\
  $f(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C$  \\
 $g(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C + D cos (\omega_{3} t + \phi_{3}) + E cos (\omega_{4} t + \phi_{4})$ \\
 $h(t) = A cos (\omega_{1} t + \phi_{1}) + B cos (\omega_{2} t + \phi_{2}) + C + D cos (\omega_{3} t + \phi_{3}) + E cos (\omega_{4} t + \phi_{4}) + F cos (\omega_{5} t + \phi_{5}) + G cos (\omega_{6} t + \phi_{6})$ \\ 
-Avec $\omega_{1} = 2 \pi$ (pulsation journalière) , $\omega_{2} = 2 \pi /365$ (pulsation annuelle), $\omega_{3} = 4 \pi$ (pulsation demi-journalière), $\omega_{4} = 4\pi/365 $  (pulsation semi annuelle), $\omega_{5} = 6 \pi$ (pulsation du tiers de journéé), $\omega_{6} = 6\pi/365 $  (pulsation du tiers d'année)\\
+Avec $\omega_{1} = 2 \pi$ (pulsation journalière) , $\omega_{2} = 2 \pi /365$ (pulsation annuelle), $\omega_{3} = 4 \pi$ (pulsation demi-journalière), $\omega_{4} = 4\pi/365 $  (pulsation semi annuelle), $\omega_{5} = 6 \pi$ (pulsation du tiers de journéé), $\omega_{6} = 6\pi/365 $  (pulsation du tiers d'année). Les $\phi_i$ sont les déphasages correspondants. \\
 
-Il faut ensuite déterminer les valeurs de des coefficients et des déphasage. On utilise alors la méthode du gradient :
+Il faut ensuite déterminer les valeurs des coefficients et des déphasages. On utilise alors la méthode du gradient :
 \begin{itemize}
-\item On crée une fonction écart qui calcule l'écart type entre les prévisions et les valeurs de la base d'entrainement en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de écart en fonction des coefficients et des déphasages.
-\item On initialise les paramètres (déphasages et coefficient) à une valeur approximative
-\item On dérive écart par rapport à chaque paramètre
-\item On modifie chaque paramètre X en faisant $ X = X - \alpha  \frac{d ecart}{dX} $ avec $ \alpha$ un coefficient qui aide à la convergence. Il faut régler $\alpha$ à la main pour chaque paramètre afin de faciliter la convergence.
-\item On répète les deux points précédents jusqu'à ce que la fonction varie d'un pas à l'autre de moins d'un certain seuil.
+\item On crée une fonction $\delta$, qui est l'écart type entre les prévisions et les valeurs de la base d'entraînement, en fonction des coefficients et des déphasages. On cherche alors à déterminer le minimum de $\delta$ en fonction des coefficients et des déphasages.
+\item On initialise les paramètres de Fourier (déphasages et coefficient) à une valeur approximative.
+\item On dérive $\delta$ par rapport à chaque paramètre de Fourier.
+\item On modifie à chaque itération le paramètre de Fourier~: X devient $ X - \alpha  \frac{d \delta}{dX} $ avec $\alpha$ un coefficient qui aide à la convergence. Il faut régler $\alpha$ à la main pour chaque paramètre afin de faciliter la convergence (valeur typique entre 1 et 0,01).
+\item On répète les deux points précédents jusqu'à ce que la fonction $\delta$ varie d'un pas à l'autre de moins d'un certain seuil.
 \end{itemize}
 
-Nous testons la fonction obtenue sur la base de test en calculant l'écart type.
-
+Nous testons les fonctions f, g, h, obtenues, sur la base de test en calculant l'écart type.
+\begin{table}[h]
+\begin{center}
 \begin{tabular}{llll}\hline
 \hline
 Fonction                             &f                         &g                       &h \\
@@ -283,28 +298,32 @@ Fonction                             &f                         &g              
 Écart type de d'humidité    & $15.3\%$   & $14.8\%$   &  $14.9\%$   \\   
 \hline 
 \end{tabular}
+\caption{M3~: Evaluation du troisième modèle : somme de sinusoïdes.}\label{tab:tesfgh}
+\end{center}
+\end{table}
 
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeH.png}
-\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par jour de l'année et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de faibles fréquence}
+\caption{\label{fig:moyBassesFreq} M3~: Moyenne de la température et de l'humidité par jour de l'année et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de basses fréquences.}
 \end{figure}
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeT.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeH.png}
-\caption{\label{fig:190101Lolita} Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de hautes fréquence }
+\caption{\label{fig:moyHautesFreq} M3~: Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de hautes fréquences.}
 \end{figure}
 
-Cette méthode nécessite un grand temps de calcul pour la descente de cosinus : calcul qu'il n'est nécessaire d'effectuer qu'une seule foi. Les fonctions f, g, h sont respectivement de plus en plus lourdes. On remarque que g est plus précise que f mais que h n'est pas nettement plus précise que g.
+Cette méthode nécessite un grand temps de calcul pour la descente de cosinus : calcul qu'il n'est nécessaire d'effectuer qu'une seule fois. Les fonctions f, g, h sont respectivement de plus en plus lourdes. On remarque que g est plus précise que f, mais que h n'est pas nettement plus précise que g.
 
 
-
-\subsection {Quatrième modèle : Approximation des courbes par une somme de fonctions sinusoïdale sur la semaine précédente }
-Il s'agit de déterminer la température et l'humidité des jours suivants à partir des données de la semaine précédente. Pour cela on interpole les mesures de la semaine avec une somme de cosinus et on prévoit que les paramètres continueront à suivre ce cosinus. Nous interpolerons les courbes avec la fonction $i(t) = At + B + C cos  (\omega t + \phi)$  car les sinus de période de l'ordre de grandeur d'une année sur une durée  d'une semaine peuvent être approximés par leurs tangentes. Nous utiliserons encore une fois une descente de gradient pour déterminer les valeurs de A, B, C et $\phi$ que nous initialiseront à partir des résultats de la méthode précédente. La fonction écart ne sera plus juste un écart type mais un écart type pondéré par la proximité à la fin de la semaine \\
+\subsection {Quatrième modèle (M4)~: Approximation des courbes par une somme de fonctions sinusoïdales sur la semaine précédente }
+Nous proposons un modèle qui utilise les données autrement. A lieu d'utiliser les données des années précédentes (modèles M1, M2, M3), nous utilisons les données de la semaine précédente.  
+Il s'agit de déterminer la température et l'humidité des jours suivants à partir de ces données. Pour cela, on interpole les mesures de la semaine avec une somme de cosinus et on prévoit que les paramètres continueront à suivre cette somme. Nous interpolerons les courbes avec la fonction $i(t) = At + B + C cos  (\omega t + \phi)$,  car les sinus de période de l'ordre de grandeur d'une année sur une durée  d'une semaine peuvent être approximés par leurs tangentes. Nous utiliserons encore une fois une descente de gradient pour déterminer les valeurs de A, B, C et $\phi$, que nous initialiserons à partir des résultats de la méthode précédente. La fonction $\delta$ (écart) ne sera plus juste un écart type mais un écart type pondéré par la proximité à la fin de la semaine. \\
 Nous choisissons au hasard 1000 dates de début de prévision dans l'année 2019 et calculons les performances de cette méthode sur ses dates.\\
-
+\begin{table}[h]
+\begin{center}
 \begin{tabular}{lllllllllllll}\hline
 \hline
 Prévision à                  &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
@@ -316,130 +335,140 @@ Prévision à                  & 1j &           2j            &3j            &4j
 Écart type de l'humidité      & $17.0\%$ &  $ 20.4\% $         &  $ 24.2\% $         &  $ 25.2\% $        &  $ 28.4\% $         &  $ 31.9\% $  \\
 \hline 
 \end{tabular}
+\caption{M4~: Evaluation du quatrième modèle~: somme de sinusoïdes de la semaine précédente.}\label{tab:sinusoidesSP}
+\end{center}
+\end{table}
 	
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDS.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDSH.png}
-\caption{\label{fig:cosDS} Exemple d'interpolation d'une fonction de la forme $i(t) = At +B + C cos (\omega t + \phi)$ sur une semaine}
+\caption{\label{fig:cosDS} M4~: Exemple d'interpolation d'une fonction de la forme $i(t) = At +B + C cos (\omega t + \phi)$ sur une semaine}
 \end{figure}
 
 
-
-
-
 \section {Prévision par réseau de neurones artificiel}
+Les réseaux de neurones sont partout. Ils pilotent les avions de chasse, repèrent le visage des personnes fichées, détectent les cancers du sein, gèrent les fonds de placement, trouvent les documents juridiques pertinents, traduisent les textes, gèrent la logistique et les transports, les processus industriels, permettent aux robots d'analyser des images, gèrent les scénarios de jeux vidéo et battent les meilleurs joueurs de Go et d'échec.   \\
+Un réseau de neurones est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurones peut aussi être vue comme un vecteur, chaque neurone correspondant à une une case du vecteur. Les neurones des première et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente (ou de n'importe quel neurone pour les réseaux non linéaires). \\
+Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions, notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées, des réseaux de neurones mêmes très simples, s'avèrent souvent plus performants que des méthodes numériques classiques. 
 
-Les réseaux de neurones sont partout. Ils pilotent les avions de chasse, repèrent le visage des personnes fichées, détectent les cancers du sein, gèrent les fonds de placement, trouvent les documents juridiques pertinents, traduisent les textes, gèrent la logistique et les transports, les processus industriels, permettent aux robots d'analyser des images, gère les scénarios de jeux vidéo et battent les meilleurs joueurs de Go et d'échec.   \\
-Un réseau de neurone est une structure composée de neurones. Chaque neurone peut contenir une valeur. Les neurones sont organisés en couche. Une couche de neurones peut aussi être vue comme un vecteur, chaque neurone correspondant à une une case du vecteur. Les neurones des première et dernière couches contiennent respectivement les entrées et les sorties. Les neurones de chaque couche sont fonction de certains neurones de la couche précédente (ou de n'importe quel neurone pour les réseaux non linéaires). \\
-Il s'agit ensuite d'optimiser les fonctions qui relient les différents neurones. Il existe plusieurs algorithmes d'optimisation de ses fonctions notamment la descente de gradient que nous avons vu précédemment. Une fois ces fonctions optimisées des réseaux de neurones mêmes très simples s'avèrent souvent très performant devant des méthodes numériques classiques. \\
-
-\subsection {Premier réseau : Prévisions à partir de la température et de l'humidité lors des jours précédants}
-
-Nous avons décidé de réaliser un réseau de neurone basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
-Le réseau de neurone prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors du prochain jour. Le réseau sera réglé sur la base d'entrainement et testé sur la base de test.\\
-Ce réseau de neurone nécessite un nombre d'entrée constante. Nous corrigeons donc les données en complétant les valeurs manquantes. Nous considérons que les valeurs manquantes sont sur une droite entre les valeurs existantes les plus proches.\\
-Le réseau prend en entrée pour chacune des 56 mesures de la semaine 
+\subsection {Les premiers réseau (RN1-1, RN1-2 et RN1-3)~: Prévisions à partir de la température et de l'humidité lors des jours précédents}
+Nous avons décidé de réaliser un réseau de neurones basique qui pourrait faire des prévisions météorologiques. Pour cela nous utiliserons la bibliothèque pytorch sur python.\\
+Le réseau de neurones prendra en entrée la température et l'humidité sur une semaine et renverra la température et l'humidité prévue lors du prochain jour. Le réseau sera réglé sur la base d'entraînement et testé sur la base de test.\\
+Ce réseau de neurones nécessite un nombre d'entrée constante. Il nous manque très peu de valeurs, mais il est nécessaire de corriger en complétant les valeurs manquantes. Nous considérons que les valeurs manquantes sont sur une droite entre les valeurs existantes les plus proches.\\
+Le réseau prend en entrée pour chacune des 56 mesures de la semaine~: 
 \begin{itemize}
-\item  l'année projetée sur une courbe centrée réduite des années
-\item  le cosinus et le sinus de l'angle de la date et l'heure projetée sur un cercle de un an
-\item  la température et la pression projetées sur une courbe centrée réduite
+\item  l'année projetée sur une courbe centrée réduite des années,
+\item  le cosinus et le sinus de l'angle de la date et l'heure projetée sur un cercle de un an,
+\item  la température et la pression projetées sur une courbe centrée réduite. 
 \end{itemize}
 Le critère de distance est MSELOSS et la méthode d'optimisation est la méthode Adam.
-Pour régler le réseau de neurone, nous utilisons une méthode stochastique : 
-On initialise les fonctions du réseaux avec des grandeurs quelconques.
-On choisi des semaines au hasard dans la base de test modifie ses fonctions pour qu'il donne des valeurs plus juste pour ses semaines. On recommence un grand nombre de fois. Cette méthode permet de diminuer grandement le temps de calcul.\\
-Les fonctions qui relient les différentes couches sont des prélus composées de fonctions affines. Un prélu est un neurone non linéaire qui renvoie l'identité pour une valeur positive et a fois l'identité pour une valeur négative avec a un paramètre réglable du réseau de neurone. Les prélus servent à rendre les fonctions non linéaire et donc à forcer l'optimisation de chaque paramètre. Si les fonctions étaient toutes linéaires alors un réseau de quatre couches serait équivalent à un réseau de deux couches et les paramètres pourraient donc s'optimiser en fonction des autres.\\
-Nous avons fait un deuxième réseau similaire qui fait des prévisions pour la semaine suivante avec les données des deux semaines précédantes.\\
+Pour régler le réseau de neurones, nous utilisons une méthode stochastique. Cette méthode répète des optimisations sur des bases de test réduites~:
+\begin{enumerate}
+\item initialisation des paramètres du réseau avec des valeurs quelconques.
+\item choix de semaines au hasard dans la base de test, pour former une base de test réduite.  
+\item modification successives des fonctions pour qu'elles donnent des valeurs plus justes pour les semaines choisies à l'étape précédente. 
+\end{enumerate}
+On recommence un grand nombre de fois. \\
+Le fait d'optimiser plusieurs fois sur des bases de test réduites permet de diminuer grandement le temps de calcul.\\
+
+Les fonctions qui relient les différentes couches sont des prélus composées de fonctions affines. Un prélu est un neurone non linéaire qui renvoie l'identité pour une valeur positive et $a$ multiplié par l'identité pour une valeur négative, avec $a$ un paramètre réglable du réseau de neurones. Les prélus servent à rendre les fonctions non linéaires et donc à forcer l'optimisation de chaque paramètre. Si les fonctions étaient toutes linéaires, alors un réseau de quatre couches serait équivalent à un réseau de deux couches. Cela vient du fait que certains paramètres pourraient s'optimiser en fonction des autres.\\
+
+Nous avons fait un deuxième réseau similaire qui fait des prévisions pour la semaine suivante avec les données des deux semaines précédentes.\\
 
 \begin{figure} [H]
 \centering
 \includegraphics[width=1 \textwidth]{./imagesTIPE/schemaRN.png}
-\caption{\label{fig:schemaRN} Shéma du premier réseau de neurone}
+\caption{\label{fig:schemaRN} RN1-1~: Schéma du premier réseau de neurones~: prévision du jour suivant en fonction de la semaine précédente}
 \end{figure}
 
-
-
+Les réseaux RN1-1 et RN1-2 sont par construction semblables. Le RN1-1 est décrit dans la figure \ref{fig:schemaRN}. Il renvoie la température et l'humidité sur une journée. Le réseau RN1-2 renvoie la température sur une semaine et RN1-3 l'humidité sur une semaine. 
+\begin{table}[h]
+\begin{centering}
 \begin{tabular}{llllllllllllll} 
 \hline
 \hline
-Prévision à                  &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
-Écart type de la température& $2.11{}^{\circ}C$& $2.65{}^{\circ}C$& $2.97{}^{\circ}C$& $3.12{}^{\circ}C$& $3.18{}^{\circ}C$& $3.31{}^{\circ}C$&$3.44{}^{\circ}C$ \\
-Écart type de l'humidité &$8.85\%$ & $10.6\%$ & $11.8\%$ & $11.8\%$ & $12.2\%$ & $12.6\%$ & $12.9\%$  \\
+Écart Type / Prévision à            &3h                         &6h                        &9h                           &12h                         &15h                          &18h          &         21h      \\
+Température RN1-1& $2.11{}^{\circ}C$& $2.65{}^{\circ}C$& $2.97{}^{\circ}C$& $3.12{}^{\circ}C$& $3.18{}^{\circ}C$& $3.31{}^{\circ}C$&$3.44{}^{\circ}C$ \\
+Humidité RN1-1&$8.85\%$ & $10.6\%$ & $11.8\%$ & $11.8\%$ & $12.2\%$ & $12.6\%$ & $12.9\%$  \\
 \hline
-Prévision à                  & 1j &           2j            &3j            &4j          &5j            & 6j & 7j \\
-Écart type de la température & $4.28{}^{\circ}C$ & $4.78{}^{\circ}C$ & $4.67{}^{\circ}C$ & $5.09{}^{\circ}C$ & $5.22{}^{\circ}C$ & $5.22{}^{\circ}C$  & $5.22{}^{\circ}C$ \\
-Écart type de l'humidité      & $13.8\%$ &  $ 14.9\% $    &  $ 14.7\% $         &  $ 15.4\% $        &  $ 15.4\% $         &  $ 15.9\% $  &  $ 15.8\% $  \\
+Écart type / Prévision à                  & 1j &           2j            &3j            &4j          &5j            & 6j & 7j \\
+Température RN1-2 & $4.28{}^{\circ}C$ & $4.78{}^{\circ}C$ & $4.67{}^{\circ}C$ & $5.09{}^{\circ}C$ & $5.22{}^{\circ}C$ & $5.22{}^{\circ}C$  & $5.22{}^{\circ}C$ \\
+Humidité RN1-3     & $13.8\%$ &  $ 14.9\% $    &  $ 14.7\% $         &  $ 15.4\% $        &  $ 15.4\% $         &  $ 15.9\% $  &  $ 15.8\% $  \\
 \hline 
 \end{tabular}
+\caption{RN1-1, RN1-2, RN1-3~: Evaluation des deux modèles de neurones}\label{tab:evalRN}
+\end{centering}
+\end{table}
+
+\subsection {Deuxième réseau (RN2)~: Prévisions à partir l'ensemble des données de notre base lors de la semaine précédente}
+Nous avons essayé de faire un autre réseau qui se prendrait plus d'éléments en entrée.
+Nous devons donc extraire l'ensemble des données de la station de Clermont-Ferrand. Compléter les données manquantes et refaire un réseau de neurones similaire au précédent.\\
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA30,25.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA30,25.png}
-\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\caption{\label{fig:cosDS1} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA100,5.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA100,5.png}
-\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\caption{\label{fig:cosDS2} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA200.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA200.png}
-\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\caption{\label{fig:cosDS3} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA300,75.png}\quad
 \includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA300,75.png}
-\caption{\label{fig:cosDS} Exemple de prévision des réseaux de neurones précédents}
+\caption{\label{fig:cosDS} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 
-Nous observons sur les figures des prévisions des réseaux que le réseau de neurone qui fait des prévisions pour une journée fait des cloches (plus chaud le jour et plus froid la nuit). La taille des cloches est variable
-Celui qui fait des prévisions sur la semaine fait des fonction cycliques sur une journée auxquelles s'ajoutent des tendances. La taille des variations jour-nuit varie d'une prévision à l'autre mais est environ stable lors d'une prévision.
-
-\subsection {Deuxième réseau : Prévisions à partir l'ensemble des données de notre base lors de la semaine précédente}
-
-Nous avons essayé de faire un autre réseau qui se prendrait plus d'éléments en entrée.
-Nous devons donc extraire l'ensemble des données de la station de Clermont-Ferrand. Compléter les données manquantes et refaire un réseau de neurone similaire au précédent.
-
-\section{Comparaison des résultats}
-
-\begin{figure} [!h]
-\centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartjT.png}\quad
-\caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision journalière}
-\end{figure}
+Nous observons sur les figures des prévisions des réseaux que le réseau de neurones qui fait des prévisions pour une journée fait des courbes en forme de cloche (plus chaud le jour et plus froid la nuit, voir figure XXXXX). La taille de ces cloches est variable.
+Celui qui fait des prévisions sur la semaine fait des fonction cycliques sur une journée auxquelles s'ajoutent des tendances. La taille des variations jour-nuit varie d'une prévision à l'autre, mais est stable lors d'une prévision.
 
 
-\begin{figure} [!h]
-\centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartsT.png}\quad
-\caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision hebdomadaire}
-\end{figure}
-
-
-\begin{figure} [!h]
-\centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/écartjH.png}\quad
-\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision journalière}
-\end{figure}
-
-
-\begin{figure} [!h]
-\centering
-\includegraphics[width= 0.7 \textwidth]{./imagesTIPE/écartsH.png}\quad
-\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision hebdomadaire}
-\end{figure}
-
+\section{Comparaison des résultats des méthodes M1, M2, M3, M4, RN1 et RN2 }
 La moyenne sur le jour et l'année donne de bons résultats surtout sur la prévision de la température. 
 L'interpolation de la courbe par un cosinus est à peu près équivalente à la moyenne par jour et par heure pour les quatre types de prévisions que nous avons exploré.
 L'interpolation par un cosinus des courbes des paramètres sur une semaine donne de bons résultat pour la prévision journalière.
-Le réseau de neurone qui se base sur la température et l'humidité donne de bons résultat pour les prévisions journalière.
-Aucun de nos modèles ne donne de résultat concluant sur la prévision hebdomadaire de l'humidité ce qui est prévisible puisque l'humidité dépend fortement de la pluie et que nos prévisions ne prennent pas en compte la présence de nuages.
+Le réseau de neurones RN1, qui se base sur la température et l'humidité donne de bons résultat pour les prévisions journalière.
+Aucun de nos modèles ne donne de résultats satisfaisants sur la prévision hebdomadaire de l'humidité. Cela se comprend, puisque l'humidité dépend fortement de la pluie et que nos prévisions ne prennent pas en compte la présence de nuages.
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartjT.png}\quad
+\caption{\label{fig:cosDS} Écart type des prévisions de température des méthodes en fonction de l'échéance de la prévision}
+\end{figure}
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartsT.png}\quad
+\caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision hebdomadaire}
+\end{figure}
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartjH.png}\quad
+\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision journalière}
+\end{figure}
+
+\begin{figure} [!h]
+\centering
+\includegraphics[width= 0.7 \textwidth]{./imagesTIPE/ecartsH.png}\quad
+\caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision hebdomadaire}
+\end{figure}
+
+
+%\cite{Gaillard:2015aa}
+\bibliography{./DocumentsTIPEHelene/heleneTIPE.bib}
 
 
 
