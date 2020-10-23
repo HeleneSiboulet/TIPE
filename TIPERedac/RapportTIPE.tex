@@ -1,5 +1,5 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[francais]{babel}
+\usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
@@ -188,8 +188,8 @@ Nous avons extrait des données de température et d'humidité de Clermont-Ferra
 Les années 2008, 2019 et 2020 sont retirées de la base d'entraînement, 2008 et 2019 serviront de base de test, 2020 est incomplète\\
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/humidite.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/temperature.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/humidite.png}
 \caption{\label{fig:190101Lolita} Courbes de température et d'humdité de la base d'apprentissage : Clermont-Ferrand}
 \end{figure}
 \section{Modèles de prévision sur une station : analyse de la température et de l'humidité}
@@ -219,8 +219,8 @@ Nous calculons donc ces moyennes sur la base d'entraînement et calculons les pe
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneT.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/moyenneH.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/moyenneT.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/moyenneH.png}
 \caption{\label{fig:xxx} Courbes des moyennes de température et d'humidité de la base d'apprentissage par jour et heure (l'épaisseur du tracé est principalement du à la variation jour/nuit)}
 \end{figure}
 %%%%%%
@@ -261,14 +261,14 @@ $ A_{k}  = \displaystyle { \sum_{m=0}^{n-1}} a_{m} exp(-2\pi i \frac{mk}{n} ) $ 
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftT.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftH.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/fftT.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/fftH.png}
 \caption{\label{fig:ffta} M3 : Transformation de Fourier discrète de la température et de l'humidité de la base d'entraînement (en logarithme naturel)}
 \end{figure}
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftTZ.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/fftHZ.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/fftTZ.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/fftHZ.png}
 \caption{\label{fig:fftz} M3~: Transformation de Fourier discrète de la température et de l'humidité de la base d'entraînement zoomées sur 0 (en logarithme naturel) }
 \end{figure}
 
@@ -304,14 +304,14 @@ Fonction                             &f                         &g              
 
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeT.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeAnneeH.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/CourbeAnneeT.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/CourbeAnneeH.png}
 \caption{\label{fig:moyBassesFreq} M3~: Moyenne de la température et de l'humidité par jour de l'année et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de basses fréquences.}
 \end{figure}
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeT.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/CourbeJourneeH.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/CourbeJourneeT.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/CourbeJourneeH.png}
 \caption{\label{fig:moyHautesFreq} M3~: Moyenne de la température et de l'humidité par n-ième mesure de la journée et prévisions des fonctions définies précédemment (somme de cosinus) avec uniquement les composantes de hautes fréquences.}
 \end{figure}
 
@@ -341,8 +341,8 @@ Prévision à                  & 1j &           2j            &3j            &4j
 	
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDS.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/cosDSH.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/cosDS.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/cosDSH.png}
 \caption{\label{fig:cosDS} M4~: Exemple d'interpolation d'une fonction de la forme $i(t) = At +B + C cos (\omega t + \phi)$ sur une semaine}
 \end{figure}
 
@@ -378,7 +378,7 @@ Nous avons fait un deuxième réseau similaire qui fait des prévisions pour la 
 
 \begin{figure} [H]
 \centering
-\includegraphics[width=1 \textwidth]{./imagesTIPE/schemaRN.png}
+\includegraphics[width=1 \textwidth]{imagesTIPE/schemaRN.png}
 \caption{\label{fig:schemaRN} RN1-1~: Schéma du premier réseau de neurones~: prévision du jour suivant en fonction de la semaine précédente}
 \end{figure}
 
@@ -408,26 +408,26 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA30,25.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA30,25.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinTempIA30,25.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinHumiIA30,25.png}
 \caption{\label{fig:cosDS1} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA100,5.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA100,5.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinTempIA100,5.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinHumiIA100,5.png}
 \caption{\label{fig:cosDS2} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA200.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA200.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinTempIA200.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinHumiIA200.png}
 \caption{\label{fig:cosDS3} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 \begin{figure} [H]
 \centering
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinTempIA300,75.png}\quad
-\includegraphics[width=0.48 \textwidth]{./imagesTIPE/imagesIA/dessinHumiIA300,75.png}
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinTempIA300,75.png}\quad
+\includegraphics[width=0.48 \textwidth]{imagesTIPE/imagesIA/dessinHumiIA300,75.png}
 \caption{\label{fig:cosDS} RN2~: Exemple de prévision du réseau de neurones}
 \end{figure}
 
@@ -444,31 +444,31 @@ Aucun de nos modèles ne donne de résultats satisfaisants sur la prévision heb
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartjT.png}\quad
+\includegraphics[width=0.7 \textwidth]{imagesTIPE/ecartjT.png}\quad
 \caption{\label{fig:cosDS} Écart type des prévisions de température des méthodes en fonction de l'échéance de la prévision}
 \end{figure}
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartsT.png}\quad
+\includegraphics[width=0.7 \textwidth]{imagesTIPE/ecartsT.png}\quad
 \caption{\label{fig:cosDS} Écart de température des différentes méthodes pour la prévision hebdomadaire}
 \end{figure}
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width=0.7 \textwidth]{./imagesTIPE/ecartjH.png}\quad
+\includegraphics[width=0.7 \textwidth]{imagesTIPE/ecartjH.png}\quad
 \caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision journalière}
 \end{figure}
 
 \begin{figure} [!h]
 \centering
-\includegraphics[width= 0.7 \textwidth]{./imagesTIPE/ecartsH.png}\quad
+\includegraphics[width= 0.7 \textwidth]{imagesTIPE/ecartsH.png}\quad
 \caption{\label{fig:cosDS} Écart d'humidité des différentes méthodes pour la prévision hebdomadaire}
 \end{figure}
 
 
 %\cite{Gaillard:2015aa}
-\bibliography{./DocumentsTIPEHelene/heleneTIPE.bib}
+%\bibliography{./DocumentsTIPEHelene/heleneTIPE.bib}
 
 
 
@@ -498,10 +498,10 @@ Aucun de nos modèles ne donne de résultats satisfaisants sur la prévision heb
 
 %%%%%%
 %\begin{figure}
-  %\includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
+  %\includegraphics[width=0.48 \textwidth]{imagesTIPE/temperature.png}\quad
 %\end{figure}
 %\begin{figure}
- %\includegraphics[width=0.48 \textwidth]{./imagesTIPE/temperature.png}\quad
+ %\includegraphics[width=0.48 \textwidth]{imagesTIPE/temperature.png}\quad
 %\end{figure}
 
 %begin{figure}

@@ -51,11 +51,11 @@ stt = float(torch.std(temp))
 mh = float(torch.mean(humi))
 sth = float(torch.std(humi))
 
-for i in temperature[0].keys() :
-	for j in range(len(temperature[0][i])) :
-		cdt,sdt = convertisseur_date(temperature[0][i][j])
-		ch,sh = convertisseur_heure(temperature[0][i][j])
-		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,ch,sh,(temperature[1][i][j]- mt)/stt])
+for i in humidite[0].keys() :
+	for j in range(len(humidite[0][i])) :
+		cdt,sdt = convertisseur_date(humidite[0][i][j])
+		ch,sh = convertisseur_heure(humidite[0][i][j])
+		temperature_continu.append([(float(i) - ma)/sta,cdt,sdt,ch,sh,(humidite[1][i][j]- mh)/sth])
 
 temperature_continu = torch.tensor(temperature_continu).double()
 
@@ -75,9 +75,9 @@ class Net(nn.Module) :
 
     def __init__(self) :
         super(Net, self).__init__()            
-        self.fc1 = nn.Linear(6*longueur_apprentissage, 3*longueur_apprentissage).double()
-        self.fc2 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
-        self.fc3 = nn.Linear(2*longueur_apprentissage, 1*longueur_prevision).double()
+        self.fc1 = nn.Linear(6*longueur_apprentissage, 2*longueur_apprentissage).double()
+        self.fc2 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
+        self.fc3 = nn.Linear(2*longueur_prevision, 1*longueur_prevision).double()
         self.prelu1 = nn.PReLU().double()
         self.prelu2 = nn.PReLU().double()
 
@@ -95,13 +95,13 @@ index_test = []
 for i in range(longueur_apprentissage, len(temperature_continu) - longueur_prevision) :
 	index_test.append(i)
 
-nb_tour_apprentissage = 13000
+nb_tour_apprentissage = 9000
 
 for tour in range(nb_tour_apprentissage) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = 0
-	for j in range(20) :
+	for j in range(25) :
 		i = random.choice(index_test)
 		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
 		target = temperature_continu[i][5]
@@ -125,7 +125,7 @@ for tour in range(nb_tour_apprentissage) :
 	#print(tour/100)
 
 
-taille = len(temperature_test[0]["2019"])
+taille = len(humidite_test[0]["2019"])
 ecart= torch.tensor(np.zeros([1,1*longueur_prevision]))	
 compt = 0
 nb_tour = 1000
@@ -136,22 +136,21 @@ for tour in range(nb_tour) :
 	sortie = []
 	for j in range(longueur_apprentissage) :
 		an = (2019.0 - ma)/sta
-		cdt,sdt = convertisseur_date(temperature_test[0]["2019"][(j+i)%taille])
-		ch,sh = convertisseur_heure(temperature_test[0]["2019"][(j+i)%taille])	
+		cdt,sdt = convertisseur_date(humidite_test[0]["2019"][(j+i)%taille])
+		ch,sh = convertisseur_heure(humidite_test[0]["2019"][(j+i)%taille])	
 		tp = (temperature_test[1]["2019"][(j+i)%taille] - mt)/stt
 		hm = (humidite_test[1]["2019"][(j+i)%taille] - mh)/sth
-		entre.append([an,cdt,sdt,ch,sh,tp]) ## humidité enlevée
-	sortie.append((torch.tensor(temperature_test[1]["2019"][i + longueur_apprentissage:i + longueur_apprentissage + longueur_prevision]) - mt)/stt)
-	##sortie.append((torch.tensor(humidite_test[1]["2019"][i + longueur_apprentissage:i + longueur_apprentissage + longueur_prevision]) - mh)/sth)
+		entre.append([an,cdt,sdt,ch,sh,hm]) ## humidité enlevée
+	sortie.append((torch.tensor(humidite_test[1]["2019"][i + longueur_apprentissage:i + longueur_apprentissage + longueur_prevision]) - mh)/sth)
 	entre = torch.tensor(entre).double().view(1,-1)
 	sortie = torch.cat(sortie)
 	rep = net(entre)
 	ecart = ecart + (rep - sortie)**2	
 
 
-ETt = ( ( ecart.view(1,longueur_prevision)[0] / nb_tour) ** (1/2) * stt ).view(int (longueur_prevision/8),8)
-##ETh = ( ( ecart.view(2,longueur_prevision)[1] / nb_tour) ** (1/2) * sth ).view(int (longueur_prevision/8),8)
-print ("ETt = " + str (ETt))
-##print ("ETh = " + str (ETh))
+##ETt = ( ( ecart.view(1,longueur_prevision)[0] / nb_tour) ** (1/2) * stt ).view(int (longueur_prevision/8),8)
+ETh = ( ( ecart.view(1,longueur_prevision)[0] / nb_tour) ** (1/2) * sth ).view(int (longueur_prevision/8),8)
+##print ("ETt = " + str (ETt))
+print ("ETh = " + str (ETh))
 
-torch.save(net.state_dict(), "./net1st.nn")
+torch.save(net.state_dict(), "./net1sh.nn")
