@@ -49,10 +49,14 @@ for i in range(0,len(donnees["numer_sta"])) :
 					ListeDonnees[j][annee] = ['mq'] 
 				else :
 					ListeDonnees[j][annee] = [float(ValeurDonnees[j])]
+Sortie = []
+Sortie.append(Temps)
+for k in range(11):
+	Sortie.append(ListeDonnees[k])
 
 
 with open('donnees.json','w') as jsonfile :
-	jsonfile.write(json.dumps([Temps, ListeDonnees], indent=4))
+	jsonfile.write(json.dumps(Sortie, indent=4))
 
 
 
