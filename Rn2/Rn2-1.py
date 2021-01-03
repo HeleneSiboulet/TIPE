@@ -9,6 +9,7 @@ with open("./donnees/donneesCompletees.json") as jsonfile :
 with open("./donnees/donneesTestCompletees.json") as jsonfile :
 	donnees_test = json.load(jsonfile)
 
+print (donnees[0]["1996"][-1])
 
 def convertiseur_date(dt) :
 	angle = dt*2*np.pi/366
@@ -27,8 +28,7 @@ for i in donnees[0].keys() :
 		annee.append(float(i))
 		for k in range (12):
 			do[k].append(donnees[k][i][j])
-
-	
+0
 annee = torch.tensor(annee)
 
 for k in range (12):
@@ -42,7 +42,6 @@ for k in range (12):
 
 ma = float(torch.mean(annee))
 sta = float(torch.std(annee))
-
 
 for i in donnees[0].keys() :
 	for j in range(len(donnees[0][i])) :
@@ -79,7 +78,7 @@ class Net(nn.Module) :
         super(Net, self).__init__()            
         self.fc1 = nn.Linear(longueurEntree * 7, longueurEntree * 9).double()
         self.fc2 = nn.Linear(longueurEntree * 9, longueurSortie * 20).double()
-        self.fc3 = nn.Linear(longueurSortie * 20, longueurSortie * 6).double()
+        self.fc3 = nn.Linear(longueurSortie * 20, longueurSortie * 2).double()
         self.fc4 = nn.Linear(longueurSortie * 6, longueurSortie * 2).double()
         self.prelu1 = nn.PReLU().double()
         self.prelu2 = nn.PReLU().double()
@@ -88,8 +87,9 @@ class Net(nn.Module) :
     def forward(self, x) :
         x = self.prelu1(self.fc1(x))
         x = self.prelu2(self.fc2(x))
-        x = self.prelu3(self.fc3(x))
-        x = self.fc4(x)
+        x = self.fc3(x)
+        #x = self.prelu3(self.fc3(x))
+        #x = self.fc4(x)
         return x
 
 #def mesure_ecart(x,y):
@@ -108,14 +108,14 @@ for tour in range(10000) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = []
-	for j in range(100) :
+	for j in range(20) :
 		i = random.choice(index_test)
 		batch_source.append(torch.tensor(entrees_rn[i-longueurEntree : i]).double().view(1,-1))
 		target = []
 		for j in range(i, i + longueurSortie) :
-			target.append(entrees_rn[j][5])       #11
+			target.append(entrees_rn[j][5])        #11
 		for j in range(i, i + longueurSortie) :
-			target.append (entrees_rn[j][6])      #13
+			target.append (entrees_rn[j][6])       #13
 		batch_target.append(torch.tensor(target).double().unsqueeze(0)) 
 	source = torch.cat(batch_source,0)
 	target = torch.cat(batch_target,0)
@@ -153,6 +153,8 @@ for tour in range(nb_tour) :
 		sortie.append((donnees_test[8][annee][(j+i+longueurEntree)]- moyennes[8])/ecart_type[8])
 	entre = torch.tensor(entre).double().view(1,-1)
 	rep = net(entre)
+	#print (sortie)
+	#print(rep)
 	ecart = ecart + (rep - torch.tensor(sortie).unsqueeze(0))**2
 
 ETt = ( ecart.view(2,8)[0] / nb_tour) ** (1/2) * ecart_type[6]
