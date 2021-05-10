@@ -134,25 +134,30 @@ for j in range(112) :
     entres.append([an,cdt,sdt,ch,sh,tp,hm])
 
 repj = netj (torch.tensor(entrej).double().view(1,-1))
-repjT = repj.view(2,8)[0] * stt + mt
+repjT = repj.view(2,8)[0] * stt + mt - 273.15
 repjH = repj.view(2,8)[1] * sth + mh
 xj = []
 for k in range (1,9):
     xj.append(debut + longueur + 0.125*k)
 
 reps = nets (torch.tensor(entres).double().view(1,-1))
-repsT = reps.view(2,-1)[0] * stt + mt
+repsT = reps.view(2,-1)[0] * stt + mt - 273.15
 repsH = reps.view(2,-1)[1] * sth + mh
 xs = []
 for k in range (1,57):
     xs.append(debut + longueur + 0.125*k)
 
+precedente = []
+for i in temperature_reference[1] :
+    precedente.append(i - 273.15)
+suivante = []
+for i in temperature_obs[1] :
+    suivante.append(i - 273.15)
 
 
 
-
-plt.plot (temperature_reference[0], temperature_reference[1], label = "semaine précédante")
-plt.plot (temperature_obs[0], temperature_obs[1], label = "semaine suivante")
+plt.plot (temperature_reference[0], precedente, label = "semaine précédente")
+plt.plot (temperature_obs[0], suivante, label = "semaine suivante")
 plt.plot (xj, list(repjT), label = "previsions pour le jour suivant")
 plt.plot (xs, list(repsT), label = "previsions pour la semaine suivante")
 plt.legend()
@@ -160,7 +165,7 @@ plt.savefig("dessinTempIA300,75")
 
 plt.clf()
 
-plt.plot (humidite_reference[0], humidite_reference[1], label = "semaine précédante")
+plt.plot (humidite_reference[0], humidite_reference[1], label = "semaine précédente")
 plt.plot (humidite_obs[0], humidite_obs[1], label = "semaine suivante")
 plt.plot (xj, list(repjH), label = "previsions pour le jour suivant")
 plt.plot (xs, list(repsH), label = "previsions pour la semaine suivante")

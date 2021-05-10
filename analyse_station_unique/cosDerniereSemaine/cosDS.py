@@ -74,12 +74,19 @@ for i in range (13) :
 	ET [i] = (ecart[i] / compt) ** (1/2)
 #print (ET)
 
-plt.plot (temperature_reference[0], temperature_reference[1], label = "semaine précédante")
-plt.plot (temperature_obs[0], temperature_obs[1], label = "semaine suivante")
+n = len (temperature_reference[0])
+ref = []
+obs = []
+for i in range (n):
+	ref.append ( temperature_reference[1][i] - 273.15 )
+	obs.append ( temperature_obs[1][i] - 273.15 )
+ 
+plt.plot (temperature_reference[0], ref, label = "semaine précédente")
+plt.plot (temperature_obs[0], obs, label = "semaine suivante")
 
 courbe = [] 
 for i in (temperature_reference[0] + temperature_obs[0]) :
-	courbe.append (fct_test(X,i,debut))
+	courbe.append (fct_test(X,i,debut) - 273.15	)
 plt.plot ((temperature_reference[0] + temperature_obs[0]), courbe, label = "prévisions")
 plt.legend()
 plt.savefig("cosDS.png")
