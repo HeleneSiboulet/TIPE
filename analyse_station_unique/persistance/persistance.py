@@ -25,7 +25,7 @@ for ip in range (1,10) :
 		for date in temperature[0][annee] :
 			if (date - i) in temperature [0][annee] :
 				temperature_aujourdhui = temperature[1][annee][temperature[0][annee].index (date) ]
-				temperature_hier = temperature[1][annee][temperature[0][annee].index (date - i ) ]    ##
+				temperature_hier = temperature[1][annee][temperature[0][annee].index (date - i ) ]  
 				somme += (temperature_aujourdhui - temperature_hier) ** 2
 				compt += 1
 	t.append ((somme/compt)**(1/2))
