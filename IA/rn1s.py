@@ -104,7 +104,7 @@ for tour in range(nb_tour_apprentissage) :
 		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
 		target = temperature_continu[i][5]
 		target = target.unsqueeze(0)
-		for k in range(longueur_prevision-1) :
+		for k in range(1,longueur_prevision) :
 			target = torch.cat([target,temperature_continu[i+k][5].unsqueeze(0)])
 		for k in range(longueur_prevision) :
 			target = torch.cat([target,temperature_continu[i+k][6].unsqueeze(0)])
