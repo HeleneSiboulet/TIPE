@@ -96,13 +96,13 @@ index_test = []
 for i in range(longueur_apprentissage, len(temperature_continu) - longueur_prevision) :
 	index_test.append(i)
 
-nb_tour_apprentissage = 2000
+nb_tour_apprentissage = 1000
 
 for tour in range(nb_tour_apprentissage) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = 0
-	for j in range(40) :
+	for j in range(100) :
 		i = random.choice(index_test)
 		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
 		target = temperature_continu[i][5]
