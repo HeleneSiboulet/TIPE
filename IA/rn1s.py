@@ -57,7 +57,7 @@ for i in temperature[0].keys() :
 
 temperature_continu = torch.tensor(temperature_continu).double()
 
-longueur_apprentissage = 8*7*2
+longueur_apprentissage = 8*7*3
 longueur_prevision = 8*7
 
 
@@ -126,7 +126,7 @@ for tour in range(nb_tour_apprentissage) :
 taille = len(temperature_test[0]["2019"])
 ecart= torch.tensor(np.zeros([1,2*longueur_prevision]))	
 compt = 0
-nb_tour = 1000
+nb_tour = 5000
 
 for tour in range(nb_tour) :
 	i = rd.randint (0, taille - longueur_prevision - longueur_apprentissage)
