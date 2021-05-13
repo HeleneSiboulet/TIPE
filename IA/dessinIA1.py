@@ -25,23 +25,26 @@ class Netj(nn.Module) :
         x = self.fc3(x)
         return x
 
-longueur_apprentissage = 8*7*2
+longueur_apprentissage = 8*7*3
 longueur_prevision = 8*7
 
 class Nets(nn.Module) :
 
     def __init__(self) :
         super(Nets, self).__init__()            
-        self.fc1 = nn.Linear(7*longueur_apprentissage, 3*longueur_apprentissage).double()
-        self.fc2 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
-        self.fc3 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
+        self.fc1 = nn.Linear(7*longueur_apprentissage, 6*longueur_apprentissage).double()
+        self.fc2 = nn.Linear(6*longueur_apprentissage, 3*longueur_apprentissage).double()
+        self.fc3 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
+        self.fc4 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
         self.prelu1 = nn.PReLU().double()
         self.prelu2 = nn.PReLU().double()
+        self.prelu3 = nn.PReLU().double()
 
     def forward(self, x) :
         x = self.prelu1(self.fc1(x))
         x = self.prelu2(self.fc2(x))
-        x = self.fc3(x)
+        x = self.prelu3(self.fc3(x))
+        x = self.fc4(x)
         return x
 
 netj = Netj()
@@ -60,7 +63,7 @@ with open('./donnees/HumiditeTest.json') as jsonfile :
 
 
 longueur = 7
-debut = 300.75   
+debut = 250
 ideb = temperature[0]["2019"].index(debut)
 imili = temperature[0]["2019"].index(debut + longueur) + 1
 ifin = temperature[0]["2019"].index(debut + 2*longueur) + 1
@@ -125,12 +128,12 @@ for k in range (1,9):
 
 entres = []
 
-for j in range(112) :
+for j in range(longueur_apprentissage) :
     an = (2019.0 - ma)/sta
-    cdt,sdt = convertiseur_date((0.125*j+debut - 7)%taille)
-    ch,sh = convertiseur_heure((0.125*j+debut - 7 )%taille)
-    tp = (temperature[1]["2019"][ideb + j - 56 ] - mt)/stt
-    hm = (humidite[1]["2019"][ideb + j - 56 ] - mh)/sth
+    cdt,sdt = convertiseur_date((0.125*j+debut - 21)%taille)
+    ch,sh = convertiseur_heure((0.125*j+debut - 21 )%taille)
+    tp = (temperature[1]["2019"][ideb + j - 168 ] - mt)/stt
+    hm = (humidite[1]["2019"][ideb + j - 168 ] - mh)/sth
     entres.append([an,cdt,sdt,ch,sh,tp,hm])
 
 repj = netj (torch.tensor(entrej).double().view(1,-1))

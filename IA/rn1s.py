@@ -102,7 +102,7 @@ for tour in range(nb_tour_apprentissage) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = 0
-	for j in range(100) :
+	for j in range(200) :
 		i = random.choice(index_test)
 		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
 		target = temperature_continu[i][5]
