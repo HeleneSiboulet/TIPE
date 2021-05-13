@@ -73,16 +73,19 @@ class Net(nn.Module) :
 
     def __init__(self) :
         super(Net, self).__init__()            
-        self.fc1 = nn.Linear(7*longueur_apprentissage, 3*longueur_apprentissage).double()
-        self.fc2 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
-        self.fc3 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
+        self.fc1 = nn.Linear(7*longueur_apprentissage, 6*longueur_apprentissage).double()
+        self.fc2 = nn.Linear(6*longueur_apprentissage, 3*longueur_apprentissage).double()
+        self.fc3 = nn.Linear(3*longueur_apprentissage, 2*longueur_apprentissage).double()
+        self.fc4 = nn.Linear(2*longueur_apprentissage, 2*longueur_prevision).double()
         self.prelu1 = nn.PReLU().double()
         self.prelu2 = nn.PReLU().double()
+        self.prelu3 = nn.PReLU().double()
 
     def forward(self, x) :
         x = self.prelu1(self.fc1(x))
         x = self.prelu2(self.fc2(x))
-        x = self.fc3(x)
+        x = self.prelu3(self.fc3(x))
+        x = self.fc4(x)
         return x
 
 
@@ -93,13 +96,13 @@ index_test = []
 for i in range(longueur_apprentissage, len(temperature_continu) - longueur_prevision) :
 	index_test.append(i)
 
-nb_tour_apprentissage = 13000
+nb_tour_apprentissage = 2000
 
 for tour in range(nb_tour_apprentissage) :
 	optimizer.zero_grad()
 	batch_source = []
 	batch_target = 0
-	for j in range(20) :
+	for j in range(40) :
 		i = random.choice(index_test)
 		batch_source.append(temperature_continu[i-longueur_apprentissage:i].view(1,-1))	
 		target = temperature_continu[i][5]
