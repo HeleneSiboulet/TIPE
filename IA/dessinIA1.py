@@ -63,7 +63,7 @@ with open('./donnees/HumiditeTest.json') as jsonfile :
 
 
 longueur = 7
-debut = 250
+debut = 8.5 ##random.randrange (0,2800) * 0.125
 ideb = temperature[0]["2019"].index(debut)
 imili = temperature[0]["2019"].index(debut + longueur) + 1
 ifin = temperature[0]["2019"].index(debut + 2*longueur) + 1
@@ -113,8 +113,8 @@ entrej = []
 
 for j in range(56) :
     an = (2019.0 - ma)/sta
-    cdt,sdt = convertiseur_date((0.125*j+debut)%taille)
-    ch,sh = convertiseur_heure((0.125*j+debut)%taille)
+    cdt,sdt = convertiseur_date(0.125*j+debut)
+    ch,sh = convertiseur_heure(0.125*j+debut)
     tp = (temperature[1]["2019"][ideb + j] - mt)/stt
     hm = (humidite[1]["2019"][ideb + j] - mh)/sth
     entrej.append([an,cdt,sdt,ch,sh,tp,hm])
@@ -130,10 +130,10 @@ entres = []
 
 for j in range(longueur_apprentissage) :
     an = (2019.0 - ma)/sta
-    cdt,sdt = convertiseur_date((0.125*j+debut - 21)%taille)
-    ch,sh = convertiseur_heure((0.125*j+debut - 21 )%taille)
-    tp = (temperature[1]["2019"][ideb + j - 168 ] - mt)/stt
-    hm = (humidite[1]["2019"][ideb + j - 168 ] - mh)/sth
+    cdt,sdt = convertiseur_date((0.125*j+debut - 14)%taille)
+    ch,sh = convertiseur_heure((0.125*j+debut - 14 )%taille)
+    tp = (temperature[1]["2019"][ideb + j - 112 ] - mt)/stt
+    hm = (humidite[1]["2019"][ideb + j - 112 ] - mh)/sth
     entres.append([an,cdt,sdt,ch,sh,tp,hm])
 
 repj = netj (torch.tensor(entrej).double().view(1,-1))
