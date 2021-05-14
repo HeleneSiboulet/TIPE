@@ -63,10 +63,10 @@ with open('./donnees/HumiditeTest.json') as jsonfile :
 
 
 longueur = 7
-debut = 8.5 ##random.randrange (0,2800) * 0.125
+debut = 190##random.randrange (0,2800) * 0.125
 ideb = temperature[0]["2019"].index(debut)
-imili = temperature[0]["2019"].index(debut + longueur) + 1
-ifin = temperature[0]["2019"].index(debut + 2*longueur) + 1
+imili = temperature[0]["2019"].index(debut + longueur)
+ifin = temperature[0]["2019"].index(debut + 2*longueur)
 temperature_reference = [temperature[0]["2019"][ideb:imili], temperature[1]["2019"][ideb:imili]]
 temperature_obs = [temperature[0]["2019"][imili:ifin], temperature[1]["2019"][imili:ifin]]
 humidite_reference = [humidite[0]["2019"][ideb:imili], humidite[1]["2019"][ideb:imili]]
@@ -140,14 +140,14 @@ repj = netj (torch.tensor(entrej).double().view(1,-1))
 repjT = repj.view(2,8)[0] * stt + mt - 273.15
 repjH = repj.view(2,8)[1] * sth + mh
 xj = []
-for k in range (1,9):
+for k in range (8):
     xj.append(debut + longueur + 0.125*k)
 
 reps = nets (torch.tensor(entres).double().view(1,-1))
 repsT = reps.view(2,-1)[0] * stt + mt - 273.15
 repsH = reps.view(2,-1)[1] * sth + mh
 xs = []
-for k in range (1,57):
+for k in range (56):
     xs.append(debut + longueur + 0.125*k)
 
 precedente = []
