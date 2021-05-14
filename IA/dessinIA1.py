@@ -63,7 +63,7 @@ with open('./donnees/HumiditeTest.json') as jsonfile :
 
 
 longueur = 7
-debut = 190##random.randrange (0,2800) * 0.125
+debut = 344.25##random.randrange (0,2800) * 0.125
 ideb = temperature[0]["2019"].index(debut)
 imili = temperature[0]["2019"].index(debut + longueur)
 ifin = temperature[0]["2019"].index(debut + 2*longueur)
